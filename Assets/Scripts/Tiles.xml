@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tiles>
+  <tile>
+    <name>start</name>
+    <color>orange</color>
+    <text>START</text>
+    <nextTile>hand1</nextTile>
+    <nextTile>fly1</nextTile>
+    <xPosition>-2</xPosition>
+    <yPosition>-3</yPosition>
+  </tile>
+  <tile>
+    <name>hand1</name>
+    <color>blue</color>
+    <text>Yay! You are on a hand!</text>
+    <nextTile>hand2</nextTile>
+    <xPosition>1</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand2</name>
+    <color>blue</color>
+    <text>The kid forgets to wash hands.</text>
+    <nextTile>hand3</nextTile>
+    <xPosition>2</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand3</name>
+    <color>blue</color>
+    <text>Silly kid rinses with water and doesn't use soap. Poop is sticky!</text>
+    <nextTile>hand4</nextTile>
+    <xPosition>3</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand4</name>
+    <color>blue</color>
+    <text>That tricky kid pretends to wash to fool his teacher, but doesn't!</text>
+    <nextTile>hand5</nextTile>
+    <xPosition>4</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand5</name>
+    <color>green</color>
+    <text>The kid is too busy to wash hands. Move forward 4.</text>
+    <nextTile>hand6</nextTile>
+    <jumpToTile>hand9</jumpToTile>
+    <xPosition>5</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand6</name>
+    <color>red</color>
+    <text>That mean kid washes with soap. Back to Start!</text>
+    <nextTile>hand7</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>6</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand7</name>
+    <color>red</color>
+    <text>A friend makes fun of this kid for wearing poop because he did not use soap, so the kid washes with soap!</text>
+    <nextTile>hand8</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>7</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand8</name>
+    <color>blue</color>
+    <text>That silly kid rinses with water, forgetting poop is sticky!</text>
+    <nextTile>hand9</nextTile>
+    <xPosition>8</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand9</name>
+    <color>blue</color>
+    <text>If they forget soap, their hands sometimes smell slightly of poop. Don't ya love that odor?!</text>
+    <nextTile>hand10</nextTile>
+    <xPosition>9</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand10</name>
+    <color>green</color>
+    <text>Germs divide! If you have any germs in Start, bring one here.</text>
+    <nextTile>hand11</nextTile>
+    <special>bringGerm</special>
+    <xPosition>10</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand11</name>
+    <color>blue</color>
+    <text>The kid is playing in the dirt. You stick on his hand.</text>
+    <nextTile>hand12</nextTile>
+    <xPosition>11</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand12</name>
+    <color>blue</color>
+    <text>Kid tries to swat a fly. You are glad he missed. If that fly has poop on its legs, it might also have friends of yours!</text>
+    <nextTile>hand13</nextTile>
+    <xPosition>12</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand13</name>
+    <color>green</color>
+    <text>Kid wipes hands on his shirt. He still forgets poop is sticky! Move forward 3.</text>
+    <nextTile>hand14</nextTile>
+    <jumpToTile>hand16</jumpToTile>
+    <xPosition>13</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand14</name>
+    <color>green</color>
+    <text>Dinner smells way too good for the kid to stop &amp; wash hands with soap. Move forward two.</text>
+    <nextTile>hand15</nextTile>
+    <jumpToTile>hand16</jumpToTile>
+    <xPosition>14</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand15</name>
+    <color>green</color>
+    <text>Kid pretends to use soap, but just rinses his hands. You are still stuck on! Go forward one.</text>
+    <jumpToTile>hand16</jumpToTile>
+    <xPosition>15</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand16</name>
+    <color>blue</color>
+    <text>Your tummy is rumbling. (Oh, you have no tummy. It must be the kid's tummy.)</text>
+    <nextTile>hand17</nextTile>
+    <xPosition>16</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand17</name>
+    <color>red</color>
+    <text>That mean kid remembers to wash with soap. Back to Start!</text>
+    <nextTile>hand18</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>17</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand18</name>
+    <color>green</color>
+    <text>The kid eats with you (&amp; poop) on his hands! You are in a gut!</text>
+    <nextTile>hand19</nextTile>
+    <jumpToTile>end</jumpToTile>
+    <xPosition>18</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand19</name>
+    <color>red</color>
+    <text>Sister reminds kid to wash hands. Bask to Start!</text>
+    <nextTile>hand20</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>19</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand20</name>
+    <color>red</color>
+    <text>That nasty mom makes the kid wash with soap. Back to Start!</text>
+    <nextTile>hand21</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>20</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand21</name>
+    <color>green</color>
+    <text>The kid forgets to wash hands before eating with his poopy hands! You are in a gut!</text>
+    <nextTile>hand22</nextTile>
+    <jumpToTile>end</jumpToTile>
+    <xPosition>21</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>hand22</name>
+    <color>red</color>
+    <text>Mommy reminds the kid to wash hands. Will he? Go back 6 and find out.</text>
+    <nextTile>end</nextTile>
+    <jumpToTile>hand16</jumpToTile>
+    <xPosition>22</xPosition>
+    <yPosition>0</yPosition>
+  </tile>
+  <tile>
+    <name>fly1</name>
+    <color>blue</color>
+    <text>Flying is scary! You are lucky poop is sticky, so you don't fall off!</text>
+    <nextTile>fly2</nextTile>
+    <xPosition>6</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly2</name>
+    <color>red</color>
+    <text>CRASH! Oh, no, a window screen! Go back one.</text>
+    <nextTile>fly3</nextTile>
+    <jumpToTile>fly1</jumpToTile>
+    <xPosition>7</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly3</name>
+    <color>green</color>
+    <text>Fly sees food! Roll again</text>
+    <nextTile>fly4</nextTile>
+    <special>rollAgain</special>
+    <xPosition>8</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly4</name>
+    <color>green</color>
+    <text>Rotten food near a kitchen smells yummy to your fly! Go forward 4.</text>
+    <nextTile>fly5</nextTile>
+    <jumpToTile>fly8</jumpToTile>
+    <xPosition>9</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly5</name>
+    <color>green</color>
+    <text>Land on a cow's nose. It twitches the fly off. Go forward 3.</text>
+    <nextTile>fly6</nextTile>
+    <jumpToTile>fly8</jumpToTile>
+    <xPosition>10</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly6</name>
+    <color>red</color>
+    <text>ZAP!! That frog's tongue was too fast for your fly. Back to Start!</text>
+    <nextTile>fly7</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>11</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly7</name>
+    <color>red</color>
+    <text>Crash: Hit a window screen. Go back 6.</text>
+    <nextTile>fly8</nextTile>
+    <jumpToTile>fly1</jumpToTile>
+    <xPosition>12</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly8</name>
+    <color>blue</color>
+    <text>In the kitchen now. That food smells delicious!</text>
+    <nextTile>fly9</nextTile>
+    <xPosition>13</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly9</name>
+    <color>red</color>
+    <text>They keep food covered up. Back to Start!</text>
+    <nextTile>fly10</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>14</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly10</name>
+    <color>green</color>
+    <text>Land on food that gets eaten. You are in someone's gut!</text>
+    <nextTile>fly11</nextTile>
+    <jumpToTile>end</jumpToTile>
+    <xPosition>15</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly11</name>
+    <color>red</color>
+    <text>Land on food, but Mommy sees you and tosses out that bite. Back to Start!</text>
+    <nextTile>fly12</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>16</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly12</name>
+    <color>green</color>
+    <text>Land on food that gets eaten. You are in someone's gut!</text>
+    <nextTile>fly13</nextTile>
+    <jumpToTile>end</jumpToTile>
+    <xPosition>17</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly13</name>
+    <color>green</color>
+    <text>Land on food that gets eaten. You are in someone's gut!</text>
+    <nextTile>fly14</nextTile>
+    <jumpToTile>end</jumpToTile>
+    <xPosition>18</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>fly14</name>
+    <color>red</color>
+    <text>Your ride got swatted! Back to Start!</text>
+    <nextTile>end</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>19</xPosition>
+    <yPosition>-2</yPosition>
+  </tile>
+  <tile>
+    <name>poop1</name>
+    <color>blue</color>
+    <text>Poop goes into a latrine, but you stick to a hand!</text>
+    <nextTile>poop2</nextTile>
+    <xPosition>0</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop2</name>
+    <color>green</color>
+    <text>The kid poops outside. Move forward 5.</text>
+    <nextTile>poop3</nextTile>
+    <jumpToTile>poop7</jumpToTile>
+    <xPosition>1</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop3</name>
+    <color>green</color>
+    <text>Poop outdoors! It is fun to be poop in the grass. Move forward 4.</text>
+    <nextTile>poop4</nextTile>
+    <jumpToTile>poop7</jumpToTile>
+    <xPosition>2</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop4</name>
+    <color>green</color>
+    <text>The kid poops outside! What a nice breeze! (Well, maybe not to those downwind of you…). Move forward 3.</text>
+    <nextTile>poop5</nextTile>
+    <jumpToTile>poop7</jumpToTile>
+    <xPosition>3</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop5</name>
+    <color>purple</color>
+    <text>Poop goes into a latrine, but you stick to a hand!</text>
+    <nextTile>poop6</nextTile>
+    <jumpToTile>hand1</jumpToTile>
+    <xPosition>4</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop6</name>
+    <color>red</color>
+    <text>Poop goes into a toilet, so I am trapped. Back to Start!</text>
+    <nextTile>poop7</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>5</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop7</name>
+    <color>blue</color>
+    <text>The fresh air is great!</text>
+    <nextTile>poop8</nextTile>
+    <xPosition>6</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop8</name>
+    <color>purple</color>
+    <text>A fly lands on the poop and you stick to a leg. You are flying now!</text>
+    <nextTile>poop9</nextTile>
+    <jumpToTile>fly1</jumpToTile>
+    <xPosition>7</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop9</name>
+    <color>red</color>
+    <text>Sunny day and the poop dries out. Back to Start!</text>
+    <nextTile>poop10</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>8</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop10</name>
+    <color>purple</color>
+    <text>Rain comes and washes poop into a leak in a pipe.</text>
+    <nextTile>poop11</nextTile>
+    <jumpToTile>pipe1</jumpToTile>
+    <xPosition>9</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop11</name>
+    <color>green</color>
+    <text>Rain comes and washes poop into the river. You are cruising now! Move forward 3</text>
+    <nextTile>poop12</nextTile>
+    <jumpToTile>poop14</jumpToTile>
+    <xPosition>10</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop12</name>
+    <color>red</color>
+    <text>Sunny day and the poop dries. You are not getting to another gut this way! Back to Start!</text>
+    <nextTile>poop13</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>11</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop13</name>
+    <color>green</color>
+    <text>Washed to river! Move forward one.</text>
+    <nextTile>poop14</nextTile>
+    <jumpToTile>poop14</jumpToTile>
+    <xPosition>12</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop14</name>
+    <color>blue</color>
+    <text>You are in the river. Lucky poop floats!</text>
+    <nextTile>poop15</nextTile>
+    <xPosition>13</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop15</name>
+    <color>red</color>
+    <text>Eaten by fish. Back to Start!</text>
+    <nextTile>poop16</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>14</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop16</name>
+    <color>purple</color>
+    <text>Someone is gathering water. Go to jerry can!</text>
+    <nextTile>poop17</nextTile>
+    <jumpToTile>jerry1</jumpToTile>
+    <xPosition>15</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop17</name>
+    <color>purple</color>
+    <text>Someone is gathering water. Go to jerry can!</text>
+    <nextTile>poop18</nextTile>
+    <jumpToTile>jerry1</jumpToTile>
+    <xPosition>16</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop18</name>
+    <color>red</color>
+    <text>Too much sun is bad for germs. Back to Start!</text>
+    <nextTile>poop19</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>17</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop19</name>
+    <color>purple</color>
+    <text>Someone is gathering water. Go to jerry can!</text>
+    <nextTile>poop20</nextTile>
+    <jumpToTile>jerry1</jumpToTile>
+    <xPosition>18</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>poop20</name>
+    <color>red</color>
+    <text>Floated right past the village. Back to Start!</text>
+    <nextTile>end</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>19</xPosition>
+    <yPosition>-4</yPosition>
+  </tile>
+  <tile>
+    <name>pipe1</name>
+    <color>blue</color>
+    <text>Whee! Sliding down a pipe!</text>
+    <nextTile>pipe2</nextTile>
+    <xPosition>5</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe2</name>
+    <color>red</color>
+    <text>UH OH. The town put chlorine in the piped water! Back to Start!</text>
+    <nextTile>pipe3</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>6</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe3</name>
+    <color>blue</color>
+    <text>Look, there is another germ! Hi, buddy!</text>
+    <nextTile>pipe4</nextTile>
+    <xPosition>7</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe4</name>
+    <color>blue</color>
+    <text>The water looks clean. It is good they cannot see you!</text>
+    <nextTile>pipe5</nextTile>
+    <xPosition>8</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe5</name>
+    <color>blue</color>
+    <text>It's dark in here.</text>
+    <nextTile>pipe6</nextTile>
+    <xPosition>9</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe6</name>
+    <color>blue</color>
+    <text>It's fun to ride with so many friends in the water pipe!</text>
+    <nextTile>pipe7</nextTile>
+    <xPosition>10</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe7</name>
+    <color>green</color>
+    <text>YAY! Someone poured you out of the pipe and into their Jerry can! Move forward 5.</text>
+    <nextTile>pipe8</nextTile>
+    <jumpToTile>jerry1</jumpToTile>
+    <xPosition>11</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe8</name>
+    <color>green</color>
+    <text>Some hard-working kid just carried their Jerry can a long way just to pick you up (with some water)! Go forward 4.</text>
+    <nextTile>pipe9</nextTile>
+    <jumpToTile>jerry1</jumpToTile>
+    <xPosition>12</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe9</name>
+    <color>green</color>
+    <text>You've just been pumped from pipe to Jerry can. Getting closer! Go forward 3.</text>
+    <nextTile>pipe10</nextTile>
+    <jumpToTile>jerry1</jumpToTile>
+    <xPosition>13</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe10</name>
+    <color>green</color>
+    <text>Whoosh! Through the tap and into a Jerry can! Go forward two</text>
+    <nextTile>pipe11</nextTile>
+    <jumpToTile>jerry1</jumpToTile>
+    <xPosition>14</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>pipe11</name>
+    <color>red</color>
+    <text>You get out of the pipe and spilled on the ground. Back to Start!</text>
+    <nextTile>jerry1</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>15</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>jerry1</name>
+    <color>blue</color>
+    <text>You made it to the big Jerry can they take home!</text>
+    <nextTile>jerry2</nextTile>
+    <xPosition>16</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>jerry2</name>
+    <color>red</color>
+    <text>Those mean people used the water for cooking, but boiled food thoroughly. Back to Start!</text>
+    <nextTile>jerry3</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>17</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>jerry3</name>
+    <color>red</color>
+    <text>Those nasty people put chlorine in the water. Back to Start!</text>
+    <nextTile>jerry4</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>18</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>jerry4</name>
+    <color>red</color>
+    <text>Those people use a water filter just to keep you (&amp; poop) out of their water. How rude! Back to start!</text>
+    <nextTile>jerry5</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <xPosition>19</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>jerry5</name>
+    <color>blue</color>
+    <text>They boil the water. Roll a die: If 6, they boil too quickly and you got a hot bath and into a gut. Otherwise they boil 2 minutes. Back to start!</text>
+    <nextTile>jerry6</nextTile>
+    <jumpToTile>start</jumpToTile>
+    <special>roll6ToGut</special>
+    <xPosition>20</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>jerry6</name>
+    <color>green</color>
+    <text>They drink the untreated water. You are in a new gut!</text>
+    <nextTile>jerry7</nextTile>
+    <jumpToTile>end</jumpToTile>
+    <xPosition>21</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>jerry7</name>
+    <color>green</color>
+    <text>They drink the untreated water. You are in a new gut!</text>
+    <nextTile>end</nextTile>
+    <jumpToTile>end</jumpToTile>
+    <xPosition>22</xPosition>
+    <yPosition>-6</yPosition>
+  </tile>
+  <tile>
+    <name>end</name>
+    <color>yellow</color>
+    <text>END</text>
+    <xPosition>21</xPosition>
+    <yPosition>-3</yPosition>
+  </tile>
+</tiles>
