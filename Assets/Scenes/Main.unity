@@ -172,7 +172,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 55161505}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f1b4939b8671aa740b440fc240dc9208, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -529,7 +529,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1531062044}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2125442431}
+        m_MethodName: Roll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1531062044
@@ -946,3 +957,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bbbc25881226434b86bd98e9424cd6c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2125442430 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 3bbbc25881226434b86bd98e9424cd6c, type: 2}
+  m_PrefabInternal: {fileID: 2125442429}
+--- !u!114 &2125442431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2125442430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a4180a55754fe418e00fe41b37e179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  rollSpeed: 5
+  rb: {fileID: 0}
+  roll: 0
+  dieScript: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
