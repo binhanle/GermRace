@@ -976,5 +976,11 @@ MonoBehaviour:
   rollSpeed: 5
   rb: {fileID: 0}
   roll: 0
-  dieScript: {fileID: 0}
+  dieScript: {fileID: 2125442432}
   startPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &2125442432 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400000, guid: 3bbbc25881226434b86bd98e9424cd6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 2125442429}
+  m_Script: {fileID: 11500000, guid: 3f3f252609f370b4eb2e1853ab6b3df4, type: 3}

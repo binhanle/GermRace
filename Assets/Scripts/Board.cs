@@ -116,10 +116,15 @@ public class Board : MonoBehaviour
         return tiles;
     }
 
-    public void SetupPlayers(Dictionary<string, Player> playerDict)
+    public void SetupPlayers()
     {
         // sets up the players
-        //players = new Player[numPlayers];
+        players = new Player[GameData.GetNumPlayers()];
+        for (int i = 0; i < GameData.GetNumPlayers(); i++)
+        {
+            GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
+            Player player = playerObject.GetComponent<Player>();
+        }
     }
 
     /*public void SetupDie()
@@ -160,9 +165,9 @@ public class Board : MonoBehaviour
         //SetupCameras();
         LoadTiles();
         //SetupDie();
-        RollDie();
-        GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
-        Player player = playerObject.GetComponent<Player>();
-
+        //RollDie();
+        //GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
+        //Player player = playerObject.GetComponent<Player>();
+        SetupPlayers();
     }
 }

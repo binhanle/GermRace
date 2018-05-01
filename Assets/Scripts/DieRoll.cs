@@ -17,16 +17,16 @@ public class DieRoll : MonoBehaviour
 
     void Start()
     {
-        source = GetComponent<AudioSource>();
+        //source = GetComponent<AudioSource>();
         startPosition = transform.position;
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-        rb.angularVelocity = (Vector3.right * .5f + Vector3.up) * rollSpeed;
+        rb.angularVelocity = Random.insideUnitSphere * rollSpeed;
     }
 
     void OnCollisionEnter()
     {
-        source.Play();
+        //source.Play();
     }
 
 
@@ -35,7 +35,7 @@ public class DieRoll : MonoBehaviour
         transform.position = startPosition;
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-        rb.angularVelocity = (Vector3.right + Vector3.up) * rollSpeed;
+        rb.angularVelocity = Random.insideUnitSphere * rollSpeed;
         StopAllCoroutines();
         RollCheckIsOccuring = false;
     }
@@ -44,7 +44,7 @@ public class DieRoll : MonoBehaviour
     {
         roll = true;
         rb.useGravity = true;
-        //rb.velocity = (Vector3.right + Vector3.forward) * speed;
+        rb.velocity = (Vector3.left + 3 * Vector3.up) * speed;
         Rolling();
     }
 
@@ -67,9 +67,14 @@ public class DieRoll : MonoBehaviour
         {
             yield return null;
         }
-        source.Play();
+        //source.Play();
         yield return new WaitForSeconds(2);
         //gcs.MovePlayer(dieScript.value);
+        if (GameData.GetGameMode() == GameData.Mode.NormalRoll)
+        {
+            GameData.SetGameMode(GameData.Mode.MovingPiece);
+            GameData.GetActivePiece().MoveSpaces(dieScript.value, 0);
+        }
         RollCheckIsOccuring = false;
     }
 }

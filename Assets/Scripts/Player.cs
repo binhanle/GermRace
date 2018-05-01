@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
             //piece.MoveToNextTile(0);
             //piece.JumpToNextTile(0);
             //piece.DoFinish();
-            piece.MoveSpaces(6, 0);
+            //piece.MoveSpaces(6, 0);
         }
     }
     
@@ -89,13 +89,13 @@ public class Player : MonoBehaviour
 
         // test
         activePiece = playerPieces[0];
-        //GameData.SetActivePiece(activePiece);
+        GameData.SetActivePiece(activePiece);
     }
 
     public void Update()
     {
         // follow the current piece if active
-        if (activePiece == GameData.GetActivePiece())
+        if (GameData.GetGameMode() == GameData.Mode.MovingPiece && activePiece == GameData.GetActivePiece())
         {
             Vector3 piecePos = activePiece.transform.position;
             piecePos.y = 0;

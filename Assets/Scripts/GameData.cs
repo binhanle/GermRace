@@ -15,6 +15,10 @@ public static class GameData
     private static Character activePiece;
     //private static Camera mainCamera;
     //private static Camera dieCamera;
+    private static Mode gameMode;
+    public enum Mode { InitialRoll, NormalRoll, MovingPiece };
+    private static int numPlayers = 1;
+    private static int numPiecesPerPlayer = 1;
 
     public static string GetStartTileName()
     {
@@ -105,4 +109,28 @@ public static class GameData
         // Set the die camera
         dieCamera = camera;
     }*/
+
+    public static Mode GetGameMode()
+    {
+        // Get the game mode
+        return gameMode;
+    }
+
+    public static void SetGameMode(Mode mode)
+    {
+        // Set the game mode
+        gameMode = mode;
+    }
+
+    public static int GetNumPlayers()
+    {
+        // Get the number of players
+        return numPlayers;
+    }
+
+    public static int GetNumPiecesPerPlayer()
+    {
+        // Get the number of pieces per player
+        return numPiecesPerPlayer;
+    }
 }
