@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private const int NumPieces = 1;
     //private const string charDir = "Mushroomboypack1.2/3D/";
     private static Tile startTile;
+    private static int numPlayers;
 
     public string GetName()
     {
@@ -80,7 +81,8 @@ public class Player : MonoBehaviour
     public void Awake()
     {
         // set up the player
-        //playerCount++;
+        numPlayers++;
+        playerName = "Player " + numPlayers;
         //playerID = playerCount;
 
         // set up the pieces

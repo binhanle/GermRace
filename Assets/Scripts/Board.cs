@@ -13,7 +13,8 @@ public class Board : MonoBehaviour
     private Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
     private int turn;
     //private const string startTileName = "start";
-    
+    private static int currPlayerIndex;
+
     public void nextTurn()
     {
         // increments turn variable
@@ -124,7 +125,12 @@ public class Board : MonoBehaviour
         {
             GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
             Player player = playerObject.GetComponent<Player>();
+            players[i] = player;
         }
+
+        // the first player in the list goes first
+        currPlayerIndex = 0;
+        GameData.SetCurrPlayer(players[0]);
     }
 
     /*public void SetupDie()
@@ -146,8 +152,8 @@ public class Board : MonoBehaviour
         Camera.main.transform.position = GameData.GetDieCameraPosition();
         Camera.main.transform.eulerAngles = GameData.GetDieCameraRotation();
 
-        // create the button
-
+        // show title and roll button
+        GameGUI.ShowRollScreen();
     }
 
     /*public void CreateButton(string text, Vector3 position)

@@ -7,11 +7,12 @@ public static class GameData
     private static string startTileName = "start";
     private static string tilesPath = "Assets/Scripts/Tiles.xml";
     private static string charDir = "Characters/Mushroomboypack1.2/3D/";
+    private static string menuDir = "Prefabs/Menus/";
     private static Vector3 cameraOffset = new Vector3(2, 1, -5);
     private static Vector3 mainCameraRotation = new Vector3(10, -20, 0);
     private static Vector3 dieCameraPosition = new Vector3(0, 5, 0);
     private static Vector3 dieCameraRotation = new Vector3(10, -90, 0);
-    private static int currPlayerId = 1;
+    private static Player currPlayer;
     private static Character activePiece;
     //private static Camera mainCamera;
     //private static Camera dieCamera;
@@ -38,6 +39,12 @@ public static class GameData
         return charDir;
     }
 
+    public static string GetMenuDir()
+    {
+        // Get the menu directory
+        return menuDir;
+    }
+
     public static Vector3 GetCameraOffset()
     {
         // Get the distance from camera to active piece
@@ -62,16 +69,16 @@ public static class GameData
         return dieCameraRotation;
     }
 
-    public static int GetCurrPlayerId()
+    public static Player GetCurrPlayer()
     {
-        // Get the current player id
-        return currPlayerId;
+        // Gets the current player
+        return currPlayer;
     }
 
-    public static void SetCurrPlayerId(int id)
+    public static void SetCurrPlayer(Player player)
     {
-        // Get the current player id
-        currPlayerId = id;
+        // Sets the current player
+        currPlayer = player;
     }
 
     public static Character GetActivePiece()

@@ -72,6 +72,8 @@ public class DieRoll : MonoBehaviour
         //gcs.MovePlayer(dieScript.value);
         if (GameData.GetGameMode() == GameData.Mode.NormalRoll)
         {
+            // Hide the menu and move the active piece
+            GameGUI.HideRollScreen();
             GameData.SetGameMode(GameData.Mode.MovingPiece);
             GameData.GetActivePiece().MoveSpaces(dieScript.value, 0);
         }
