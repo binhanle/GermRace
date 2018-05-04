@@ -19,6 +19,7 @@ public class DieRoll : MonoBehaviour
     {
         //source = GetComponent<AudioSource>();
         startPosition = transform.position;
+        transform.rotation = Random.rotationUniform;
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.angularVelocity = Random.insideUnitSphere * rollSpeed;
@@ -33,6 +34,7 @@ public class DieRoll : MonoBehaviour
     public void ResetDie()
     {
         transform.position = startPosition;
+        transform.rotation = Random.rotationUniform;
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.angularVelocity = Random.insideUnitSphere * rollSpeed;

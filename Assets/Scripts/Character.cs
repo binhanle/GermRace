@@ -83,6 +83,10 @@ public class Character : MonoBehaviour
         if (currTile.HasLandNext())
         {
             JumpToLandNextTile();
+            if (IsDone())
+            {
+                Invoke("DoFinish", moveDuration);
+            }
             return delayAfterJump;
         }
         return 0;
@@ -201,6 +205,12 @@ public class Character : MonoBehaviour
     {
         // runs finish animation
         GetComponent<Animator>().Play(FinishAn);
+    }
+
+    public bool IsDone()
+    {
+        // returns true if character is on finish tile (nowhere else to go)
+        return !currTile.HasNext();
     }
 
     public void Awake()

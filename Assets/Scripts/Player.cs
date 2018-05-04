@@ -78,6 +78,28 @@ public class Player : MonoBehaviour
         activePiece = piece;
     }
 
+    public bool IsAllDone()
+    {
+        // returns true if all of the player's pieces reached the end
+        foreach (Character piece in playerPieces)
+        {
+            if (!piece.IsDone())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void Celebrate()
+    {
+        // makes all the player's pieces dance
+        foreach (Character piece in playerPieces)
+        {
+            piece.DoHappy();
+        }
+    }
+
     public void Awake()
     {
         // set up the player
@@ -103,6 +125,15 @@ public class Player : MonoBehaviour
             piecePos.y = 0;
             Camera.main.transform.eulerAngles = GameData.GetMainCameraRotation();
             Camera.main.transform.position = piecePos + GameData.GetCameraOffset();
+        }
+
+        // focus on finish tile if someone wins
+        if (GameData.GetGameMode() == GameData.Mode.Winner)
+        {
+            Tile currTile = activePiece.GetCurrTile();
+            Vector3 tilePos = new Vector3(currTile.GetPosition().x, 0, currTile.GetPosition().y);
+            Camera.main.transform.eulerAngles = GameData.GetWinCameraRotation();
+            Camera.main.transform.position = tilePos + GameData.GetWinCameraOffset();
         }
     }
 }

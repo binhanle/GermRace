@@ -16,8 +16,10 @@ public static class GameData
     private static Character activePiece;
     //private static Camera mainCamera;
     //private static Camera dieCamera;
+    private static Vector3 winCameraOffset = new Vector3(2, 0.5f, -1.25f);
+    private static Vector3 winCameraRotation = new Vector3(10, -60, 0);
     private static Mode gameMode;
-    public enum Mode { InitialRoll, NormalRoll, MovingPiece };
+    public enum Mode { InitialRoll, NormalRoll, MovingPiece, Winner };
     private static int numPlayers = 1;
     private static int numPiecesPerPlayer = 1;
 
@@ -116,6 +118,18 @@ public static class GameData
         // Set the die camera
         dieCamera = camera;
     }*/
+
+    public static Vector3 GetWinCameraOffset()
+    {
+        // Get the offset of the win camera
+        return winCameraOffset;
+    }
+
+    public static Vector3 GetWinCameraRotation()
+    {
+        // Get the rotation of the win camera
+        return winCameraRotation;
+    }
 
     public static Mode GetGameMode()
     {

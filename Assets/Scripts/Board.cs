@@ -51,14 +51,14 @@ public class Board : MonoBehaviour
             string name = item.Element("name").Value.Trim();
             string color = item.Element("color").Value.Trim();
             string text = item.Element("text").Value.Trim();
-            if (item.Element("nextTile") != null)
+            /*if (item.Element("nextTile") != null)
             {
                 string nextTile = item.Element("nextTile").Value.Trim();
             }
             if (item.Element("jumpToTile") != null)
             {
                 string jumpToTile = item.Element("jumpToTile").Value.Trim();
-            }
+            }*/
             float xPosition = float.Parse(item.Element("xPosition").Value.Trim());
             float yPosition = float.Parse(item.Element("yPosition").Value.Trim());
 
@@ -168,8 +168,28 @@ public class Board : MonoBehaviour
         // hide message screen
         GameGUI.HideMessageScreen();
 
-        // go to next player
-        StartCoroutine(NextTurn(delay));
+        // check for winner
+        StartCoroutine(CheckWinner(delay));
+    }
+
+    IEnumerator CheckWinner(float delay)
+    {
+        // checks for winner
+        if (GameData.GetCurrPlayer().IsAllDone())
+        {
+            // we have a winner, set the mode to win
+            yield return new WaitForSeconds(delay);
+            GameData.SetGameMode(GameData.Mode.Winner);
+            GameGUI.ShowWinScreen();
+
+            // celebrate
+            GameData.GetCurrPlayer().Celebrate();
+        }
+        else
+        {
+            // go to next player
+            StartCoroutine(NextTurn(delay));
+        }
     }
 
     IEnumerator NextTurn(float delay)

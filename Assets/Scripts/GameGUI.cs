@@ -9,6 +9,8 @@ public class GameGUI : MonoBehaviour
     private static Text titleText;
     private static Canvas messageScreen;
     private static Text messageText;
+    private static Canvas winScreen;
+    private static Text winText;
 
     public static void ShowRollScreen()
     {
@@ -41,6 +43,21 @@ public class GameGUI : MonoBehaviour
         messageScreen.enabled = false;
     }
 
+    public static void ShowWinScreen()
+    {
+        // Displays the win screen
+        winScreen.enabled = true;
+
+        // Show who won
+        winText.text = GameData.GetCurrPlayer().GetName() + " wins!";
+    }
+
+    public static void HideWinScreen()
+    {
+        // Hides the win screen
+        winScreen.enabled = false;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -48,6 +65,8 @@ public class GameGUI : MonoBehaviour
         titleText = GameObject.Find("Title Text").GetComponent<Text>();
         messageScreen = GameObject.Find("Message Screen").GetComponent<Canvas>();
         messageText = GameObject.Find("Message Text").GetComponent<Text>();
+        winScreen = GameObject.Find("Win Screen").GetComponent<Canvas>();
+        winText = GameObject.Find("Win Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
