@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameGUI : MonoBehaviour
 {
     private static Canvas rollScreen;
+    private static Text titleText;
 
     public static void ShowRollScreen()
     {
@@ -14,7 +15,7 @@ public class GameGUI : MonoBehaviour
 
         // Show who's rolling
         Player currPlayer = GameData.GetCurrPlayer();
-        GameObject.Find("Title Text").GetComponent<Text>().text = currPlayer.GetName() + " roll";
+        titleText.text = currPlayer.GetName() + " roll";
     }
 
     public static void HideRollScreen()
@@ -27,6 +28,7 @@ public class GameGUI : MonoBehaviour
     void Start()
     {
         rollScreen = GameObject.Find("Roll Screen").GetComponent<Canvas>();
+        titleText = GameObject.Find("Title Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
