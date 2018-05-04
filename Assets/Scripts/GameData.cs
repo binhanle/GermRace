@@ -10,8 +10,8 @@ public static class GameData
     private static string menuDir = "Prefabs/Menus/";
     private static Vector3 cameraOffset = new Vector3(2, 1, -5);
     private static Vector3 mainCameraRotation = new Vector3(10, -20, 0);
-    private static Vector3 dieCameraPosition = new Vector3(0, 5, 0);
-    private static Vector3 dieCameraRotation = new Vector3(10, -90, 0);
+    private static Vector3 dieCameraPosition = new Vector3(-10, 10, 0);
+    private static Vector3 dieCameraRotation = new Vector3(30, -90, 0);
     private static Player currPlayer;
     private static Character activePiece;
     //private static Camera mainCamera;

@@ -74,6 +74,7 @@ public class DieRoll : MonoBehaviour
         {
             // Hide the menu and move the active piece
             GameGUI.HideRollScreen();
+            ResetDie();
             GameData.SetGameMode(GameData.Mode.MovingPiece);
             GameData.GetActivePiece().MoveSpaces(dieScript.value, 0);
         }

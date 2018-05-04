@@ -19,6 +19,7 @@ public class Character : MonoBehaviour
     private const string FinishAn = "06hooray";
     private const float moveDuration = 2;
     private const float jumpHeight = 0.5f;
+    private const float delayAfterJump = 4;
 
     /*public void Move(float x, float y)
     {
@@ -65,11 +66,48 @@ public class Character : MonoBehaviour
         DoMove(currPos3d, newPos3d);
         currTile = tile;
 
+        // show what's on the tile and react accordingly
+        StartCoroutine(DoLand(currTile));
+
         // jump if necessary
-        if (tile.HasLandNext())
+        /*if (tile.HasLandNext())
         {
             Invoke("JumpToLandNextTile", moveDuration);
             //JumpToLandNextTile();
+        }*/
+    }
+
+    public float JumpIfNeeded()
+    {
+        // jumps if necessary and returns delay until next turn
+        if (currTile.HasLandNext())
+        {
+            JumpToLandNextTile();
+            return delayAfterJump;
+        }
+        return 0;
+    }
+
+    IEnumerator DoLand(Tile currTile)
+    {
+        // displays tile text and reacts according to tile type
+        yield return new WaitForSeconds(moveDuration);
+        GameGUI.ShowMessageScreen(currTile);
+
+        // play corresponding animation
+        switch (currTile.GetTileType())
+        {
+            case Tile.TileType.Bad:
+                DoSad();
+                break;
+            case Tile.TileType.End:
+                DoFinish();
+                break;
+            case Tile.TileType.Good:
+                DoHappy();
+                break;
+            default:
+                break;
         }
     }
 

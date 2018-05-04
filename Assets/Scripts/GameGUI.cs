@@ -7,6 +7,8 @@ public class GameGUI : MonoBehaviour
 {
     private static Canvas rollScreen;
     private static Text titleText;
+    private static Canvas messageScreen;
+    private static Text messageText;
 
     public static void ShowRollScreen()
     {
@@ -24,11 +26,28 @@ public class GameGUI : MonoBehaviour
         rollScreen.enabled = false;
     }
 
+    public static void ShowMessageScreen(Tile currTile)
+    {
+        // Displays the message screen
+        messageScreen.enabled = true;
+
+        // Show the text on the tile
+        messageText.text = currTile.GetText();
+    }
+
+    public static void HideMessageScreen()
+    {
+        // Hides the message screen
+        messageScreen.enabled = false;
+    }
+
     // Use this for initialization
     void Start()
     {
         rollScreen = GameObject.Find("Roll Screen").GetComponent<Canvas>();
         titleText = GameObject.Find("Title Text").GetComponent<Text>();
+        messageScreen = GameObject.Find("Message Screen").GetComponent<Canvas>();
+        messageText = GameObject.Find("Message Text").GetComponent<Text>();
     }
 
     // Update is called once per frame

@@ -11,15 +11,9 @@ public class Board : MonoBehaviour
     private Player[] players;
     //private List<Tile> tiles;
     private Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
-    private int turn;
+    //private int turn;
     //private const string startTileName = "start";
     private static int currPlayerIndex;
-
-    public void nextTurn()
-    {
-        // increments turn variable
-        turn = (turn + 1) % players.Length;
-    }
     
     public Player[] currentPlayer()
     {
@@ -71,13 +65,14 @@ public class Board : MonoBehaviour
             // apply its attributes
             tile.SetColor(color);
             tile.SetPosition(xPosition, yPosition);
+            tile.SetText(text);
 
             // set the type based on its color
             for (int i = 0; i < Tile.colors.Length; i++)
             {
                 if (color == Tile.colors[i])
                 {
-                    tile.SetTileType((Tile.Type)i);
+                    tile.SetTileType((Tile.TileType)i);
                 }
             }
 
@@ -149,6 +144,7 @@ public class Board : MonoBehaviour
     {
         // rolls the die
         // switch view
+        GameData.SetGameMode(GameData.Mode.NormalRoll);
         Camera.main.transform.position = GameData.GetDieCameraPosition();
         Camera.main.transform.eulerAngles = GameData.GetDieCameraRotation();
 
@@ -163,6 +159,31 @@ public class Board : MonoBehaviour
         button.AddComponent<Button>();
         button.transform.position = position;
     }*/
+
+    public void PostTurn()
+    {
+        // jumps if needed and proceeds to next turn
+        float delay = GameData.GetActivePiece().JumpIfNeeded();
+
+        // hide message screen
+        GameGUI.HideMessageScreen();
+
+        // go to next player
+        StartCoroutine(NextTurn(delay));
+    }
+
+    IEnumerator NextTurn(float delay)
+    {
+        // goes to next player
+        yield return new WaitForSeconds(delay);
+        currPlayerIndex = (currPlayerIndex + 1) % players.Length;
+
+        // set new current player
+        GameData.SetCurrPlayer(players[currPlayerIndex]);
+
+        // show die roll screen
+        RollDie();
+    }
 
     private void Start()
     {
