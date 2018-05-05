@@ -78,7 +78,8 @@ public class DieRoll : MonoBehaviour
             GameGUI.HideRollScreen();
             ResetDie();
             GameData.SetGameMode(GameData.Mode.MovingPiece);
-            GameData.GetActivePiece().MoveSpaces(dieScript.value, 0);
+            //GameData.GetActivePiece().MoveSpaces(dieScript.value, 0);
+            GameData.GetCurrPlayer().Move(dieScript.value, 0);
         }
         RollCheckIsOccuring = false;
     }

@@ -20,8 +20,16 @@ public static class GameData
     private static Vector3 winCameraRotation = new Vector3(10, -60, 0);
     private static Mode gameMode;
     public enum Mode { InitialRoll, NormalRoll, MovingPiece, Winner };
-    private static int numPlayers = 1;
+    private static int numPlayers = 4;
     private static int numPiecesPerPlayer = 1;
+    private static string[] pieceColors = { "red", "yellow", "green", "blue" };
+    private static Queue<string> availableColors;
+
+    static GameData()
+    {
+        // initialize list of available piece colors
+        availableColors = new Queue<string>(pieceColors);
+    }
 
     public static string GetStartTileName()
     {
@@ -153,5 +161,11 @@ public static class GameData
     {
         // Get the number of pieces per player
         return numPiecesPerPlayer;
+    }
+
+    public static string PickColor()
+    {
+        // Pick a piece color
+        return availableColors.Dequeue();
     }
 }

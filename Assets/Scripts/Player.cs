@@ -54,10 +54,13 @@ public class Player : MonoBehaviour
         return playerPiece;
     }*/
     
-    public void MoveChar(float x, float y)
+    public void Move(int numSpaces, int pathIndex)
     {
         // moves character based on die roll
         //playerPiece.Move(x, y);
+        activePiece = playerPieces[0];
+        GameData.SetActivePiece(activePiece);
+        activePiece.MoveSpaces(numSpaces, pathIndex);
     }
 
     public static void SetStartTile(Tile tile)
@@ -109,11 +112,11 @@ public class Player : MonoBehaviour
 
         // set up the pieces
         playerPieces = new Character[NumPieces];
-        SetupPieces("blue");
+        SetupPieces(GameData.PickColor());
 
         // test
-        activePiece = playerPieces[0];
-        GameData.SetActivePiece(activePiece);
+        //activePiece = playerPieces[0];
+        //GameData.SetActivePiece(activePiece);
     }
 
     public void Update()

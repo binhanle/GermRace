@@ -62,7 +62,7 @@
   <tile>
     <name>hand7</name>
     <color>red</color>
-    <text>A friend makes fun of this kid for wearing poop because he did not use soap, so the kid washes with soap!</text>
+    <text>A friend makes fun of this kid for wearing poop because he did not use soap, so the kid washes with soap! Back to Start!</text>
     <nextTile>hand8</nextTile>
     <jumpToTile>start</jumpToTile>
     <xPosition>7</xPosition>

@@ -13,7 +13,7 @@ public class Board : MonoBehaviour
     private Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
     //private int turn;
     //private const string startTileName = "start";
-    private static int currPlayerIndex;
+    private int currPlayerIndex;
     
     public Player[] currentPlayer()
     {
