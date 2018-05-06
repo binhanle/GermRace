@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
@@ -101,6 +102,32 @@ public class Player : MonoBehaviour
         {
             piece.DoHappy();
         }
+    }
+
+    public List<Move> GetLegalMoves(int numSpaces)
+    {
+        // returns all legal moves
+        Dictionary<Tile, Character> origTiles = new Dictionary<Tile, Character>();
+        List<Move> moves = new List<Move>();
+
+        // loop through each piece
+        foreach (Character piece in playerPieces)
+        {
+            // if move is legal, add to list
+            Tile currTile = piece.GetCurrTile();
+            if (!origTiles.ContainsKey(currTile))
+            {
+                for (int pathIndex = 0; pathIndex < currTile.GetNext().Count; pathIndex++)
+                {
+                    if (piece.IsLegalMove(numSpaces, pathIndex))
+                    {
+                        origTiles.Add(currTile, piece);
+                        moves.Add(new global::Move(piece, pathIndex));
+                    }
+                }
+            }
+        }
+        return moves;
     }
 
     public void Awake()

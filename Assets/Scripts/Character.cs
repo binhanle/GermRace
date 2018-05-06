@@ -27,10 +27,10 @@ public class Character : MonoBehaviour
         position = new Vector2(x, y);
     }*/
 
-    public bool IsLegalMove(int numSpaces, int pathIndex, ref Tile destTile)
+    public bool IsLegalMove(int numSpaces, int pathIndex)
     {
         // checks if move is legal
-        destTile = currTile.GetNext()[pathIndex];
+        Tile destTile = currTile.GetNext()[pathIndex];
         int spacesLeft = numSpaces - 1;
         while (spacesLeft > 0 && destTile.HasNext())
         {
