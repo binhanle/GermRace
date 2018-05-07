@@ -58,6 +58,12 @@ public static class GameData
         return menuDir;
     }*/
 
+    public static string GetLinePath()
+    {
+        // Get the path of the line prefab
+        return linePath;
+    }
+
     public static Vector3 GetCameraOffset()
     {
         // Get the distance from camera to active piece

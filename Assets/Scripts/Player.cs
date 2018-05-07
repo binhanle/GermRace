@@ -142,7 +142,12 @@ public class Player : MonoBehaviour
         // display them
         foreach (Move move in moves)
         {
-            // highlight destination tiles
+            // draw line from start to end tile
+            GameObject lineObject = Instantiate((GameObject)Resources.Load(GameData.GetLinePath(), typeof(GameObject)));
+            Line line = lineObject.GetComponent<Line>();
+            line.SetStartAndEnd(move.GetPiece().GetCurrTile().GetPosition(), move.GetDestTile().GetPosition());
+
+            // highlight destination tile
             Tile destTile = move.GetDestTile();
             destTile.GetComponent<Outline>().enabled = true;
         }
