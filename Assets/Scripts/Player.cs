@@ -117,17 +117,35 @@ public class Player : MonoBehaviour
             Tile currTile = piece.GetCurrTile();
             if (!origTiles.ContainsKey(currTile))
             {
+                origTiles.Add(currTile, piece);
                 for (int pathIndex = 0; pathIndex < currTile.GetNext().Count; pathIndex++)
                 {
-                    if (piece.IsLegalMove(numSpaces, pathIndex))
+                    Tile destTile = currTile;
+                    if (piece.IsLegalMove(numSpaces, pathIndex, ref destTile))
                     {
-                        origTiles.Add(currTile, piece);
-                        moves.Add(new global::Move(piece, pathIndex));
+                        moves.Add(new Move(piece, destTile));
                     }
                 }
             }
         }
         return moves;
+    }
+
+    public void DisplayLegalMoves(int numSpaces)
+    {
+        // displays all legal moves on the board
+        GameData.SetGameMode(GameData.Mode.SelectMove);
+
+        // get legal moves
+        List<Move> moves = GetLegalMoves(numSpaces);
+
+        // display them
+        foreach (Move move in moves)
+        {
+            // highlight destination tiles
+            Tile destTile = move.GetDestTile();
+            destTile.GetComponent<Outline>().enabled = true;
+        }
     }
 
     public void Awake()
@@ -164,6 +182,13 @@ public class Player : MonoBehaviour
             Vector3 tilePos = new Vector3(currTile.GetPosition().x, 0, currTile.GetPosition().y);
             Camera.main.transform.eulerAngles = GameData.GetWinCameraRotation();
             Camera.main.transform.position = tilePos + GameData.GetWinCameraOffset();
+        }
+
+        // switch to top view if necessary to select move
+        if (GameData.GetGameMode() == GameData.Mode.SelectMove)
+        {
+            Camera.main.transform.eulerAngles = GameData.GetTopViewRotation();
+            Camera.main.transform.position = GameData.GetTopViewOffset();
         }
     }
 }

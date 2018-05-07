@@ -5,13 +5,15 @@ using UnityEngine;
 public class Move
 {
     private readonly Character piece;
-    private readonly int pathIndex;
+    //private readonly int pathIndex;
+    private readonly Tile destTile;
 
-    public Move(Character playerPiece, int index)
+    public Move(Character playerPiece, Tile tile)
     {
         // initialize the move object
         piece = playerPiece;
-        pathIndex = index;
+        //pathIndex = index;
+        destTile = tile;
     }
 
     public Character GetPiece()
@@ -20,9 +22,15 @@ public class Move
         return piece;
     }
 
-    public int GetPathIndex()
+    /*public int GetPathIndex()
     {
         // get the piece's path index
         return pathIndex;
+    }*/
+
+    public Tile GetDestTile()
+    {
+        // return the destination tile of the move
+        return destTile;
     }
 }

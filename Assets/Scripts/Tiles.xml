@@ -6,6 +6,8 @@
     <text>START</text>
     <nextTile>hand1</nextTile>
     <nextTile>fly1</nextTile>
+    <nextTile>poop1</nextTile>
+    <nextTile>pipe1</nextTile>
     <xPosition>-2</xPosition>
     <yPosition>-3</yPosition>
   </tile>

@@ -77,10 +77,11 @@ public class DieRoll : MonoBehaviour
             // Hide the menu and move the active piece
             GameGUI.HideRollScreen();
             ResetDie();
-            GameData.SetGameMode(GameData.Mode.MovingPiece);
+            //GameData.SetGameMode(GameData.Mode.MovingPiece);
             //GameData.GetActivePiece().MoveSpaces(dieScript.value, 0);
-            Debug.Log(GameData.GetCurrPlayer().GetLegalMoves(dieScript.value));
-            GameData.GetCurrPlayer().Move(dieScript.value, 0);
+            //Debug.Log(GameData.GetCurrPlayer().GetLegalMoves(dieScript.value).Count);
+            //GameData.GetCurrPlayer().Move(dieScript.value, 0);
+            GameData.GetCurrPlayer().DisplayLegalMoves(dieScript.value);
         }
         RollCheckIsOccuring = false;
     }

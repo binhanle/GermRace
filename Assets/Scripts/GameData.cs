@@ -7,7 +7,8 @@ public static class GameData
     private static string startTileName = "start";
     private static string tilesPath = "Assets/Scripts/Tiles.xml";
     private static string charDir = "Characters/Mushroomboypack1.2/3D/";
-    private static string menuDir = "Prefabs/Menus/";
+    //private static string menuDir = "Prefabs/Menus/";
+    private static string linePath = "VolumetricLines/Prefabs/Line";
     private static Vector3 cameraOffset = new Vector3(2, 1, -5);
     private static Vector3 mainCameraRotation = new Vector3(10, -20, 0);
     private static Vector3 dieCameraPosition = new Vector3(-10, 10, 0);
@@ -19,11 +20,13 @@ public static class GameData
     private static Vector3 winCameraOffset = new Vector3(2, 0.5f, -1.25f);
     private static Vector3 winCameraRotation = new Vector3(10, -60, 0);
     private static Mode gameMode;
-    public enum Mode { InitialRoll, NormalRoll, MovingPiece, Winner };
+    public enum Mode { InitialRoll, NormalRoll, SelectMove, MovingPiece, Winner };
     private static int numPlayers = 4;
     private static int numPiecesPerPlayer = 1;
     private static string[] pieceColors = { "red", "yellow", "green", "blue" };
     private static Queue<string> availableColors;
+    private static Vector3 topViewOffset = new Vector3(10, 16, -3);
+    private static Vector3 topViewRotation = new Vector3(90, 0, 0);
 
     static GameData()
     {
@@ -49,11 +52,11 @@ public static class GameData
         return charDir;
     }
 
-    public static string GetMenuDir()
+    /*public static string GetMenuDir()
     {
         // Get the menu directory
         return menuDir;
-    }
+    }*/
 
     public static Vector3 GetCameraOffset()
     {
@@ -167,5 +170,17 @@ public static class GameData
     {
         // Pick a piece color
         return availableColors.Dequeue();
+    }
+
+    public static Vector3 GetTopViewOffset()
+    {
+        // Get the offset of the top view
+        return topViewOffset;
+    }
+
+    public static Vector3 GetTopViewRotation()
+    {
+        // Get the rotation of the top view
+        return topViewRotation;
     }
 }
