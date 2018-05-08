@@ -38,6 +38,7 @@ public static class GameData
         { "special", "grey" },
         { "finish", "yellow" }
     };
+    private static Board board;
 
     static GameData()
     {
@@ -205,5 +206,17 @@ public static class GameData
     {
         // Get the color scheme for tiles
         return colorScheme;
+    }
+
+    public static Board GetBoard()
+    {
+        // Get the board
+        return board;
+    }
+
+    public static void SetBoard(Board gameBoard)
+    {
+        // Set the board
+        board = gameBoard;
     }
 }

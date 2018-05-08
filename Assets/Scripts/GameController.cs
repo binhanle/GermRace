@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
         // die roll test
         GameObject boardObject = GameObject.Find("Board");
         Board board = boardObject.GetComponent<Board>();
+        GameData.SetBoard(board);
         GameData.SetGameMode(GameData.Mode.NormalRoll);
         board.RollDie();
 	}

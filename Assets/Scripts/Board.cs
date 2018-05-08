@@ -52,6 +52,11 @@ public class Board : MonoBehaviour
             //string color = item.Element("color").Value.Trim();
             string type = item.Element("type").Value.Trim();
             string text = item.Element("text").Value.Trim();
+            if (item.Element("special") != null)
+            {
+                string command = item.Element("special").Value.Trim();
+                tile.SetSpecialCommand(command);
+            }
             /*if (item.Element("nextTile") != null)
             {
                 string nextTile = item.Element("nextTile").Value.Trim();
@@ -78,7 +83,7 @@ public class Board : MonoBehaviour
                 }
             }*/
 
-            // set the color based on its 
+            // set the color based on its type
             //Debug.Log(type);
             tile.SetColor(GameData.GetColorScheme()[type]);
 

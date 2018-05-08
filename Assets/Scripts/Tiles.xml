@@ -221,7 +221,7 @@
     <type>special</type>
     <text>Fly sees food! Roll again.</text>
     <nextTile>fly4</nextTile>
-    <special>RollDie</special>
+    <special>RollAgain</special>
     <xPosition>8</xPosition>
     <yPosition>-2</yPosition>
   </tile>

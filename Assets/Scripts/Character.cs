@@ -115,6 +115,9 @@ public class Character : MonoBehaviour
             case "jumpAhead":
                 DoHappy();
                 break;
+            case "special":
+                currTile.DoSpecialCommand();
+                break;
             default:
                 break;
         }

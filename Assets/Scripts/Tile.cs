@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
     //private TileType type;
     private string type;
     private string text;
+    private string specialCommand;
     private const float TileWidth = 0.05f;
     //public static readonly string[] colors = { "orange", "blue", "green", "red", "purple", "yellow" };
     //public enum TileType { Start = 0, Neutral, Good, Bad, Special, End };
@@ -105,6 +106,24 @@ public class Tile : MonoBehaviour
     {
         // sets the text on the tile
         text = tileText;
+    }
+
+    public string GetSpecialCommand()
+    {
+        // returns the special command as string
+        return specialCommand;
+    }
+
+    public void SetSpecialCommand(string command)
+    {
+        // sets the special command
+        specialCommand = command;
+    }
+
+    public void DoSpecialCommand()
+    {
+        // executes the special command
+        Invoke(specialCommand, 0);
     }
 
     private void Awake()
