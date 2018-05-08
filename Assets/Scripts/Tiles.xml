@@ -8,8 +8,8 @@
     <nextTile>fly1</nextTile>
     <nextTile>poop1</nextTile>
     <nextTile>pipe1</nextTile>
-    <xPosition>-2</xPosition>
-    <yPosition>-3</yPosition>
+    <xPosition>1</xPosition>
+    <yPosition>-2</yPosition>
   </tile>
   <tile>
     <name>hand1</name>
@@ -414,7 +414,7 @@
   <tile>
     <name>poop11</name>
     <color>green</color>
-    <text>Rain comes and washes poop into the river. You are cruising now! Move forward 3</text>
+    <text>Rain comes and washes poop into the river. You are cruising now! Move forward 3.</text>
     <nextTile>poop12</nextTile>
     <jumpToTile>poop14</jumpToTile>
     <xPosition>10</xPosition>
@@ -579,7 +579,7 @@
   <tile>
     <name>pipe10</name>
     <color>green</color>
-    <text>Whoosh! Through the tap and into a Jerry can! Go forward two</text>
+    <text>Whoosh! Through the tap and into a Jerry can! Go forward two.</text>
     <nextTile>pipe11</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <xPosition>14</xPosition>

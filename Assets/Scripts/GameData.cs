@@ -25,7 +25,7 @@ public static class GameData
     private static int numPiecesPerPlayer = 1;
     private static string[] pieceColors = { "red", "yellow", "green", "blue" };
     private static Queue<string> availableColors;
-    private static Vector3 topViewOffset = new Vector3(10, 16, -3);
+    private static Vector3 topViewOffset = new Vector3(11, 15, -3);
     private static Vector3 topViewRotation = new Vector3(90, 0, 0);
 
     static GameData()

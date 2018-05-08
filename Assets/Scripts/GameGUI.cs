@@ -11,6 +11,7 @@ public class GameGUI : MonoBehaviour
     private static Text messageText;
     private static Canvas winScreen;
     private static Text winText;
+    private static Canvas selectMoveScreen;
 
     public static void ShowRollScreen()
     {
@@ -58,6 +59,18 @@ public class GameGUI : MonoBehaviour
         winScreen.enabled = false;
     }
 
+    public static void ShowSelectMoveScreen()
+    {
+        // Shows the select move screen
+        selectMoveScreen.enabled = true;
+    }
+
+    public static void HideSelectMoveScreen()
+    {
+        // Hides the select move screen
+        selectMoveScreen.enabled = false;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -67,6 +80,7 @@ public class GameGUI : MonoBehaviour
         messageText = GameObject.Find("Message Text").GetComponent<Text>();
         winScreen = GameObject.Find("Win Screen").GetComponent<Canvas>();
         winText = GameObject.Find("Win Text").GetComponent<Text>();
+        selectMoveScreen = GameObject.Find("Select Move Screen").GetComponent<Canvas>();
     }
 
     // Update is called once per frame

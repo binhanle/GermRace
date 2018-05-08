@@ -8,11 +8,13 @@ public class Player : MonoBehaviour
     //private int playerID;
     private string playerName;
     private Character[] playerPieces;
-    private static Character activePiece;
-    private const int NumPieces = 1;
+    //private static Character activePiece;
+    //private const int NumPieces = 1;
     //private const string charDir = "Mushroomboypack1.2/3D/";
     private static Tile startTile;
     private static int numPlayers;
+    private Stack<Line> lines;
+    private Stack<Tile> destTiles;
 
     public string GetName()
     {
@@ -29,7 +31,7 @@ public class Player : MonoBehaviour
     public void SetupPieces(string charName)
     {
         // sets up the player's pieces using specified character
-        for (int i = 0; i < NumPieces; i++)
+        for (int i = 0; i < GameData.GetNumPiecesPerPlayer(); i++)
         {
             // create the piece
             GameObject pieceObject = Instantiate((GameObject)Resources.Load(GameData.GetCharDir() + charName, typeof(GameObject)));
@@ -55,14 +57,14 @@ public class Player : MonoBehaviour
         return playerPiece;
     }*/
     
-    public void Move(int numSpaces, int pathIndex)
+    /*public void Move(int numSpaces, int pathIndex)
     {
         // moves character based on die roll
         //playerPiece.Move(x, y);
         activePiece = playerPieces[0];
         GameData.SetActivePiece(activePiece);
         activePiece.MoveSpaces(numSpaces, pathIndex);
-    }
+    }*/
 
     public static void SetStartTile(Tile tile)
     {
@@ -70,7 +72,7 @@ public class Player : MonoBehaviour
         startTile = tile;
     }
 
-    public static Character GetActivePiece()
+    /*public static Character GetActivePiece()
     {
         // gets the active piece
         return activePiece;
@@ -80,7 +82,7 @@ public class Player : MonoBehaviour
     {
         // sets the active piece
         activePiece = piece;
-    }
+    }*/
 
     public bool IsAllDone()
     {
@@ -146,10 +148,37 @@ public class Player : MonoBehaviour
             GameObject lineObject = Instantiate((GameObject)Resources.Load(GameData.GetLinePath(), typeof(GameObject)));
             Line line = lineObject.GetComponent<Line>();
             line.SetStartAndEnd(move.GetPiece().GetCurrTile().GetPosition(), move.GetDestTile().GetPosition());
+            lines.Push(line);
+
+            // store move in line
+            line.SetMove(move);
 
             // highlight destination tile
             Tile destTile = move.GetDestTile();
             destTile.GetComponent<Outline>().enabled = true;
+            destTiles.Push(destTile);
+        }
+
+        // show the select move GUI
+        GameGUI.ShowSelectMoveScreen();
+    }
+
+    public void DestroyLegalMoves()
+    {
+        // erases all lines and outlines highlighting moves
+        // hide the select move GUI
+        GameGUI.HideSelectMoveScreen();
+
+        // destroy the lines
+        while (lines.Count > 0)
+        {
+            Destroy(lines.Pop().gameObject);
+        }
+
+        // destroy the outlines
+        while (destTiles.Count > 0)
+        {
+            destTiles.Pop().GetComponent<Outline>().enabled = false;
         }
     }
 
@@ -161,39 +190,17 @@ public class Player : MonoBehaviour
         //playerID = playerCount;
 
         // set up the pieces
-        playerPieces = new Character[NumPieces];
+        playerPieces = new Character[GameData.GetNumPiecesPerPlayer()];
         SetupPieces(GameData.PickColor());
+
+        // initialize line stack
+        lines = new Stack<Line>();
+
+        // initialize destination tile stack
+        destTiles = new Stack<Tile>();
 
         // test
         //activePiece = playerPieces[0];
         //GameData.SetActivePiece(activePiece);
-    }
-
-    public void Update()
-    {
-        // follow the current piece if active
-        if (GameData.GetGameMode() == GameData.Mode.MovingPiece && activePiece == GameData.GetActivePiece())
-        {
-            Vector3 piecePos = activePiece.transform.position;
-            piecePos.y = 0;
-            Camera.main.transform.eulerAngles = GameData.GetMainCameraRotation();
-            Camera.main.transform.position = piecePos + GameData.GetCameraOffset();
-        }
-
-        // focus on finish tile if someone wins
-        if (GameData.GetGameMode() == GameData.Mode.Winner)
-        {
-            Tile currTile = activePiece.GetCurrTile();
-            Vector3 tilePos = new Vector3(currTile.GetPosition().x, 0, currTile.GetPosition().y);
-            Camera.main.transform.eulerAngles = GameData.GetWinCameraRotation();
-            Camera.main.transform.position = tilePos + GameData.GetWinCameraOffset();
-        }
-
-        // switch to top view if necessary to select move
-        if (GameData.GetGameMode() == GameData.Mode.SelectMove)
-        {
-            Camera.main.transform.eulerAngles = GameData.GetTopViewRotation();
-            Camera.main.transform.position = GameData.GetTopViewOffset();
-        }
     }
 }

@@ -61,6 +61,11 @@ public class Character : MonoBehaviour
     public void WalkToTile(Tile tile)
     {
         // moves piece to specified tile
+        // focus on piece
+        GameData.SetActivePiece(this);
+        GameData.SetGameMode(GameData.Mode.MovingPiece);
+
+        // start walking
         Vector3 currPos3d = new Vector3(currTile.GetPosition().x, 0, currTile.GetPosition().y);
         Vector3 newPos3d = new Vector3(tile.GetPosition().x, 0, tile.GetPosition().y);
         DoMove(currPos3d, newPos3d);
