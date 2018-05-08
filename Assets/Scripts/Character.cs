@@ -106,13 +106,13 @@ public class Character : MonoBehaviour
         // play corresponding animation
         switch (currTile.GetTileType())
         {
-            case Tile.TileType.Bad:
+            case "jumpBack":
                 DoSad();
                 break;
-            case Tile.TileType.End:
+            case "finish":
                 DoFinish();
                 break;
-            case Tile.TileType.Good:
+            case "jumpAhead":
                 DoHappy();
                 break;
             default:

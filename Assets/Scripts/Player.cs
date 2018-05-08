@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
         }
 
         // show the select move GUI
-        GameGUI.ShowSelectMoveScreen();
+        GameGUI.ShowSelectMoveScreen(moves.Count > 0);
     }
 
     public void DestroyLegalMoves()

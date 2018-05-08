@@ -27,6 +27,17 @@ public static class GameData
     private static Queue<string> availableColors;
     private static Vector3 topViewOffset = new Vector3(11, 15, -3);
     private static Vector3 topViewRotation = new Vector3(90, 0, 0);
+    private static Dictionary<string, string> colorScheme = new Dictionary<string, string>()
+    {
+        { "start", "orange" },
+        { "normal", "blue" },
+        { "jumpAhead", "green" },
+        { "jumpBack", "red" },
+        { "jumpOther", "purple" },
+        { "bringPiece", "green" },
+        { "special", "grey" },
+        { "finish", "yellow" }
+    };
 
     static GameData()
     {
@@ -188,5 +199,11 @@ public static class GameData
     {
         // Get the rotation of the top view
         return topViewRotation;
+    }
+
+    public static Dictionary<string, string> GetColorScheme()
+    {
+        // Get the color scheme for tiles
+        return colorScheme;
     }
 }

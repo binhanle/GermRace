@@ -9,11 +9,12 @@ public class Tile : MonoBehaviour
     private Animation passAn;
     private List<Tile> next = new List<Tile>();
     private Tile landNext;
-    private TileType type;
+    //private TileType type;
+    private string type;
     private string text;
     private const float TileWidth = 0.05f;
-    public static readonly string[] colors = { "orange", "blue", "green", "red", "purple", "yellow" };
-    public enum TileType { Start = 0, Neutral, Good, Bad, Special, End };
+    //public static readonly string[] colors = { "orange", "blue", "green", "red", "purple", "yellow" };
+    //public enum TileType { Start = 0, Neutral, Good, Bad, Special, End };
 
     public void SetPosition(float x, float y)
     {
@@ -36,13 +37,13 @@ public class Tile : MonoBehaviour
         GetComponent<Renderer>().material.color = color;
     }
 
-    public void SetTileType(TileType type)
+    public void SetTileType(string tileType)
     {
         // sets the tile type
-        this.type = type;
+        type = tileType;
     }
 
-    public TileType GetTileType()
+    public string GetTileType()
     {
         return type;
     }

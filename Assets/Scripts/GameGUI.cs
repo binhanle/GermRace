@@ -12,6 +12,8 @@ public class GameGUI : MonoBehaviour
     private static Canvas winScreen;
     private static Text winText;
     private static Canvas selectMoveScreen;
+    private static Text selectMoveText;
+    private static Button nextTurnButton;
 
     public static void ShowRollScreen()
     {
@@ -59,9 +61,22 @@ public class GameGUI : MonoBehaviour
         winScreen.enabled = false;
     }
 
-    public static void ShowSelectMoveScreen()
+    public static void ShowSelectMoveScreen(bool hasLegalMoves)
     {
         // Shows the select move screen
+        // Check if there are legal moves
+        if (hasLegalMoves)
+        {
+            selectMoveText.text = "Please select a move";
+            nextTurnButton.enabled = false;
+        }
+        else
+        {
+            selectMoveText.text = "You are stuck!";
+            nextTurnButton.enabled = true;
+        }
+
+        // Show screen
         selectMoveScreen.enabled = true;
     }
 
@@ -81,6 +96,8 @@ public class GameGUI : MonoBehaviour
         winScreen = GameObject.Find("Win Screen").GetComponent<Canvas>();
         winText = GameObject.Find("Win Text").GetComponent<Text>();
         selectMoveScreen = GameObject.Find("Select Move Screen").GetComponent<Canvas>();
+        selectMoveText = GameObject.Find("Select Move Text").GetComponent<Text>();
+        nextTurnButton = GameObject.Find("Next Turn Button").GetComponent<Button>();
     }
 
     // Update is called once per frame

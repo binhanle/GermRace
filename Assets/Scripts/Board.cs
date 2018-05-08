@@ -49,7 +49,8 @@ public class Board : MonoBehaviour
             GameObject tileObject = Instantiate((GameObject)Resources.Load("Prefabs/Tile", typeof(GameObject)));
             Tile tile = tileObject.GetComponent<Tile>();
             string name = item.Element("name").Value.Trim();
-            string color = item.Element("color").Value.Trim();
+            //string color = item.Element("color").Value.Trim();
+            string type = item.Element("type").Value.Trim();
             string text = item.Element("text").Value.Trim();
             /*if (item.Element("nextTile") != null)
             {
@@ -63,18 +64,23 @@ public class Board : MonoBehaviour
             float yPosition = float.Parse(item.Element("yPosition").Value.Trim());
 
             // apply its attributes
-            tile.SetColor(color);
+            //tile.SetColor(color);
+            tile.SetTileType(type);
             tile.SetPosition(xPosition, yPosition);
             tile.SetText(text);
 
             // set the type based on its color
-            for (int i = 0; i < Tile.colors.Length; i++)
+            /*for (int i = 0; i < Tile.colors.Length; i++)
             {
                 if (color == Tile.colors[i])
                 {
                     tile.SetTileType((Tile.TileType)i);
                 }
-            }
+            }*/
+
+            // set the color based on its 
+            //Debug.Log(type);
+            tile.SetColor(GameData.GetColorScheme()[type]);
 
             // add the tile to dictionary
             tiles.Add(name, tile);
@@ -200,6 +206,21 @@ public class Board : MonoBehaviour
 
         // set new current player
         GameData.SetCurrPlayer(players[currPlayerIndex]);
+
+        // show die roll screen
+        RollDie();
+    }
+
+    public void NextTurn()
+    {
+        // goes to next player
+        currPlayerIndex = (currPlayerIndex + 1) % players.Length;
+
+        // set new current player
+        GameData.SetCurrPlayer(players[currPlayerIndex]);
+
+        // hide select move screen
+        GameGUI.HideSelectMoveScreen();
 
         // show die roll screen
         RollDie();
