@@ -12,8 +12,8 @@ public class GameController : MonoBehaviour
         GameObject boardObject = GameObject.Find("Board");
         Board board = boardObject.GetComponent<Board>();
         GameData.SetBoard(board);
-        GameData.SetGameMode(GameData.Mode.NormalRoll);
-        board.RollDie(GameData.Mode.NormalRoll);
+        //GameData.SetGameMode(GameData.Mode.NormalRoll);
+        //board.RollDie(GameData.Mode.NormalRoll);
 	}
 
     // Update is called once per frame

@@ -5,6 +5,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Xml.Linq;
 using UnityEngine.UI;
+using System;
 
 public class Board : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Board : MonoBehaviour
     //private int turn;
     //private const string startTileName = "start";
     private int currPlayerIndex;
+    private Queue<Player> nextToRollQueue;
+    private static readonly string[] ordinals = { "first", "second", "third", "fourth" };
 
     public Player[] currentPlayer()
     {
@@ -140,8 +143,8 @@ public class Board : MonoBehaviour
         }
 
         // the first player in the list goes first
-        currPlayerIndex = 0;
-        GameData.SetCurrPlayer(players[0]);
+        //currPlayerIndex = 0;
+        //GameData.SetCurrPlayer(players[0]);
     }
 
     /*public void SetupDie()
@@ -261,6 +264,114 @@ public class Board : MonoBehaviour
         GameData.GetCurrPlayer().BringPiece(GameData.GetActivePiece().GetCurrTile());
     }
 
+    public void DetermineMoveOrder()
+    {
+        // determines move order by dice roll
+        // initialize the roll queue
+        foreach (Player player in players)
+        {
+            nextToRollQueue.Enqueue(player);
+        }
+
+        // start rolling
+        RollFromQueue();
+    }
+
+    public void RollFromQueue()
+    {
+        // makes the first player in the queue roll
+        if (nextToRollQueue.Count != 0)
+        {
+            Player currPlayer = nextToRollQueue.Dequeue();
+            GameData.SetCurrPlayer(currPlayer);
+
+            // start rolling
+            RollDie(GameData.Mode.InitialRoll);
+        }
+        else
+        {
+            // order players by highest dice roll
+            Array.Sort(players);
+            Array.Reverse(players);
+
+            // check for ties
+            DoTieBreakers();
+        }
+    }
+
+    public void DoTieBreakers()
+    {
+        // checks for ties in dice rolls and does tiebreakers if needed
+        bool tied = false;
+        int index = 0;
+        while (!tied && index < players.Length - 1)
+        {
+            if (players[index].CompareTo(players[index + 1]) > 0)
+            {
+                // if current player is higher than next player, add 6 to initial roll
+                players[index].AddToInitialRoll(6);
+            }
+            else
+            {
+                // if tied, add players to roll queue and stop iterating
+                nextToRollQueue.Enqueue(players[index]);
+                nextToRollQueue.Enqueue(players[index + 1]);
+                tied = true;
+            }
+            index++;
+        }
+
+        // add tied players to the queue
+        while (index < players.Length - 1 && players[index].CompareTo(players[index + 1]) == 0)
+        {
+            nextToRollQueue.Enqueue(players[index + 1]);
+            index++;
+        }
+
+        // reroll if necessary
+        if (nextToRollQueue.Count > 0)
+        {
+            RollFromQueue();
+        }
+        else
+        {
+            // hide the roll screen
+            GameGUI.HideRollScreen();
+
+            // show the move order screen
+            GameGUI.ShowMoveOrderScreen();
+        }
+    }
+
+    public void StartGame()
+    {
+        // starts the game
+        // hide the move order screen
+        GameGUI.HideMoveOrderScreen();
+
+        // the first player in the list goes first
+        currPlayerIndex = 0;
+        GameData.SetCurrPlayer(players[0]);
+        RollDie(GameData.Mode.NormalRoll);
+    }
+
+    public string GetMoveOrderString()
+    {
+        // returns a string describing the move order
+        string text = "";
+        for (int i = 0; i < players.Length; i++)
+        {
+            text += players[i].GetName() + " moves " + ordinals[i] + "!\n";
+        }
+        return text;
+    }
+
+    private void Awake()
+    {
+        // initialize initial roll queue
+        nextToRollQueue = new Queue<Player>();
+    }
+
     private void Start()
     {
         //tiles = new List<Tile>();
@@ -272,5 +383,7 @@ public class Board : MonoBehaviour
         //GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
         //Player player = playerObject.GetComponent<Player>();
         SetupPlayers();
+        DetermineMoveOrder();
+        //RollDie(GameData.Mode.NormalRoll);
     }
 }

@@ -16,6 +16,8 @@ public class GameGUI : MonoBehaviour
     private static Button nextTurnButton;
     private static Button defaultOKButton;
     private static Button specialOKButton;
+    private static Canvas moveOrderScreen;
+    private static Text moveOrderText;
 
     public static void ShowRollScreen()
     {
@@ -100,8 +102,23 @@ public class GameGUI : MonoBehaviour
         selectMoveScreen.enabled = false;
     }
 
+    public static void ShowMoveOrderScreen()
+    {
+        // Shows the move order screen
+        moveOrderScreen.enabled = true;
+
+        // show the move order
+        moveOrderText.text = GameData.GetBoard().GetMoveOrderString();
+    }
+
+    public static void HideMoveOrderScreen()
+    {
+        // Hides the move order screen
+        moveOrderScreen.enabled = false;
+    }
+
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         rollScreen = GameObject.Find("Roll Screen").GetComponent<Canvas>();
         titleText = GameObject.Find("Title Text").GetComponent<Text>();
@@ -114,6 +131,8 @@ public class GameGUI : MonoBehaviour
         nextTurnButton = GameObject.Find("Next Turn Button").GetComponent<Button>();
         defaultOKButton = GameObject.Find("Default OK Button").GetComponent<Button>();
         specialOKButton = GameObject.Find("Special OK Button").GetComponent<Button>();
+        moveOrderScreen = GameObject.Find("Move Order Screen").GetComponent<Canvas>();
+        moveOrderText = GameObject.Find("Move Order Text").GetComponent<Text>();
     }
 
     // Update is called once per frame

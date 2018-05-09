@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IComparable<Player>
 {
     //private static int playerCount = 0;
     //private int playerID;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     private static int numPlayers;
     private Stack<Line> lines;
     private Stack<Tile> destTiles;
+    private int initialRoll = 0;
 
     public string GetName()
     {
@@ -208,6 +210,18 @@ public class Player : MonoBehaviour
             // if not, go to next move
             GameData.GetBoard().NextTurn();
         }
+    }
+
+    public void AddToInitialRoll(int value)
+    {
+        // adds a value to player's initial roll
+        initialRoll += value;
+    }
+
+    public int CompareTo(Player otherPlayer)
+    {
+        // returns a positive value if this player has higher dice roll, 0 if tied, negative otherwise
+        return initialRoll - otherPlayer.initialRoll;
     }
 
     public void Awake()

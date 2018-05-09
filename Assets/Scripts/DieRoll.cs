@@ -80,6 +80,7 @@ public class DieRoll : MonoBehaviour
         ResetDie();
 
         // Proceed based on game mode
+        Board board = GameData.GetBoard();
         if (GameData.GetGameMode() == GameData.Mode.NormalRoll)
         {
             //GameData.SetGameMode(GameData.Mode.MovingPiece);
@@ -87,13 +88,12 @@ public class DieRoll : MonoBehaviour
             //Debug.Log(GameData.GetCurrPlayer().GetLegalMoves(dieScript.value).Count);
             //GameData.GetCurrPlayer().Move(dieScript.value, 0);
 
-            // Move the active piece
+            // Display the player's legal moves
             GameData.GetCurrPlayer().DisplayLegalMoves(dieScript.value);
         }
         if (GameData.GetGameMode() == GameData.Mode.RollSixOrDie)
         {
             // If six, jump to finish, else jump to start
-            Board board = GameData.GetBoard();
             GameData.SetGameMode(GameData.Mode.MovingPiece);
             if (dieScript.value == 6)
             {
@@ -108,6 +108,15 @@ public class DieRoll : MonoBehaviour
 
             // Check for winner (wait 2 seconds to jump, 2 seconds to settle down)
             StartCoroutine(board.CheckWinner(4));
+        }
+        if (GameData.GetGameMode() == GameData.Mode.InitialRoll)
+        {
+            // record die roll
+            //board.RecordDieRoll(dieScript.value);
+            GameData.GetCurrPlayer().AddToInitialRoll(dieScript.value);
+
+            // next player in queue rolls
+            board.RollFromQueue();
         }
         RollCheckIsOccuring = false;
     }
