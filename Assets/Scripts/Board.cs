@@ -14,7 +14,7 @@ public class Board : MonoBehaviour
     //private int turn;
     //private const string startTileName = "start";
     private int currPlayerIndex;
-    
+
     public Player[] currentPlayer()
     {
         // returns player whose turn it is
@@ -36,6 +36,11 @@ public class Board : MonoBehaviour
     public Tile GetStartTile()
     {
         return tiles["start"];
+    }
+
+    public Tile GetFinishTile()
+    {
+        return tiles["finish"];
     }
 
     public void LoadTiles()
@@ -151,11 +156,11 @@ public class Board : MonoBehaviour
         GameData.SetDieCamera(Camera.allCameras[1]);
     }*/
 
-    public void RollDie()
+    public void RollDie(GameData.Mode mode)
     {
         // rolls the die
         // switch view
-        GameData.SetGameMode(GameData.Mode.NormalRoll);
+        GameData.SetGameMode(mode);
         Camera.main.transform.position = GameData.GetDieCameraPosition();
         Camera.main.transform.eulerAngles = GameData.GetDieCameraRotation();
 
@@ -183,7 +188,7 @@ public class Board : MonoBehaviour
         StartCoroutine(CheckWinner(delay));
     }
 
-    IEnumerator CheckWinner(float delay)
+    public IEnumerator CheckWinner(float delay)
     {
         // checks for winner
         if (GameData.GetCurrPlayer().IsAllDone())
@@ -213,7 +218,7 @@ public class Board : MonoBehaviour
         GameData.SetCurrPlayer(players[currPlayerIndex]);
 
         // show die roll screen
-        RollDie();
+        RollDie(GameData.Mode.NormalRoll);
     }
 
     public void NextTurn()
@@ -228,7 +233,32 @@ public class Board : MonoBehaviour
         GameGUI.HideSelectMoveScreen();
 
         // show die roll screen
-        RollDie();
+        RollDie(GameData.Mode.NormalRoll);
+    }
+
+    public void DoSpecialCommand()
+    {
+        // executes the special command
+        GameGUI.HideMessageScreen();
+        Invoke(GameData.GetActivePiece().GetCurrTile().GetSpecialCommand(), 0);
+    }
+
+    public void RollAgain()
+    {
+        // shows roll screen again
+        RollDie(GameData.Mode.NormalRoll);
+    }
+
+    public void RollSixOrDie()
+    {
+        // rerolls for a six
+        RollDie(GameData.Mode.RollSixOrDie);
+    }
+
+    public void BringPiece()
+    {
+        // brings another piece to current tile
+        GameData.GetCurrPlayer().BringPiece(GameData.GetActivePiece().GetCurrTile());
     }
 
     private void Start()

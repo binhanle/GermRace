@@ -20,9 +20,9 @@ public static class GameData
     private static Vector3 winCameraOffset = new Vector3(2, 0.5f, -1.25f);
     private static Vector3 winCameraRotation = new Vector3(10, -60, 0);
     private static Mode gameMode;
-    public enum Mode { InitialRoll, NormalRoll, SelectMove, MovingPiece, Winner };
+    public enum Mode { InitialRoll, NormalRoll, RollSixOrDie, SelectMove, MovingPiece, Winner };
     private static int numPlayers = 4;
-    private static int numPiecesPerPlayer = 1;
+    private static int numPiecesPerPlayer = 2;
     private static string[] pieceColors = { "red", "yellow", "green", "blue" };
     private static Queue<string> availableColors;
     private static Vector3 topViewOffset = new Vector3(11, 15, -3);
@@ -34,7 +34,6 @@ public static class GameData
         { "jumpAhead", "green" },
         { "jumpBack", "red" },
         { "jumpOther", "purple" },
-        { "bringPiece", "green" },
         { "special", "grey" },
         { "finish", "yellow" }
     };

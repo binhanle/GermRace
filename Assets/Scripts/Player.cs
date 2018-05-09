@@ -182,6 +182,34 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void BringPiece(Tile destTile)
+    {
+        // brings a piece from start to destination tile
+        Character pieceOnStart = null;
+        foreach (Character piece in playerPieces)
+        {
+            // check if any pieces are on start tile
+            if (piece.IsOnStart())
+            {
+                pieceOnStart = piece;
+            }
+        }
+
+        // if there is a piece at start, move it to destination
+        if (pieceOnStart != null)
+        {
+            pieceOnStart.JumpToTile(destTile);
+
+            // Check for winner (wait 2 seconds to jump, 2 seconds to settle down)
+            StartCoroutine(GameData.GetBoard().CheckWinner(4));
+        }
+        else
+        {
+            // if not, go to next move
+            GameData.GetBoard().NextTurn();
+        }
+    }
+
     public void Awake()
     {
         // set up the player

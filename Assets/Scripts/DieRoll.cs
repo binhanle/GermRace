@@ -72,16 +72,42 @@ public class DieRoll : MonoBehaviour
         //source.Play();
         yield return new WaitForSeconds(2);
         //gcs.MovePlayer(dieScript.value);
+
+        // Hide the menu
+        GameGUI.HideRollScreen();
+
+        // Reset the die
+        ResetDie();
+
+        // Proceed based on game mode
         if (GameData.GetGameMode() == GameData.Mode.NormalRoll)
         {
-            // Hide the menu and move the active piece
-            GameGUI.HideRollScreen();
-            ResetDie();
             //GameData.SetGameMode(GameData.Mode.MovingPiece);
             //GameData.GetActivePiece().MoveSpaces(dieScript.value, 0);
             //Debug.Log(GameData.GetCurrPlayer().GetLegalMoves(dieScript.value).Count);
             //GameData.GetCurrPlayer().Move(dieScript.value, 0);
+
+            // Move the active piece
             GameData.GetCurrPlayer().DisplayLegalMoves(dieScript.value);
+        }
+        if (GameData.GetGameMode() == GameData.Mode.RollSixOrDie)
+        {
+            // If six, jump to finish, else jump to start
+            Board board = GameData.GetBoard();
+            GameData.SetGameMode(GameData.Mode.MovingPiece);
+            if (dieScript.value == 6)
+            {
+                Tile finishTile = board.GetFinishTile();
+                GameData.GetActivePiece().JumpToTile(finishTile);
+            }
+            else
+            {
+                Tile startTile = board.GetStartTile();
+                GameData.GetActivePiece().JumpToTile(startTile);
+            }
+
+            // Check for winner (wait 2 seconds to jump, 2 seconds to settle down)
+            StartCoroutine(board.CheckWinner(4));
         }
         RollCheckIsOccuring = false;
     }

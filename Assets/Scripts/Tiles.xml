@@ -88,10 +88,10 @@
   </tile>
   <tile>
     <name>hand10</name>
-    <type>bringPiece</type>
+    <type>special</type>
     <text>Germs divide! If you have any germs in Start, bring one here.</text>
     <nextTile>hand11</nextTile>
-    <special>bringGerm</special>
+    <special>BringPiece</special>
     <xPosition>10</xPosition>
     <yPosition>0</yPosition>
   </tile>
@@ -635,7 +635,7 @@
     <text>They boil the water. Roll a die: If 6, they boil too quickly and you got a hot bath and into a gut. Otherwise they boil 2 minutes. Back to start!</text>
     <nextTile>jerry6</nextTile>
     <jumpToTile>start</jumpToTile>
-    <special>Roll6ToGut</special>
+    <special>RollSixOrDie</special>
     <xPosition>20</xPosition>
     <yPosition>-6</yPosition>
   </tile>

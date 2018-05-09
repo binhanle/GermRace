@@ -115,9 +115,6 @@ public class Character : MonoBehaviour
             case "jumpAhead":
                 DoHappy();
                 break;
-            case "special":
-                currTile.DoSpecialCommand();
-                break;
             default:
                 break;
         }
@@ -158,6 +155,26 @@ public class Character : MonoBehaviour
         Vector3 newPos3d = new Vector3(nextTile.GetPosition().x, 0, nextTile.GetPosition().y);
         DoJump(currPos3d, newPos3d);
         currTile = nextTile;
+    }
+
+    public void JumpToTile(Tile tile)
+    {
+        // jumps to a tile
+        // focus on piece
+        GameData.SetActivePiece(this);
+        GameData.SetGameMode(GameData.Mode.MovingPiece);
+
+        // start jumping
+        Vector3 currPos3d = new Vector3(currTile.GetPosition().x, 0, currTile.GetPosition().y);
+        Vector3 newPos3d = new Vector3(tile.GetPosition().x, 0, tile.GetPosition().y);
+        DoJump(currPos3d, newPos3d);
+        currTile = tile;
+
+        // celebrate if on finish tile
+        if (IsDone())
+        {
+            Invoke("DoFinish", moveDuration);
+        }
     }
 
     /*public void setOwner(Player newOwner)
@@ -217,8 +234,14 @@ public class Character : MonoBehaviour
 
     public bool IsDone()
     {
-        // returns true if character is on finish tile (nowhere else to go)
+        // returns true if piece is on finish tile (nowhere else to go)
         return !currTile.HasNext();
+    }
+
+    public bool IsOnStart()
+    {
+        // returns true if piece is on start tile
+        return currTile == GameData.GetBoard().GetStartTile();
     }
 
     public void Awake()

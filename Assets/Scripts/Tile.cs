@@ -120,12 +120,6 @@ public class Tile : MonoBehaviour
         specialCommand = command;
     }
 
-    public void DoSpecialCommand()
-    {
-        // executes the special command
-        Invoke(specialCommand, 0);
-    }
-
     private void Awake()
     {
         //next = new List<Tile>();

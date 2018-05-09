@@ -14,6 +14,8 @@ public class GameGUI : MonoBehaviour
     private static Canvas selectMoveScreen;
     private static Text selectMoveText;
     private static Button nextTurnButton;
+    private static Button defaultOKButton;
+    private static Button specialOKButton;
 
     public static void ShowRollScreen()
     {
@@ -38,6 +40,18 @@ public class GameGUI : MonoBehaviour
 
         // Show the text on the tile
         messageText.text = currTile.GetText();
+
+        // If tile is special, use special button
+        if (currTile.GetTileType() == "special")
+        {
+            defaultOKButton.gameObject.SetActive(false);
+            specialOKButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            defaultOKButton.gameObject.SetActive(true);
+            specialOKButton.gameObject.SetActive(false);
+        }
     }
 
     public static void HideMessageScreen()
@@ -68,12 +82,12 @@ public class GameGUI : MonoBehaviour
         if (hasLegalMoves)
         {
             selectMoveText.text = "Please select a move";
-            nextTurnButton.enabled = false;
+            nextTurnButton.gameObject.SetActive(false);
         }
         else
         {
             selectMoveText.text = "You are stuck!";
-            nextTurnButton.enabled = true;
+            nextTurnButton.gameObject.SetActive(true);
         }
 
         // Show screen
@@ -98,6 +112,8 @@ public class GameGUI : MonoBehaviour
         selectMoveScreen = GameObject.Find("Select Move Screen").GetComponent<Canvas>();
         selectMoveText = GameObject.Find("Select Move Text").GetComponent<Text>();
         nextTurnButton = GameObject.Find("Next Turn Button").GetComponent<Button>();
+        defaultOKButton = GameObject.Find("Default OK Button").GetComponent<Button>();
+        specialOKButton = GameObject.Find("Special OK Button").GetComponent<Button>();
     }
 
     // Update is called once per frame
