@@ -8,17 +8,37 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start()
     {
-        // die roll test
+
+        // set up the board
         GameObject boardObject = GameObject.Find("Board");
         Board board = boardObject.GetComponent<Board>();
         GameData.SetBoard(board);
+
+        // initialize demo pieces
+        Dictionary<string, GameObject> demoPieces = new Dictionary<string, GameObject>();
+        foreach (string color in GameData.GetPieceColors())
+        {
+            demoPieces[color] = GameObject.Find(color);
+        }
+        GameData.SetDemoPieces(demoPieces);
+
+        // set up the players
+        board.SetupPlayers();
+
         //GameData.SetGameMode(GameData.Mode.NormalRoll);
         //board.RollDie(GameData.Mode.NormalRoll);
-	}
+    }
 
     // Update is called once per frame
     void Update()
     {
+        // point the camera at demo piece on setup
+        if (GameData.GetGameMode() == GameData.Mode.Home)
+        {
+            Camera.main.transform.eulerAngles = GameData.GetHomeCameraRotation();
+            Camera.main.transform.position = GameData.GetHomeCameraPosition();
+        }
+
         // follow the current piece if active
         if (GameData.GetGameMode() == GameData.Mode.MovingPiece)
         {

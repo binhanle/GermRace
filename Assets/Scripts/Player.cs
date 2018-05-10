@@ -233,7 +233,7 @@ public class Player : MonoBehaviour, IComparable<Player>
 
         // set up the pieces
         playerPieces = new Character[GameData.GetNumPiecesPerPlayer()];
-        SetupPieces(GameData.PickColor());
+        //SetupPieces(GameData.PickColor());
 
         // initialize line stack
         lines = new Stack<Line>();

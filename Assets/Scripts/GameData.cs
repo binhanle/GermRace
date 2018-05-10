@@ -20,11 +20,11 @@ public static class GameData
     private static Vector3 winCameraOffset = new Vector3(2, 0.5f, -1.25f);
     private static Vector3 winCameraRotation = new Vector3(10, -60, 0);
     private static Mode gameMode;
-    public enum Mode { InitialRoll, NormalRoll, RollSixOrDie, SelectMove, MovingPiece, Winner };
+    public enum Mode { Home, InitialRoll, NormalRoll, RollSixOrDie, SelectMove, MovingPiece, Winner };
     private static int numPlayers = 4;
     private static int numPiecesPerPlayer = 2;
     private static string[] pieceColors = { "red", "yellow", "green", "blue" };
-    private static Queue<string> availableColors;
+    private static List<string> availableColors;
     private static Vector3 topViewOffset = new Vector3(11, 15, -3);
     private static Vector3 topViewRotation = new Vector3(90, 0, 0);
     private static Dictionary<string, string> colorScheme = new Dictionary<string, string>()
@@ -38,11 +38,14 @@ public static class GameData
         { "finish", "yellow" }
     };
     private static Board board;
+    private static Vector3 homeCameraPosition = new Vector3(0.35f, 0.25f, -19);
+    private static Vector3 homeCameraRotation = new Vector3(5, 180, 0);
+    private static Dictionary<string, GameObject> demoPieces;
 
     static GameData()
     {
         // initialize list of available piece colors
-        availableColors = new Queue<string>(pieceColors);
+        availableColors = new List<string>(pieceColors);
     }
 
     public static string GetStartTileName()
@@ -183,11 +186,11 @@ public static class GameData
         return numPiecesPerPlayer;
     }
 
-    public static string PickColor()
+    /*public static string PickColor()
     {
         // Pick a piece color
         return availableColors.Dequeue();
-    }
+    }*/
 
     public static Vector3 GetTopViewOffset()
     {
@@ -217,5 +220,47 @@ public static class GameData
     {
         // Set the board
         board = gameBoard;
+    }
+
+    public static List<string> GetAvailableColors()
+    {
+        // Get available piece colors
+        return availableColors;
+    }
+
+    public static void RemoveAvailableColor(string color)
+    {
+        // Removes a color from available piece colors
+        availableColors.Remove(color);
+    }
+
+    public static Vector3 GetHomeCameraPosition()
+    {
+        // Get the offset of the home camera
+        return homeCameraPosition;
+    }
+
+    public static Vector3 GetHomeCameraRotation()
+    {
+        // Get the rotation of the home camera
+        return homeCameraRotation;
+    }
+
+    public static void SetDemoPieces(Dictionary<string, GameObject> pieces)
+    {
+        // Set the dictionary of demo pieces
+        demoPieces = pieces;
+    }
+
+    public static Dictionary<string, GameObject> GetDemoPieces()
+    {
+        // Get the dictionary of demo pieces
+        return demoPieces;
+    }
+
+    public static string[] GetPieceColors()
+    {
+        // Get the list of piece colors
+        return pieceColors;
     }
 }

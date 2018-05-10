@@ -9,7 +9,8 @@ using System;
 
 public class Board : MonoBehaviour
 {
-    private Player[] players;
+    //private Player[] players;
+    private List<Player> players;
     //private List<Tile> tiles;
     private Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
     //private int turn;
@@ -18,11 +19,11 @@ public class Board : MonoBehaviour
     private Queue<Player> nextToRollQueue;
     private static readonly string[] ordinals = { "first", "second", "third", "fourth" };
 
-    public Player[] currentPlayer()
+    /*public Player[] currentPlayer()
     {
         // returns player whose turn it is
         return players;
-    }
+    }*/
     
     /*public void setTiles(Tile[] newTiles)
     {
@@ -30,11 +31,11 @@ public class Board : MonoBehaviour
         tiles = newTiles;
     }*/
     
-    public void setPlayers(Player[] newPlayers)
+    /*public void setPlayers(Player[] newPlayers)
     {
         // sets Players array for this board based on array
         players = newPlayers;
-    }
+    }*/
 
     public Tile GetStartTile()
     {
@@ -134,17 +135,60 @@ public class Board : MonoBehaviour
     public void SetupPlayers()
     {
         // sets up the players
-        players = new Player[GameData.GetNumPlayers()];
+        /*players = new Player[GameData.GetNumPlayers()];
         for (int i = 0; i < GameData.GetNumPlayers(); i++)
         {
             GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
             Player player = playerObject.GetComponent<Player>();
             players[i] = player;
-        }
+        }*/
+        currPlayerIndex = 0;
+        GameGUI.ShowSetupScreen("Player1");
+        ShowCurrentPieceColor();
 
         // the first player in the list goes first
         //currPlayerIndex = 0;
         //GameData.SetCurrPlayer(players[0]);
+    }
+
+    public void AddPlayer(string name, string color)
+    {
+        // adds a player
+        GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
+        Player player = playerObject.GetComponent<Player>();
+        player.SetName(name);
+        player.SetupPieces(color);
+        players.Add(player);
+
+        // remove player's color from available colors
+        GameData.RemoveAvailableColor(color);
+    }
+
+    public void SetupNextPlayer()
+    {
+        // sets up the next player
+        currPlayerIndex++;
+        if (currPlayerIndex < GameData.GetNumPlayers())
+        {
+            GameGUI.ShowSetupScreen("Player" + (currPlayerIndex + 1));
+        }
+        else
+        {
+            // hide the setup screen
+            GameGUI.HideSetupScreen();
+
+            // determine the move order
+            DetermineMoveOrder();
+        }
+    }
+
+    public void ProcessPlayer()
+    {
+        // adds the current player and sets up the next player
+        AddPlayer(GameGUI.GetInputFieldName(), GameGUI.GetDropDownColor());
+
+        // set up the next player
+        SetupNextPlayer();
     }
 
     /*public void SetupDie()
@@ -215,7 +259,7 @@ public class Board : MonoBehaviour
     {
         // goes to next player
         yield return new WaitForSeconds(delay);
-        currPlayerIndex = (currPlayerIndex + 1) % players.Length;
+        currPlayerIndex = (currPlayerIndex + 1) % players.Count;
 
         // set new current player
         GameData.SetCurrPlayer(players[currPlayerIndex]);
@@ -227,7 +271,7 @@ public class Board : MonoBehaviour
     public void NextTurn()
     {
         // goes to next player
-        currPlayerIndex = (currPlayerIndex + 1) % players.Length;
+        currPlayerIndex = (currPlayerIndex + 1) % players.Count;
 
         // set new current player
         GameData.SetCurrPlayer(players[currPlayerIndex]);
@@ -291,8 +335,10 @@ public class Board : MonoBehaviour
         else
         {
             // order players by highest dice roll
-            Array.Sort(players);
-            Array.Reverse(players);
+            //Array.Sort(players);
+            //Array.Reverse(players);
+            players.Sort();
+            players.Reverse();
 
             // check for ties
             DoTieBreakers();
@@ -304,7 +350,7 @@ public class Board : MonoBehaviour
         // checks for ties in dice rolls and does tiebreakers if needed
         bool tied = false;
         int index = 0;
-        while (!tied && index < players.Length - 1)
+        while (!tied && index < players.Count - 1)
         {
             if (players[index].CompareTo(players[index + 1]) > 0)
             {
@@ -322,7 +368,7 @@ public class Board : MonoBehaviour
         }
 
         // add tied players to the queue
-        while (index < players.Length - 1 && players[index].CompareTo(players[index + 1]) == 0)
+        while (index < players.Count - 1 && players[index].CompareTo(players[index + 1]) == 0)
         {
             nextToRollQueue.Enqueue(players[index + 1]);
             index++;
@@ -359,15 +405,41 @@ public class Board : MonoBehaviour
     {
         // returns a string describing the move order
         string text = "";
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             text += players[i].GetName() + " moves " + ordinals[i] + "!\n";
         }
         return text;
     }
 
+    public void ShowPieceColor(string pieceColor)
+    {
+        // shows demo piece of specific color and hides the rest
+        Dictionary<string, GameObject> demoPieces = GameData.GetDemoPieces();
+        foreach (string color in demoPieces.Keys)
+        {
+            if (color.Equals(pieceColor))
+            {
+                demoPieces[color].SetActive(true);
+            }
+            else
+            {
+                demoPieces[color].SetActive(false);
+            }
+        }
+    }
+
+    public void ShowCurrentPieceColor()
+    {
+        // shows demo piece of color specified by dropdown
+        ShowPieceColor(GameGUI.GetDropDownColor());
+    }
+
     private void Awake()
     {
+        // initialize player list
+        players = new List<Player>();
+
         // initialize initial roll queue
         nextToRollQueue = new Queue<Player>();
     }
@@ -382,8 +454,9 @@ public class Board : MonoBehaviour
         //RollDie();
         //GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
         //Player player = playerObject.GetComponent<Player>();
-        SetupPlayers();
-        DetermineMoveOrder();
+        GameData.SetGameMode(GameData.Mode.Home);
+        //SetupPlayers();
+        //DetermineMoveOrder();
         //RollDie(GameData.Mode.NormalRoll);
     }
 }

@@ -18,6 +18,10 @@ public class GameGUI : MonoBehaviour
     private static Button specialOKButton;
     private static Canvas moveOrderScreen;
     private static Text moveOrderText;
+    private static Canvas setupScreen;
+    private static Text setupTitleText;
+    private static InputField nameInputField;
+    private static Dropdown colorDropdown;
 
     public static void ShowRollScreen()
     {
@@ -117,6 +121,40 @@ public class GameGUI : MonoBehaviour
         moveOrderScreen.enabled = false;
     }
 
+    public static void ShowSetupScreen(string defaultName)
+    {
+        // Shows the player setup screen
+        setupScreen.enabled = true;
+
+        // display the default name
+        setupTitleText.text = defaultName + " setup";
+        nameInputField.text = defaultName;
+        nameInputField.Select();
+
+        // populate the dropdown menu
+        colorDropdown.ClearOptions();
+        colorDropdown.AddOptions(GameData.GetAvailableColors());
+        colorDropdown.value = 0;
+    }
+
+    public static void HideSetupScreen()
+    {
+        // Hides the player setup screen
+        setupScreen.enabled = false;
+    }
+
+    public static string GetInputFieldName()
+    {
+        // returns the text inside the name input field
+        return nameInputField.text;
+    }
+
+    public static string GetDropDownColor()
+    {
+        // returns the color selected by the dropdown
+        return colorDropdown.options[colorDropdown.value].text;
+    }
+
     // Use this for initialization
     void Awake()
     {
@@ -133,6 +171,10 @@ public class GameGUI : MonoBehaviour
         specialOKButton = GameObject.Find("Special OK Button").GetComponent<Button>();
         moveOrderScreen = GameObject.Find("Move Order Screen").GetComponent<Canvas>();
         moveOrderText = GameObject.Find("Move Order Text").GetComponent<Text>();
+        setupScreen = GameObject.Find("Setup Screen").GetComponent<Canvas>();
+        setupTitleText = GameObject.Find("Setup Title Text").GetComponent<Text>();
+        nameInputField = GameObject.Find("Name Input Field").GetComponent<InputField>();
+        colorDropdown = GameObject.Find("Color Dropdown").GetComponent<Dropdown>();
     }
 
     // Update is called once per frame
