@@ -28,6 +28,7 @@ public class GameGUI : MonoBehaviour
     private static Text infoTitleText;
     private static Text infoText;
     private static Canvas mainScreen;
+    private static Canvas optionsScreen;
 
     public static void ShowRollScreen()
     {
@@ -224,6 +225,18 @@ public class GameGUI : MonoBehaviour
         }
     }
 
+    public static void ShowOptionsScreen()
+    {
+        // Shows the options screen
+        optionsScreen.enabled = true;
+    }
+
+    public static void HideOptionsScreen()
+    {
+        // Hides the options screen
+        optionsScreen.enabled = false;
+    }
+
     // Use this for initialization
     void Awake()
     {
@@ -249,6 +262,7 @@ public class GameGUI : MonoBehaviour
         infoTitleText = GameObject.Find("Info Title Text").GetComponent<Text>();
         infoText = GameObject.Find("Info Text").GetComponent<Text>();
         mainScreen = GameObject.Find("Main Screen").GetComponent<Canvas>();
+        optionsScreen = GameObject.Find("Options Screen").GetComponent<Canvas>();
     }
 
     // Update is called once per frame

@@ -1,11 +1,11 @@
 Credits
-<b>Commissioned by</b>
-Professor David I. Levine
-Haas School of Business
+<b>Commissioned by</b>											<b>Font</b>
+Professor David I. Levine									Jakob Fischer
+Haas School of Business									www.pizzadude.dk
 UC Berkeley
 
-<b>Game Design</b>
-Professor David I. Levine
+<b>Game Design</b>													<b>Music</b>
+Professor David I. Levine									https://www.bensound.com
 
 <b>Class Design</b>
 Akcan Balkir

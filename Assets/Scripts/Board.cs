@@ -492,6 +492,13 @@ public class Board : MonoBehaviour
         GameGUI.ShowPlayerCountScreen();
     }
 
+    public void ShowOptions()
+    {
+        // shows the options screen
+        GameGUI.HideMainScreen();
+        GameGUI.ShowOptionsScreen();
+    }
+
     private void Awake()
     {
         // initialize player list
