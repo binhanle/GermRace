@@ -1,4 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- DIRECTIONS -->
+<!-- name (REQUIRED): name of the tile (used to refer to other tiles) -->
+<!-- type (REQUIRED): type of tile (start, normal, jumpAhead, jumpBack, jumpOther, special, finish) -->
+<!-- text (REQUIRED): text associated with the tile -->
+<!-- nextTile (REQUIRED): the tile immediately succeeding this one -->
+<!-- jumpToTile (OPTIONAL): the tile to jump to when landed upon -->
+<!-- image (OPTIONAL): the image displayed on the tile -->
+<!-- xPosition (REQUIRED): the x coordinate of the tile -->
+<!-- yPosition (REQUIRED): the y coordinate of the tile -->
 <tiles>
   <tile>
     <name>start</name>
