@@ -458,6 +458,18 @@ public class Board : MonoBehaviour
         SetupPlayers(4);
     }
 
+    public void ShowRules()
+    {
+        // show the rules
+        GameGUI.ShowInfoScreen(GameData.GetRulesPath());
+    }
+
+    public void ShowCredits()
+    {
+        // show the credits
+        GameGUI.ShowInfoScreen(GameData.GetCreditsPath());
+    }
+
     private void Awake()
     {
         // initialize player list

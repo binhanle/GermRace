@@ -41,6 +41,8 @@ public static class GameData
     private static Vector3 homeCameraPosition = new Vector3(0.35f, 0.25f, -19);
     private static Vector3 homeCameraRotation = new Vector3(5, 180, 0);
     private static Dictionary<string, GameObject> demoPieces;
+    private static string rulesPath = "Assets/Scripts/Rules.txt";
+    private static string creditsPath = "Assets/Scripts/Credits.txt";
 
     static GameData()
     {
@@ -268,5 +270,17 @@ public static class GameData
     {
         // Get the list of piece colors
         return pieceColors;
+    }
+
+    public static string GetRulesPath()
+    {
+        // Get the path of the rules text file
+        return rulesPath;
+    }
+
+    public static string GetCreditsPath()
+    {
+        // Get the path of the credits text file
+        return creditsPath;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameGUI : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class GameGUI : MonoBehaviour
     private static InputField nameInputField;
     private static Dropdown colorDropdown;
     private static Canvas playerCountScreen;
+    private static Canvas infoScreen;
+    private static Text infoTitleText;
+    private static Text infoText;
 
     public static void ShowRollScreen()
     {
@@ -146,13 +150,13 @@ public class GameGUI : MonoBehaviour
 
     public static string GetInputFieldName()
     {
-        // returns the text inside the name input field
+        // Returns the text inside the name input field
         return nameInputField.text;
     }
 
     public static string GetDropDownColor()
     {
-        // returns the color selected by the dropdown
+        // Returns the color selected by the dropdown
         return colorDropdown.options[colorDropdown.value].text;
     }
 
@@ -164,8 +168,34 @@ public class GameGUI : MonoBehaviour
 
     public static void HidePlayerCountScreen()
     {
-        // Hides the win screen
+        // Hides the player count screen
         playerCountScreen.enabled = false;
+    }
+
+    public static void ShowInfoScreen(string textFilePath)
+    {
+        // Shows the info screen
+        // Open the text file
+        string[] lines = File.ReadAllLines(textFilePath);
+
+        // The first line is the title
+        infoTitleText.text = lines[0];
+
+        // The rest go in the info text box
+        infoText.text = "";
+        for (int i = 1; i < lines.Length; i++)
+        {
+            infoText.text += lines[i] + "\n";
+        }
+
+        // Show the info screen
+        infoScreen.enabled = true;
+    }
+
+    public static void HideInfoScreen()
+    {
+        // Hides the info screen
+        infoScreen.enabled = false;
     }
 
     // Use this for initialization
@@ -189,6 +219,9 @@ public class GameGUI : MonoBehaviour
         nameInputField = GameObject.Find("Name Input Field").GetComponent<InputField>();
         colorDropdown = GameObject.Find("Color Dropdown").GetComponent<Dropdown>();
         playerCountScreen = GameObject.Find("Player Count Screen").GetComponent<Canvas>();
+        infoScreen = GameObject.Find("Info Screen").GetComponent<Canvas>();
+        infoTitleText = GameObject.Find("Info Title Text").GetComponent<Text>();
+        infoText = GameObject.Find("Info Text").GetComponent<Text>();
     }
 
     // Update is called once per frame

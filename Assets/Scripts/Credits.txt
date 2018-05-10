@@ -1,0 +1,19 @@
+Credits
+<b>Commissioned by</b>
+Professor David I. Levine
+Haas School of Business
+UC Berkeley
+
+<b>Game Design</b>
+Professor David I. Levine
+
+<b>Class Design</b>
+Akcan Balkir
+
+<b>Programming</b>
+An Le (lead)
+Akcan Balkir
+Lucas Liu
+
+<b>Special thanks to</b>
+Jeffrey & Zachary Spitz
