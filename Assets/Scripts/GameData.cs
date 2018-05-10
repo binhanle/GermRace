@@ -38,7 +38,7 @@ public static class GameData
         { "finish", "yellow" }
     };
     private static Board board;
-    private static Vector3 homeCameraPosition = new Vector3(0.35f, 0.25f, -19);
+    private static Vector3 homeCameraPosition = new Vector3(0.35f, 0.35f, -19);
     private static Vector3 homeCameraRotation = new Vector3(5, 180, 0);
     private static Dictionary<string, GameObject> demoPieces;
     private static string rulesPath = "Assets/Scripts/Rules.txt";

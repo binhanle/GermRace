@@ -27,6 +27,7 @@ public class GameGUI : MonoBehaviour
     private static Canvas infoScreen;
     private static Text infoTitleText;
     private static Text infoText;
+    private static Canvas mainScreen;
 
     public static void ShowRollScreen()
     {
@@ -198,6 +199,31 @@ public class GameGUI : MonoBehaviour
         infoScreen.enabled = false;
     }
 
+    public static void ShowMainScreen()
+    {
+        // Shows the main menu
+        mainScreen.enabled = true;
+    }
+
+    public static void HideMainScreen()
+    {
+        // Hides the main menu
+        mainScreen.enabled = false;
+    }
+
+    public static void HideEveryScreen()
+    {
+        // Hides every screen
+        GameObject guiObject = GameObject.Find("GUI");
+        foreach (Canvas screen in guiObject.GetComponentsInChildren<Canvas>())
+        {
+            if (screen != guiObject.GetComponent<Canvas>())
+            {
+                screen.enabled = false;
+            }
+        }
+    }
+
     // Use this for initialization
     void Awake()
     {
@@ -222,6 +248,7 @@ public class GameGUI : MonoBehaviour
         infoScreen = GameObject.Find("Info Screen").GetComponent<Canvas>();
         infoTitleText = GameObject.Find("Info Title Text").GetComponent<Text>();
         infoText = GameObject.Find("Info Text").GetComponent<Text>();
+        mainScreen = GameObject.Find("Main Screen").GetComponent<Canvas>();
     }
 
     // Update is called once per frame

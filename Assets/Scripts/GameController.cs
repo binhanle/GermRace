@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
         // show player count screen
         //GameGUI.ShowPlayerCountScreen();
 
-        board.ShowCredits();
+        board.ShowMainMenu();
         //GameData.SetGameMode(GameData.Mode.NormalRoll);
         //board.RollDie(GameData.Mode.NormalRoll);
     }

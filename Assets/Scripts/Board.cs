@@ -460,14 +460,31 @@ public class Board : MonoBehaviour
 
     public void ShowRules()
     {
-        // show the rules
+        // shows the rules
+        GameGUI.HideMainScreen();
         GameGUI.ShowInfoScreen(GameData.GetRulesPath());
     }
 
     public void ShowCredits()
     {
-        // show the credits
+        // shows the credits
+        GameGUI.HideMainScreen();
         GameGUI.ShowInfoScreen(GameData.GetCreditsPath());
+    }
+
+    public void ShowMainMenu()
+    {
+        // shows the main menu
+        GameData.SetGameMode(GameData.Mode.Home);
+        GameGUI.HideEveryScreen();
+        GameGUI.ShowMainScreen();
+    }
+
+    public void AskHowManyPlayers()
+    {
+        // shows the player count screen
+        GameGUI.HideMainScreen();
+        GameGUI.ShowPlayerCountScreen();
     }
 
     private void Awake()
@@ -489,7 +506,7 @@ public class Board : MonoBehaviour
         //RollDie();
         //GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
         //Player player = playerObject.GetComponent<Player>();
-        GameData.SetGameMode(GameData.Mode.Home);
+        //GameData.SetGameMode(GameData.Mode.Home);
         //SetupPlayers();
         //DetermineMoveOrder();
         //RollDie(GameData.Mode.NormalRoll);
