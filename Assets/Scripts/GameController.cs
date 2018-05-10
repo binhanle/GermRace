@@ -22,8 +22,8 @@ public class GameController : MonoBehaviour
         }
         GameData.SetDemoPieces(demoPieces);
 
-        // set up the players
-        board.SetupPlayers();
+        // show player count screen
+        GameGUI.ShowPlayerCountScreen();
 
         //GameData.SetGameMode(GameData.Mode.NormalRoll);
         //board.RollDie(GameData.Mode.NormalRoll);

@@ -22,6 +22,7 @@ public class GameGUI : MonoBehaviour
     private static Text setupTitleText;
     private static InputField nameInputField;
     private static Dropdown colorDropdown;
+    private static Canvas playerCountScreen;
 
     public static void ShowRollScreen()
     {
@@ -155,6 +156,18 @@ public class GameGUI : MonoBehaviour
         return colorDropdown.options[colorDropdown.value].text;
     }
 
+    public static void ShowPlayerCountScreen()
+    {
+        // Displays the player count screen
+        playerCountScreen.enabled = true;
+    }
+
+    public static void HidePlayerCountScreen()
+    {
+        // Hides the win screen
+        playerCountScreen.enabled = false;
+    }
+
     // Use this for initialization
     void Awake()
     {
@@ -175,6 +188,7 @@ public class GameGUI : MonoBehaviour
         setupTitleText = GameObject.Find("Setup Title Text").GetComponent<Text>();
         nameInputField = GameObject.Find("Name Input Field").GetComponent<InputField>();
         colorDropdown = GameObject.Find("Color Dropdown").GetComponent<Dropdown>();
+        playerCountScreen = GameObject.Find("Player Count Screen").GetComponent<Canvas>();
     }
 
     // Update is called once per frame

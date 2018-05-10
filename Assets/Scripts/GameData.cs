@@ -21,7 +21,7 @@ public static class GameData
     private static Vector3 winCameraRotation = new Vector3(10, -60, 0);
     private static Mode gameMode;
     public enum Mode { Home, InitialRoll, NormalRoll, RollSixOrDie, SelectMove, MovingPiece, Winner };
-    private static int numPlayers = 4;
+    private static int numPlayers;
     private static int numPiecesPerPlayer = 2;
     private static string[] pieceColors = { "red", "yellow", "green", "blue" };
     private static List<string> availableColors;
@@ -180,6 +180,12 @@ public static class GameData
         return numPlayers;
     }
 
+    public static void SetNumPlayers(int num)
+    {
+        // Set the number of players
+        numPlayers = num;
+    }
+
     public static int GetNumPiecesPerPlayer()
     {
         // Get the number of pieces per player
@@ -246,16 +252,16 @@ public static class GameData
         return homeCameraRotation;
     }
 
-    public static void SetDemoPieces(Dictionary<string, GameObject> pieces)
-    {
-        // Set the dictionary of demo pieces
-        demoPieces = pieces;
-    }
-
     public static Dictionary<string, GameObject> GetDemoPieces()
     {
         // Get the dictionary of demo pieces
         return demoPieces;
+    }
+
+    public static void SetDemoPieces(Dictionary<string, GameObject> pieces)
+    {
+        // Set the dictionary of demo pieces
+        demoPieces = pieces;
     }
 
     public static string[] GetPieceColors()

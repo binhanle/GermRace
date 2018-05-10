@@ -132,7 +132,7 @@ public class Board : MonoBehaviour
         return tiles;
     }
 
-    public void SetupPlayers()
+    public void SetupPlayers(int numPlayers)
     {
         // sets up the players
         /*players = new Player[GameData.GetNumPlayers()];
@@ -142,6 +142,7 @@ public class Board : MonoBehaviour
             Player player = playerObject.GetComponent<Player>();
             players[i] = player;
         }*/
+        GameData.SetNumPlayers(numPlayers);
         currPlayerIndex = 0;
         GameGUI.ShowSetupScreen("Player1");
         ShowCurrentPieceColor();
@@ -171,6 +172,7 @@ public class Board : MonoBehaviour
         if (currPlayerIndex < GameData.GetNumPlayers())
         {
             GameGUI.ShowSetupScreen("Player" + (currPlayerIndex + 1));
+            ShowCurrentPieceColor();
         }
         else
         {
@@ -433,6 +435,27 @@ public class Board : MonoBehaviour
     {
         // shows demo piece of color specified by dropdown
         ShowPieceColor(GameGUI.GetDropDownColor());
+    }
+
+    public void Setup2Players()
+    {
+        // sets up 2 players
+        GameGUI.HidePlayerCountScreen();
+        SetupPlayers(2);
+    }
+
+    public void Setup3Players()
+    {
+        // sets up 3 players
+        GameGUI.HidePlayerCountScreen();
+        SetupPlayers(3);
+    }
+
+    public void Setup4Players()
+    {
+        // sets up 4 players
+        GameGUI.HidePlayerCountScreen();
+        SetupPlayers(4);
     }
 
     private void Awake()
