@@ -32,7 +32,7 @@ public static class GameData
         { "start", "orange" },
         { "normal", "blue" },
         { "jumpAhead", "green" },
-        { "jumpBack", "red" },
+        { "jumpBack", "#f60" },
         { "jumpOther", "purple" },
         { "special", "grey" },
         { "finish", "yellow" }
@@ -43,6 +43,7 @@ public static class GameData
     private static Dictionary<string, GameObject> demoPieces;
     private static string rulesPath = "Assets/Scripts/Rules.txt";
     private static string creditsPath = "Assets/Scripts/Credits.txt";
+    private static string materialsDir = "Images/Materials/";
 
     static GameData()
     {
@@ -282,5 +283,11 @@ public static class GameData
     {
         // Get the path of the credits text file
         return creditsPath;
+    }
+
+    public static string GetMaterialsDir()
+    {
+        // Get the directory of the materials
+        return materialsDir;
     }
 }

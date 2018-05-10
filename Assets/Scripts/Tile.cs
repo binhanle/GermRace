@@ -120,6 +120,13 @@ public class Tile : MonoBehaviour
         specialCommand = command;
     }
 
+    public void DisplayImage(string image)
+    {
+        // displays image on tile
+        Material material = Resources.Load<Material>(GameData.GetMaterialsDir() + image);
+        GetComponent<Renderer>().material = material;
+    }
+
     private void Awake()
     {
         //next = new List<Tile>();

@@ -74,6 +74,11 @@ public class Board : MonoBehaviour
             {
                 string jumpToTile = item.Element("jumpToTile").Value.Trim();
             }*/
+            if (item.Element("image") != null)
+            {
+                string image = item.Element("image").Value.Trim();
+                tile.DisplayImage(image);
+            }
             float xPosition = float.Parse(item.Element("xPosition").Value.Trim());
             float yPosition = float.Parse(item.Element("yPosition").Value.Trim());
 

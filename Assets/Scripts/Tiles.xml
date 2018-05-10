@@ -3,11 +3,12 @@
   <tile>
     <name>start</name>
     <type>start</type>
-    <text>START</text>
+    <text>Starting gut</text>
     <nextTile>hand1</nextTile>
     <nextTile>fly1</nextTile>
     <nextTile>poop1</nextTile>
     <nextTile>pipe1</nextTile>
+    <image>startingGut</image>
     <xPosition>1</xPosition>
     <yPosition>-2</yPosition>
   </tile>
@@ -16,6 +17,7 @@
     <type>normal</type>
     <text>Yay! You are on a hand!</text>
     <nextTile>hand2</nextTile>
+    <image>hand</image>
     <xPosition>1</xPosition>
     <yPosition>0</yPosition>
   </tile>
@@ -58,6 +60,7 @@
     <text>That mean kid washes with soap. Back to Start!</text>
     <nextTile>hand7</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>6</xPosition>
     <yPosition>0</yPosition>
   </tile>
@@ -67,6 +70,7 @@
     <text>A friend makes fun of this kid for wearing poop because he did not use soap, so the kid washes with soap! Back to Start!</text>
     <nextTile>hand8</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>7</xPosition>
     <yPosition>0</yPosition>
   </tile>
@@ -151,6 +155,7 @@
     <text>That mean kid remembers to wash with soap. Back to Start!</text>
     <nextTile>hand18</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>17</xPosition>
     <yPosition>0</yPosition>
   </tile>
@@ -160,6 +165,7 @@
     <text>The kid eats with you (&amp; poop) on his hands! You are in a gut!</text>
     <nextTile>hand19</nextTile>
     <jumpToTile>finish</jumpToTile>
+    <image>ingested</image>
     <xPosition>18</xPosition>
     <yPosition>0</yPosition>
   </tile>
@@ -169,6 +175,7 @@
     <text>Sister reminds kid to wash hands. Bask to Start!</text>
     <nextTile>hand20</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>19</xPosition>
     <yPosition>0</yPosition>
   </tile>
@@ -178,6 +185,7 @@
     <text>That nasty mom makes the kid wash with soap. Back to Start!</text>
     <nextTile>hand21</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>20</xPosition>
     <yPosition>0</yPosition>
   </tile>
@@ -187,6 +195,7 @@
     <text>The kid forgets to wash hands before eating with his poopy hands! You are in a gut!</text>
     <nextTile>hand22</nextTile>
     <jumpToTile>finish</jumpToTile>
+    <image>ingested</image>
     <xPosition>21</xPosition>
     <yPosition>0</yPosition>
   </tile>
@@ -204,6 +213,7 @@
     <type>normal</type>
     <text>Flying is scary! You are lucky poop is sticky, so you don't fall off!</text>
     <nextTile>fly2</nextTile>
+    <image>fly</image>
     <xPosition>6</xPosition>
     <yPosition>-2</yPosition>
   </tile>
@@ -249,6 +259,7 @@
     <text>ZAP!! That frog's tongue was too fast for your fly. Back to Start!</text>
     <nextTile>fly7</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>11</xPosition>
     <yPosition>-2</yPosition>
   </tile>
@@ -258,6 +269,7 @@
     <text>Crash: Hit a window screen. Go back 6.</text>
     <nextTile>fly8</nextTile>
     <jumpToTile>fly1</jumpToTile>
+    <image>screen</image>
     <xPosition>12</xPosition>
     <yPosition>-2</yPosition>
   </tile>
@@ -275,6 +287,7 @@
     <text>They keep food covered up. Back to Start!</text>
     <nextTile>fly10</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>14</xPosition>
     <yPosition>-2</yPosition>
   </tile>
@@ -284,6 +297,7 @@
     <text>Land on food that gets eaten. You are in someone's gut!</text>
     <nextTile>fly11</nextTile>
     <jumpToTile>finish</jumpToTile>
+    <image>ingested</image>
     <xPosition>15</xPosition>
     <yPosition>-2</yPosition>
   </tile>
@@ -293,6 +307,7 @@
     <text>Land on food, but Mommy sees you and tosses out that bite. Back to Start!</text>
     <nextTile>fly12</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>16</xPosition>
     <yPosition>-2</yPosition>
   </tile>
@@ -302,6 +317,7 @@
     <text>Land on food that gets eaten. You are in someone's gut!</text>
     <nextTile>fly13</nextTile>
     <jumpToTile>finish</jumpToTile>
+    <image>ingested</image>
     <xPosition>17</xPosition>
     <yPosition>-2</yPosition>
   </tile>
@@ -311,6 +327,7 @@
     <text>Land on food that gets eaten. You are in someone's gut!</text>
     <nextTile>fly14</nextTile>
     <jumpToTile>finish</jumpToTile>
+    <image>ingested</image>
     <xPosition>18</xPosition>
     <yPosition>-2</yPosition>
   </tile>
@@ -320,14 +337,17 @@
     <text>Your ride got swatted! Back to Start!</text>
     <nextTile>finish</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>19</xPosition>
     <yPosition>-2</yPosition>
   </tile>
   <tile>
     <name>poop1</name>
-    <type>normal</type>
+    <type>jumpOther</type>
     <text>Poop goes into a latrine, but you stick to a hand!</text>
     <nextTile>poop2</nextTile>
+    <jumpToTile>hand1</jumpToTile>
+    <image>hand</image>
     <xPosition>0</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -364,6 +384,7 @@
     <text>Poop goes into a latrine, but you stick to a hand!</text>
     <nextTile>poop6</nextTile>
     <jumpToTile>hand1</jumpToTile>
+    <image>hand</image>
     <xPosition>4</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -373,6 +394,7 @@
     <text>Poop goes into a toilet, so I am trapped. Back to Start!</text>
     <nextTile>poop7</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>5</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -390,6 +412,7 @@
     <text>A fly lands on the poop and you stick to a leg. You are flying now!</text>
     <nextTile>poop9</nextTile>
     <jumpToTile>fly1</jumpToTile>
+    <image>flyRide</image>
     <xPosition>7</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -399,6 +422,7 @@
     <text>Sunny day and the poop dries out. Back to Start!</text>
     <nextTile>poop10</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>8</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -408,6 +432,7 @@
     <text>Rain comes and washes poop into a leak in a pipe.</text>
     <nextTile>poop11</nextTile>
     <jumpToTile>pipe1</jumpToTile>
+    <image>pipe</image>
     <xPosition>9</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -417,6 +442,7 @@
     <text>Rain comes and washes poop into the river. You are cruising now! Move forward 3.</text>
     <nextTile>poop12</nextTile>
     <jumpToTile>poop14</jumpToTile>
+    <image>river</image>
     <xPosition>10</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -426,6 +452,7 @@
     <text>Sunny day and the poop dries. You are not getting to another gut this way! Back to Start!</text>
     <nextTile>poop13</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>11</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -452,6 +479,7 @@
     <text>Eaten by fish. Back to Start!</text>
     <nextTile>poop16</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>14</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -461,6 +489,7 @@
     <text>Someone is gathering water. Go to jerry can!</text>
     <nextTile>poop17</nextTile>
     <jumpToTile>jerry1</jumpToTile>
+    <image>jerryCan</image>
     <xPosition>15</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -470,6 +499,7 @@
     <text>Someone is gathering water. Go to jerry can!</text>
     <nextTile>poop18</nextTile>
     <jumpToTile>jerry1</jumpToTile>
+    <image>jerryCan</image>
     <xPosition>16</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -479,6 +509,7 @@
     <text>Too much sun is bad for germs. Back to Start!</text>
     <nextTile>poop19</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>17</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -488,6 +519,7 @@
     <text>Someone is gathering water. Go to jerry can!</text>
     <nextTile>poop20</nextTile>
     <jumpToTile>jerry1</jumpToTile>
+    <image>jerryCan</image>
     <xPosition>18</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -497,6 +529,7 @@
     <text>Floated right past the village. Back to Start!</text>
     <nextTile>finish</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>19</xPosition>
     <yPosition>-4</yPosition>
   </tile>
@@ -505,6 +538,7 @@
     <type>normal</type>
     <text>Whee! Sliding down a pipe!</text>
     <nextTile>pipe2</nextTile>
+    <image>pipe</image>
     <xPosition>5</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -514,6 +548,7 @@
     <text>UH OH. The town put chlorine in the piped water! Back to Start!</text>
     <nextTile>pipe3</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>6</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -522,6 +557,7 @@
     <type>normal</type>
     <text>Look, there is another germ! Hi, buddy!</text>
     <nextTile>pipe4</nextTile>
+    <image>inPipe</image>
     <xPosition>7</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -530,6 +566,7 @@
     <type>normal</type>
     <text>The water looks clean. It is good they cannot see you!</text>
     <nextTile>pipe5</nextTile>
+    <image>inPipe</image>
     <xPosition>8</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -538,6 +575,7 @@
     <type>normal</type>
     <text>It's dark in here.</text>
     <nextTile>pipe6</nextTile>
+    <image>inPipe</image>
     <xPosition>9</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -591,6 +629,7 @@
     <text>You get out of the pipe and spilled on the ground. Back to Start!</text>
     <nextTile>jerry1</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>15</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -599,6 +638,7 @@
     <type>normal</type>
     <text>You made it to the big Jerry can they take home!</text>
     <nextTile>jerry2</nextTile>
+    <image>jerryCan</image>
     <xPosition>16</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -608,6 +648,7 @@
     <text>Those mean people used the water for cooking, but boiled food thoroughly. Back to Start!</text>
     <nextTile>jerry3</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>17</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -617,6 +658,7 @@
     <text>Those nasty people put chlorine in the water. Back to Start!</text>
     <nextTile>jerry4</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>18</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -626,6 +668,7 @@
     <text>Those people use a water filter just to keep you (&amp; poop) out of their water. How rude! Back to start!</text>
     <nextTile>jerry5</nextTile>
     <jumpToTile>start</jumpToTile>
+    <image>x</image>
     <xPosition>19</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -636,6 +679,7 @@
     <nextTile>jerry6</nextTile>
     <jumpToTile>start</jumpToTile>
     <special>RollSixOrDie</special>
+    <image>x</image>
     <xPosition>20</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -645,6 +689,7 @@
     <text>They drink the untreated water. You are in a new gut!</text>
     <nextTile>jerry7</nextTile>
     <jumpToTile>finish</jumpToTile>
+    <image>ingested</image>
     <xPosition>21</xPosition>
     <yPosition>-6</yPosition>
   </tile>
@@ -654,13 +699,15 @@
     <text>They drink the untreated water. You are in a new gut!</text>
     <nextTile>finish</nextTile>
     <jumpToTile>finish</jumpToTile>
+    <image>ingested</image>
     <xPosition>22</xPosition>
     <yPosition>-6</yPosition>
   </tile>
   <tile>
     <name>finish</name>
     <type>finish</type>
-    <text>FINISH</text>
+    <text>New gut</text>
+    <image>newGut</image>
     <xPosition>21</xPosition>
     <yPosition>-3</yPosition>
   </tile>
