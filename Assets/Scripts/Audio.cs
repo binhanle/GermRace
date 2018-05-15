@@ -7,10 +7,11 @@ public class Audio : MonoBehaviour
 {
     private AudioSource audioSource;
 
-    public static AudioSource happySound;
-    public static AudioSource sadSound;
-    public static AudioSource movingSound;
-    public static AudioSource victorySound;
+    private static bool muted = false;
+    private static AudioSource happySound;
+    private static AudioSource sadSound;
+    private static AudioSource movingSound;
+    private static AudioSource victorySound;
 
 	public void SetEnabled(Toggle toggle)
     {
@@ -24,28 +25,49 @@ public class Audio : MonoBehaviour
         audioSource.volume = slider.value;
     }
 
-    public void PlayHappy()
+    public static void PlayHappy()
     {
         // plays happy sound
-        happySound.Play();
+        if (!muted)
+        {
+            happySound.Play();
+        }
     }
 
-    public void PlaySad()
+    public static void PlaySad()
     {
         // plays sad sound
-        sadSound.Play();
+        if (!muted)
+        {
+            sadSound.Play();
+        }
     }
 
-    public void PlayMoving()
+    public static void PlayMoving()
     {
         // plays moving sound
-        movingSound.Play();
+        if (!muted)
+        {
+            movingSound.Play();
+        }
     }
 
-    public void PlayVictory()
+    public static void StopMoving()
+    {
+        // stops moving sound
+        if (!muted)
+        {
+            movingSound.Stop();
+        }
+    }
+
+    public static void PlayVictory()
     {
         // plays victory sound
-        victorySound.Play();
+        if (!muted)
+        {
+            victorySound.Play();
+        }
     }
 
     void Awake()
@@ -54,7 +76,7 @@ public class Audio : MonoBehaviour
         happySound = GameObject.Find("Happy").GetComponent<AudioSource>();
         sadSound = GameObject.Find("Sad").GetComponent<AudioSource>();
         movingSound = GameObject.Find("Moving").GetComponent<AudioSource>();
-        happySound = GameObject.Find("Victory").GetComponent<AudioSource>();
+        victorySound = GameObject.Find("Victory").GetComponent<AudioSource>();
     }
 
     void Start()

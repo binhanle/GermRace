@@ -205,6 +205,9 @@ public class Character : MonoBehaviour
         GetComponent<Animator>().Play(MoveAn);
         StartCoroutine(AnimateMove(currPos, newPos, moveDuration));
         //GetComponent<Animator>().Play(IdleAn);
+
+        // play move sound
+        Audio.PlayMoving();
     }
 
     public void DoJump(Vector3 currPos, Vector3 newPos)
@@ -218,12 +221,18 @@ public class Character : MonoBehaviour
     {
         // runs happy animation
         GetComponent<Animator>().Play(HappyAn);
+
+        // play happy sound
+        Audio.PlayHappy();
     }
     
     public void DoSad()
     {
         // runs sad animation
         GetComponent<Animator>().Play(SadAn);
+
+        // play sad sound
+        Audio.PlaySad();
     }
 
     public void DoFinish()
@@ -270,6 +279,7 @@ public class Character : MonoBehaviour
 
             yield return null;
         }
+        Audio.StopMoving();
     }
 
     IEnumerator AnimateJump(Vector3 origin, Vector3 target, float duration)

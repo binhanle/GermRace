@@ -254,6 +254,7 @@ public class Board : MonoBehaviour
 
             // celebrate
             GameData.GetCurrPlayer().Celebrate();
+            Audio.PlayVictory();
         }
         else
         {
