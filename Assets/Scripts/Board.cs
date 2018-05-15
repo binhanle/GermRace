@@ -147,12 +147,20 @@ public class Board : MonoBehaviour
             Player player = playerObject.GetComponent<Player>();
             players[i] = player;
         }*/
+        //hides player choice buttons
+        GameGUI.HidePlayerCountScreen();
+
+        //sets the amount of players
         GameData.SetNumPlayers(numPlayers);
+
+        //keeps track of whih player has been set up so far
         currPlayerIndex = 0;
+
+        //Changes scene to the piece set up screen for player 1
         GameGUI.ShowSetupScreen("Player1");
         ShowCurrentPieceColor();
 
-        // the first player in the list goes first
+        // the first player in the list goes firstsetup
         //currPlayerIndex = 0;
         //GameData.SetCurrPlayer(players[0]);
     }
