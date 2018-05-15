@@ -39,12 +39,15 @@ public class Line : VolumetricLines.VolumetricLineBehavior
     {
         // make line shine when mouse is over it
         LightSaberFactor = 0.5f;
+        GameGUI.PreviewMessageScreen(move.GetDestTile());
+        
     }
 
     void OnMouseExit()
     {
         // make line normal when mouse is not over it
         LightSaberFactor = 1;
+        GameGUI.HideMessageScreen();
     }
 
     void OnMouseDown()

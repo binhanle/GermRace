@@ -44,6 +44,9 @@ public class DieRoll : MonoBehaviour
 
     public void Roll()
     {
+        //prevent roll button from being pressed multiple times
+        UnityEngine.UI.Button rollButton = GameObject.Find("Roll Button").GetComponent<UnityEngine.UI.Button>();
+        rollButton.interactable = false;
         roll = true;
         rb.useGravity = true;
         rb.velocity = (Vector3.left + 3 * Vector3.up) * speed;
@@ -89,7 +92,7 @@ public class DieRoll : MonoBehaviour
             //GameData.GetCurrPlayer().Move(dieScript.value, 0);
 
             // Display the player's legal moves
-            GameData.GetCurrPlayer().DisplayLegalMoves(dieScript.value);
+            GameData.GetCurrPlayer().DisplayLegalMoves(dieScript.value); 
         }
         if (GameData.GetGameMode() == GameData.Mode.RollSixOrDie)
         {

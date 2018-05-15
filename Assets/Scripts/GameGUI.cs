@@ -32,6 +32,10 @@ public class GameGUI : MonoBehaviour
 
     public static void ShowRollScreen()
     {
+        //allows use of roll button
+        UnityEngine.UI.Button rollButton = GameObject.Find("Roll Button").GetComponent<UnityEngine.UI.Button>();
+        rollButton.interactable = true;
+
         // Displays the roll screen
         rollScreen.enabled = true;
 
@@ -65,6 +69,22 @@ public class GameGUI : MonoBehaviour
             defaultOKButton.gameObject.SetActive(true);
             specialOKButton.gameObject.SetActive(false);
         }
+    }
+
+    public static void PreviewMessageScreen(Tile possTile)
+    {
+        // Displays the message screen
+        messageScreen.enabled = true;
+
+        // Show the text on the tile
+        messageText.text = possTile.GetText();
+
+        //hide buttons
+        defaultOKButton.gameObject.SetActive(false);
+        specialOKButton.gameObject.SetActive(false);
+
+        //highlight destination tile
+
     }
 
     public static void HideMessageScreen()
