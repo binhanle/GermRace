@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Line : VolumetricLines.VolumetricLineBehavior
 {
     private Move move;
+    private List<Line> hiddenLines;
 
     public void SetMove(Move lineMove)
     {
@@ -13,7 +14,22 @@ public class Line : VolumetricLines.VolumetricLineBehavior
         move = lineMove;
     }
 
-    public void SetStartAndEnd(Vector2 start, Vector2 end)
+    public void setOtherLines()
+    {
+        hiddenLines = new List<Line>();
+
+        var allLines = FindObjectsOfType<Line>();
+
+        foreach (Line line in allLines)
+        {
+            if (!(line.Equals(this)))
+            {
+                hiddenLines.Add(line);
+            }
+        }
+    }
+
+    public void SetStartAndEnd(Vector2 start, Vector2 end, Color lineColor)
     {
         // set the start and end points of the line
         // get the distance
@@ -33,21 +49,38 @@ public class Line : VolumetricLines.VolumetricLineBehavior
         transform.position = new Vector3(midpoint.x, 0, midpoint.y);
         transform.eulerAngles = new Vector3(0, angle, 0);
         LineWidth = width;
+        LineColor = lineColor;
     }
 
     void OnMouseOver()
     {
         // make line shine when mouse is over it
         LightSaberFactor = 0.5f;
+
+        //preview next tile
         GameGUI.PreviewMessageScreen(move.GetDestTile());
-        
+
+        //hide other lines
+        foreach(Line line in hiddenLines)
+        {
+            line.gameObject.SetActive(false);
+        }
     }
 
     void OnMouseExit()
     {
         // make line normal when mouse is not over it
         LightSaberFactor = 1;
+
+        //hide the next tile preview
         GameGUI.HideMessageScreen();
+
+        //show other lines
+        //hide other lines
+        foreach (Line line in hiddenLines)
+        {
+            line.gameObject.SetActive(true);
+        }
     }
 
     void OnMouseDown()

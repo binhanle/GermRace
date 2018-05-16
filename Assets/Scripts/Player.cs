@@ -17,6 +17,8 @@ public class Player : MonoBehaviour, IComparable<Player>
     private Stack<Line> lines;
     private Stack<Tile> destTiles;
     private int initialRoll = 0;
+    private List<UnityEngine.Color> colors = new List<UnityEngine.Color> { UnityEngine.Color.green
+        , UnityEngine.Color.gray, UnityEngine.Color.yellow, UnityEngine.Color.blue};
 
     public string GetName()
     {
@@ -143,13 +145,29 @@ public class Player : MonoBehaviour, IComparable<Player>
         // get legal moves
         List<Move> moves = GetLegalMoves(numSpaces);
 
+        //keep track of piece that is associated with each color
+        Dictionary<Character, int> colorMap = new Dictionary<Character, int>();
+
+        //assign colors to each piece
+        int piecesCount = 0;
+        foreach( Move move in moves)
+        {
+            if (!colorMap.ContainsKey(move.GetPiece()))
+            {
+                colorMap.Add(move.GetPiece(), piecesCount);
+                piecesCount++;
+            }
+        }
+
+        
+
         // display them
         foreach (Move move in moves)
         {
             // draw line from start to end tile
             GameObject lineObject = Instantiate((GameObject)Resources.Load(GameData.GetLinePath(), typeof(GameObject)));
             Line line = lineObject.GetComponent<Line>();
-            line.SetStartAndEnd(move.GetPiece().GetCurrTile().GetPosition(), move.GetDestTile().GetPosition());
+            line.SetStartAndEnd(move.GetPiece().GetCurrTile().GetPosition(), move.GetDestTile().GetPosition(), colors[colorMap[move.GetPiece()]]);
             lines.Push(line);
 
             // store move in line
@@ -159,6 +177,13 @@ public class Player : MonoBehaviour, IComparable<Player>
             Tile destTile = move.GetDestTile();
             destTile.GetComponent<Outline>().enabled = true;
             destTiles.Push(destTile);
+        }
+
+        var allLines = FindObjectsOfType<Line>();
+
+        foreach(Line line in allLines)
+        {
+            line.setOtherLines();
         }
 
         // show the select move GUI

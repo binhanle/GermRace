@@ -1,5 +1,6 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections;   
+using System.Collections.Generic;
 
 public class Character : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Character : MonoBehaviour
     private const float moveDuration = 2;
     private const float jumpHeight = 0.5f;
     private const float delayAfterJump = 4;
+    
+
 
     /*public void Move(float x, float y)
     {
