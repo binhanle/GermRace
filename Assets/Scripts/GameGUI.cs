@@ -34,20 +34,24 @@ public class GameGUI : MonoBehaviour
 
     public static void ShowExplanationScreen(string textFilePath, UnityEngine.Events.UnityAction func)
     {
-        UnityEngine.UI.Text explanationTitle = GameObject.Find("Explanation Title Text").GetComponent<Text>();
         UnityEngine.UI.Text explanationText = GameObject.Find("Explanation Text").GetComponent<Text>();
+        UnityEngine.RectTransform rt = GameObject.Find("Explanation Text").GetComponent<RectTransform>();
 
         string[] lines = File.ReadAllLines(textFilePath);
 
         // The first line is the title
-        explanationTitle.text = lines[0];
+        explanationText.text = "<b>" + lines[0] + "</b>\n\n";
 
-        // The rest go in the info text box
-        explanationText.text = "";
+        //Filling the rest of the info
         for (int i = 1; i < lines.Length; i++)
         {
             explanationText.text += lines[i] + "\n";
         }
+            
+        //Change size of text box to hold the text
+        Debug.Log(rt.rect.width);
+
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, explanationText.preferredHeight);
 
         explanationScreen.enabled = true;
 
