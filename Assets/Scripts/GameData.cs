@@ -42,6 +42,7 @@ public static class GameData
     private static Vector3 homeCameraRotation = new Vector3(5, 180, 0);
     private static Dictionary<string, GameObject> demoPieces;
     private static string rulesPath = "Assets/Scripts/Rules.txt";
+    private static string chooseRollOrderPath = "Assets/Scripts/ChooseRollOrder.txt";
     private static string creditsPath = "Assets/Scripts/Credits.txt";
     private static string materialsDir = "Images/Materials/";
 
@@ -283,6 +284,12 @@ public static class GameData
     {
         // Get the path of the credits text file
         return creditsPath;
+    }
+
+    public static string GetChooseRollOrderPath()
+    {
+        // Get the path of the credits text file
+        return chooseRollOrderPath;
     }
 
     public static string GetMaterialsDir()

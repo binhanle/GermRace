@@ -6,6 +6,8 @@ using System.IO;
 
 public class GameGUI : MonoBehaviour
 {
+    public delegate void TestDelegate(); // This defines what type of method you're going to call.
+    private static Canvas explanationScreen;
     private static Canvas rollScreen;
     private static Text titleText;
     private static Canvas messageScreen;
@@ -29,6 +31,62 @@ public class GameGUI : MonoBehaviour
     private static Text infoText;
     private static Canvas mainScreen;
     private static Canvas optionsScreen;
+
+    public static void ShowExplanationScreen(string textFilePath, UnityEngine.Events.UnityAction func)
+    {
+        UnityEngine.UI.Text explanationTitle = GameObject.Find("Explanation Title Text").GetComponent<Text>();
+        UnityEngine.UI.Text explanationText = GameObject.Find("Explanation Text").GetComponent<Text>();
+
+        string[] lines = File.ReadAllLines(textFilePath);
+
+        // The first line is the title
+        explanationTitle.text = lines[0];
+
+        // The rest go in the info text box
+        explanationText.text = "";
+        for (int i = 1; i < lines.Length; i++)
+        {
+            explanationText.text += lines[i] + "\n";
+        }
+
+        explanationScreen.enabled = true;
+
+        explanationScreen.GetComponentInChildren<Button>().onClick.AddListener(func);
+    }
+
+    public static void ShowPieceColor(string pieceColor)
+    {
+        // shows demo piece of specific color and hides the rest
+        Dictionary<string, GameObject> demoPieces = GameData.GetDemoPieces();
+        foreach (string color in demoPieces.Keys)
+        {
+            if (color.Equals(pieceColor))
+            {
+                demoPieces[color].SetActive(true);
+            }
+            else
+            {
+                demoPieces[color].SetActive(false);
+            }
+        }
+    }
+
+    public static void HideExplanationShowSetup()
+    {
+        //Hides Explanation Screen
+        explanationScreen.enabled = false;
+        explanationScreen.GetComponentInChildren<Button>().onClick.RemoveListener(HideExplanationShowSetup);
+
+        //Changes scene to the piece set up screen for player 1
+        GameGUI.ShowSetupScreen("Player1");
+        GameGUI.ShowCurrentPieceColor();
+    }
+
+    public static void ShowCurrentPieceColor()
+    {
+        // shows demo piece of color specified by dropdown
+        ShowPieceColor(GameGUI.GetDropDownColor());
+    }
 
     public static void ShowRollScreen()
     {
@@ -260,6 +318,7 @@ public class GameGUI : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        explanationScreen = GameObject.Find("Explanation Screen").GetComponent<Canvas>();
         rollScreen = GameObject.Find("Roll Screen").GetComponent<Canvas>();
         titleText = GameObject.Find("Title Text").GetComponent<Text>();
         messageScreen = GameObject.Find("Message Screen").GetComponent<Canvas>();

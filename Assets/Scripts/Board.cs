@@ -156,9 +156,8 @@ public class Board : MonoBehaviour
         //keeps track of whih player has been set up so far
         currPlayerIndex = 0;
 
-        //Changes scene to the piece set up screen for player 1
-        GameGUI.ShowSetupScreen("Player1");
-        ShowCurrentPieceColor();
+        //ADD EXPLANATION HERE
+        GameGUI.ShowExplanationScreen(GameData.GetChooseRollOrderPath(), GameGUI.HideExplanationShowSetup);
 
         // the first player in the list goes firstsetup
         //currPlayerIndex = 0;
@@ -185,7 +184,7 @@ public class Board : MonoBehaviour
         if (currPlayerIndex < GameData.GetNumPlayers())
         {
             GameGUI.ShowSetupScreen("Player" + (currPlayerIndex + 1));
-            ShowCurrentPieceColor();
+            GameGUI.ShowCurrentPieceColor();
         }
         else
         {
@@ -426,29 +425,6 @@ public class Board : MonoBehaviour
             text += players[i].GetName() + " moves " + ordinals[i] + "!\n";
         }
         return text;
-    }
-
-    public void ShowPieceColor(string pieceColor)
-    {
-        // shows demo piece of specific color and hides the rest
-        Dictionary<string, GameObject> demoPieces = GameData.GetDemoPieces();
-        foreach (string color in demoPieces.Keys)
-        {
-            if (color.Equals(pieceColor))
-            {
-                demoPieces[color].SetActive(true);
-            }
-            else
-            {
-                demoPieces[color].SetActive(false);
-            }
-        }
-    }
-
-    public void ShowCurrentPieceColor()
-    {
-        // shows demo piece of color specified by dropdown
-        ShowPieceColor(GameGUI.GetDropDownColor());
     }
 
     public void Setup2Players()
