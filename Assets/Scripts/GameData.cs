@@ -7,6 +7,13 @@ public static class GameData
     private static string startTileName = "start";
     private static string tilesPath = "Assets/Scripts/Tiles.xml";
     private static string charDir = "Characters/Mushroomboypack1.2/3D/";
+
+    //Tile Animation Parameters 
+    private static float boardHeight = 0f;
+    private static float tileSize = .95f;
+    private static float animTime = 2f;
+    private static float animHeight = 5f;
+
     //private static string menuDir = "Prefabs/Menus/";
     private static string linePath = "VolumetricLines/Prefabs/Line";
     private static Vector3 cameraOffset = new Vector3(2, 1, -5);
@@ -296,5 +303,10 @@ public static class GameData
     {
         // Get the directory of the materials
         return materialsDir;
+    }
+
+    public static float[] GetAnimationParams()
+    {
+        return new float[] { boardHeight, tileSize, animTime, animHeight }; 
     }
 }

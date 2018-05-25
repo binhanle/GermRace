@@ -83,6 +83,8 @@ public class Character : MonoBehaviour
             Invoke("JumpToLandNextTile", moveDuration);
             //JumpToLandNextTile();
         }*/
+
+        
     }
 
     public float JumpIfNeeded()
@@ -104,8 +106,11 @@ public class Character : MonoBehaviour
     {
         // displays tile text and reacts according to tile type
         yield return new WaitForSeconds(moveDuration);
-        GameGUI.ShowMessageScreen(currTile);
+        // play corresponding tile animation
+        currTile.playEffect();
 
+        GameGUI.ShowMessageScreen(currTile);
+        
         // play corresponding animation
         switch (currTile.GetTileType())
         {
@@ -120,7 +125,7 @@ public class Character : MonoBehaviour
                 break;
             default:
                 break;
-        }
+        }        
     }
 
     public void MoveToTile(Tile tile)

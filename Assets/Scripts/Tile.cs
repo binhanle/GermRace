@@ -5,8 +5,9 @@ using UnityEditor;
 
 public class Tile : MonoBehaviour
 {
-    private Animation landAn;
-    private Animation passAn;
+    private string landAnimKey;
+    private string landAnimOption;
+    private TileEffectInterface passAn;
     private List<Tile> next = new List<Tile>();
     private Tile landNext;
     //private TileType type;
@@ -54,7 +55,7 @@ public class Tile : MonoBehaviour
         return landAn;
     }*/
 
-    public Animation GetPassAn()
+    public TileEffectInterface GetPassAn()
     {
         // runs pass animation
         return passAn;
@@ -125,6 +126,73 @@ public class Tile : MonoBehaviour
         // displays image on tile
         Material material = Resources.Load<Material>(GameData.GetMaterialsDir() + image);
         GetComponent<Renderer>().material = material;
+    }
+
+    public void SetLandAnimKey(string inputKey)
+    {
+        landAnimKey = inputKey;
+    }
+
+    public void SetLandAnimOption(string inputOption)
+    {
+        landAnimOption = inputOption;
+    }
+    
+    public string GetLandAnimKey()
+    {
+        return landAnimKey;
+    }
+
+    public string GetLandAnimOption()
+    {
+        return landAnimOption;
+    }
+
+    public void playEffect()
+    {
+        Dictionary<string, TileEffectInterface> effects = Board.GetTileEffects();
+        if (effects.ContainsKey((string)landAnimKey))
+        {
+            effects[(string)landAnimKey].activateEffect(new Vector2(transform.position.x, transform.position.z), landAnimOption);
+        }
+        else
+        {
+            Debug.Log("No valid land effect");
+            Debug.Log("Given Animation key is: " + landAnimKey);
+            foreach (string key in effects.Keys)
+            {
+                Debug.Log(key);
+            }
+        }
+        
+    }
+
+    public void hideEffect()
+    {
+        Dictionary<string, TileEffectInterface> effects = Board.GetTileEffects();
+        if (effects.ContainsKey(landAnimKey))
+        {
+            effects[landAnimKey].hideEffect();
+
+        }
+        else
+        {
+            
+        }        
+    }
+
+    public TileEffectInterface test()
+    {
+        Dictionary<string, TileEffectInterface> effects = Board.GetTileEffects();
+        if (effects.ContainsKey(landAnimKey))
+        {
+            return effects[landAnimKey];
+        }
+        else
+        {
+            Debug.Log(landAnimKey + "doesn't exist");
+            return null;
+        }
     }
 
     private void Awake()

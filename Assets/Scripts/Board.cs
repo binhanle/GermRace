@@ -13,11 +13,13 @@ public class Board : MonoBehaviour
     private List<Player> players;
     //private List<Tile> tiles;
     private Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
+    private static Dictionary<string, TileEffectInterface> tileEffects = new Dictionary<string, TileEffectInterface>();
     //private int turn;
     //private const string startTileName = "start";
     private int currPlayerIndex;
     private Queue<Player> nextToRollQueue;
     private static readonly string[] ordinals = { "first", "second", "third", "fourth" };
+    
 
     /*public Player[] currentPlayer()
     {
@@ -46,6 +48,41 @@ public class Board : MonoBehaviour
     {
         return tiles["finish"];
     }
+
+    public void LoadTileAnimations()
+    {
+        //loading all the effects
+        HeavyRainEffect rainEffect = GameObject.Find("HeavyRainEffect").GetComponent<HeavyRainEffect>();
+        tileEffects.Add("rain", rainEffect);
+        FallingObject fallingObject = GameObject.Find("FallingObject").GetComponent<FallingObject>();
+        tileEffects.Add("fall", fallingObject);
+        RisingObject risingObject = GameObject.Find("RisingObject").GetComponent<RisingObject>();
+        tileEffects.Add("rise", risingObject);
+        SmokeEffect smokeEffect = GameObject.Find("SmokeEffect").GetComponent<SmokeEffect>();
+        tileEffects.Add("smoke", smokeEffect);
+
+        //resizing and hiding the effects
+        foreach (string effect in tileEffects.Keys)
+        {
+            //set parameters of effects
+            float[] animParams = GameData.GetAnimationParams();
+            tileEffects[effect].setParameters(animParams[0], animParams[1], animParams[2], animParams[3]);
+
+            //resize effects
+            tileEffects[effect].resizeEffect();
+
+            //hide effects
+            tileEffects[effect].hideEffect();
+        }
+    }
+
+    private void hideAllEffects()
+    {
+        foreach (string effect in tileEffects.Keys)
+        {
+            tileEffects[effect].hideEffect();
+        }
+        }
 
     public void LoadTiles()
     {
@@ -81,12 +118,20 @@ public class Board : MonoBehaviour
             }
             float xPosition = float.Parse(item.Element("xPosition").Value.Trim());
             float yPosition = float.Parse(item.Element("yPosition").Value.Trim());
+            string landAnimKey = item.Element("landAnimKey").Value.Trim();
+            //Debug.Log("landAnimKey is, " + landAnimKey);
+            string landAnimOption = item.Element("landAnimOption").Value.Trim();
+
+            
 
             // apply its attributes
             //tile.SetColor(color);
             tile.SetTileType(type);
             tile.SetPosition(xPosition, yPosition);
             tile.SetText(text);
+            tile.SetLandAnimKey(landAnimKey);
+            tile.SetLandAnimOption(landAnimOption);
+            
 
             // set the type based on its color
             /*for (int i = 0; i < Tile.colors.Length; i++)
@@ -103,13 +148,29 @@ public class Board : MonoBehaviour
 
             // add the tile to dictionary
             tiles.Add(name, tile);
+
+            //tEST
+            Debug.Log(name + " " + tiles[name].GetLandAnimKey());
         }
 
+        //TEST
+        
+        foreach (string key in tiles.Keys)
+        {
+            //Debug.Log(key + " " + tiles[key].GetLandAnimKey());
+            //Debug.Log("type of landAnimKey is: " + (string)tiles[key].GetLandAnimKey());
+            Debug.Log(key + " " + tiles[key].test());
+        }
+        
         // link tiles
         foreach (var item in items)
         {
             // get the tile
             Tile tile = tiles[item.Element("name").Value.Trim()];
+
+            //Test
+            //Debug.Log(tile.test());
+            
 
             // set the next tiles if they exist
             IEnumerable<XElement> nextTileElements = item.Elements("nextTile");
@@ -125,10 +186,30 @@ public class Board : MonoBehaviour
                 //Debug.Log("attempting to add " + item.Element("jumpToTile"));
                 tile.SetLandNext(tiles[item.Element("jumpToTile").Value.Trim()]);
             }
+
         }
 
         // set the start tile
         Player.SetStartTile(tiles[GameData.GetStartTileName()]);
+        createBourdBackGround();
+
+        //TEST
+        foreach (string key in tiles.Keys)
+        {
+            //Debug.Log(key + " " + tiles[key].GetLandAnimKey());
+            //Debug.Log("type of landAnimKey is: " + (string)tiles[key].GetLandAnimKey());
+            Debug.Log(key + " " + tiles[key].test());
+        }
+        Debug.Log("hand3 key is " + (string)tiles["hand3"].GetLandAnimKey());
+    }
+
+    public void createBourdBackGround()
+    {
+        //Finds the center position for the board
+        foreach (string key in tiles.Keys)
+        {
+            Debug.Log(tiles[key].GetPosition());
+        }
     }
 
     public Dictionary<string, Tile> GetTiles()
@@ -242,6 +323,9 @@ public class Board : MonoBehaviour
         // jumps if needed and proceeds to next turn
         float delay = GameData.GetActivePiece().JumpIfNeeded();
 
+        //ends tile effect
+        hideAllEffects();
+
         // hide message screen
         GameGUI.HideMessageScreen();
 
@@ -300,6 +384,9 @@ public class Board : MonoBehaviour
 
     public void DoSpecialCommand()
     {
+        //hides the tile effect
+        hideAllEffects();
+
         // executes the special command
         GameGUI.HideMessageScreen();
         Invoke(GameData.GetActivePiece().GetCurrTile().GetSpecialCommand(), 0);
@@ -416,6 +503,11 @@ public class Board : MonoBehaviour
         RollDie(GameData.Mode.NormalRoll);
     }
 
+    public static Dictionary<string, TileEffectInterface> GetTileEffects()
+    {
+        return tileEffects;
+    }
+
     public string GetMoveOrderString()
     {
         // returns a string describing the move order
@@ -498,6 +590,7 @@ public class Board : MonoBehaviour
         //tiles = new List<Tile>();
         //tiles = new Dictionary<string, Tile>();
         //SetupCameras();
+        LoadTileAnimations();
         LoadTiles();
         //SetupDie();
         //RollDie();

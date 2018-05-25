@@ -19,6 +19,8 @@
     <image>startingGut</image>
     <xPosition>1</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand1</name>
@@ -28,6 +30,8 @@
     <image>hand</image>
     <xPosition>1</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand2</name>
@@ -36,6 +40,8 @@
     <nextTile>hand3</nextTile>
     <xPosition>2</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand3</name>
@@ -44,6 +50,8 @@
     <nextTile>hand4</nextTile>
     <xPosition>3</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>blue</landAnimOption>
   </tile>
   <tile>
     <name>hand4</name>
@@ -52,6 +60,8 @@
     <nextTile>hand5</nextTile>
     <xPosition>4</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand5</name>
@@ -61,6 +71,8 @@
     <jumpToTile>hand9</jumpToTile>
     <xPosition>5</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand6</name>
@@ -71,6 +83,8 @@
     <image>x</image>
     <xPosition>6</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand7</name>
@@ -81,6 +95,8 @@
     <image>x</image>
     <xPosition>7</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>blue</landAnimOption>
   </tile>
   <tile>
     <name>hand8</name>
@@ -89,6 +105,8 @@
     <nextTile>hand9</nextTile>
     <xPosition>8</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand9</name>
@@ -97,6 +115,8 @@
     <nextTile>hand10</nextTile>
     <xPosition>9</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand10</name>
@@ -106,6 +126,8 @@
     <special>BringPiece</special>
     <xPosition>10</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>black</landAnimOption>
   </tile>
   <tile>
     <name>hand11</name>
@@ -114,6 +136,8 @@
     <nextTile>hand12</nextTile>
     <xPosition>11</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand12</name>
@@ -122,6 +146,8 @@
     <nextTile>hand13</nextTile>
     <xPosition>12</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand13</name>
@@ -131,6 +157,8 @@
     <jumpToTile>hand16</jumpToTile>
     <xPosition>13</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand14</name>
@@ -140,6 +168,8 @@
     <jumpToTile>hand16</jumpToTile>
     <xPosition>14</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>black</landAnimOption>
   </tile>
   <tile>
     <name>hand15</name>
@@ -148,6 +178,8 @@
     <jumpToTile>hand16</jumpToTile>
     <xPosition>15</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand16</name>
@@ -156,6 +188,8 @@
     <nextTile>hand17</nextTile>
     <xPosition>16</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand17</name>
@@ -166,6 +200,8 @@
     <image>x</image>
     <xPosition>17</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand18</name>
@@ -176,6 +212,8 @@
     <image>ingested</image>
     <xPosition>18</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand19</name>
@@ -186,6 +224,8 @@
     <image>x</image>
     <xPosition>19</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand20</name>
@@ -196,6 +236,8 @@
     <image>x</image>
     <xPosition>20</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand21</name>
@@ -206,6 +248,8 @@
     <image>ingested</image>
     <xPosition>21</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand22</name>
@@ -215,6 +259,8 @@
     <jumpToTile>hand16</jumpToTile>
     <xPosition>22</xPosition>
     <yPosition>0</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly1</name>
@@ -224,6 +270,8 @@
     <image>fly</image>
     <xPosition>6</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly2</name>
@@ -233,6 +281,8 @@
     <jumpToTile>fly1</jumpToTile>
     <xPosition>7</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly3</name>
@@ -242,6 +292,8 @@
     <special>RollAgain</special>
     <xPosition>8</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly4</name>
@@ -251,6 +303,8 @@
     <jumpToTile>fly8</jumpToTile>
     <xPosition>9</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly5</name>
@@ -260,6 +314,8 @@
     <jumpToTile>fly8</jumpToTile>
     <xPosition>10</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly6</name>
@@ -270,6 +326,8 @@
     <image>x</image>
     <xPosition>11</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly7</name>
@@ -280,6 +338,8 @@
     <image>screen</image>
     <xPosition>12</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly8</name>
@@ -288,6 +348,8 @@
     <nextTile>fly9</nextTile>
     <xPosition>13</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly9</name>
@@ -298,6 +360,8 @@
     <image>x</image>
     <xPosition>14</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly10</name>
@@ -308,6 +372,8 @@
     <image>ingested</image>
     <xPosition>15</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly11</name>
@@ -318,6 +384,8 @@
     <image>x</image>
     <xPosition>16</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly12</name>
@@ -328,6 +396,8 @@
     <image>ingested</image>
     <xPosition>17</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly13</name>
@@ -338,6 +408,8 @@
     <image>ingested</image>
     <xPosition>18</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>fly14</name>
@@ -348,6 +420,8 @@
     <image>x</image>
     <xPosition>19</xPosition>
     <yPosition>-2</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop1</name>
@@ -358,6 +432,8 @@
     <image>hand</image>
     <xPosition>0</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop2</name>
@@ -367,6 +443,8 @@
     <jumpToTile>poop7</jumpToTile>
     <xPosition>1</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop3</name>
@@ -376,6 +454,8 @@
     <jumpToTile>poop7</jumpToTile>
     <xPosition>2</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop4</name>
@@ -385,6 +465,8 @@
     <jumpToTile>poop7</jumpToTile>
     <xPosition>3</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop5</name>
@@ -395,6 +477,8 @@
     <image>hand</image>
     <xPosition>4</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop6</name>
@@ -405,6 +489,8 @@
     <image>x</image>
     <xPosition>5</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>blue</landAnimOption>
   </tile>
   <tile>
     <name>poop7</name>
@@ -413,6 +499,8 @@
     <nextTile>poop8</nextTile>
     <xPosition>6</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop8</name>
@@ -423,6 +511,8 @@
     <image>flyRide</image>
     <xPosition>7</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop9</name>
@@ -433,6 +523,8 @@
     <image>x</image>
     <xPosition>8</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>smoke</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop10</name>
@@ -443,6 +535,8 @@
     <image>pipe</image>
     <xPosition>9</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>blue</landAnimOption>
   </tile>
   <tile>
     <name>poop11</name>
@@ -453,6 +547,8 @@
     <image>river</image>
     <xPosition>10</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>blue</landAnimOption>
   </tile>
   <tile>
     <name>poop12</name>
@@ -463,6 +559,8 @@
     <image>x</image>
     <xPosition>11</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>smoke</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop13</name>
@@ -472,6 +570,10 @@
     <jumpToTile>poop14</jumpToTile>
     <xPosition>12</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>blue</landAnimOption>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>blue</landAnimOption>
   </tile>
   <tile>
     <name>poop14</name>
@@ -480,6 +582,8 @@
     <nextTile>poop15</nextTile>
     <xPosition>13</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop15</name>
@@ -490,6 +594,8 @@
     <image>x</image>
     <xPosition>14</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop16</name>
@@ -500,6 +606,8 @@
     <image>jerryCan</image>
     <xPosition>15</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>rise</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop17</name>
@@ -510,6 +618,8 @@
     <image>jerryCan</image>
     <xPosition>16</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>rise</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop18</name>
@@ -520,6 +630,8 @@
     <image>x</image>
     <xPosition>17</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>smoke</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop19</name>
@@ -530,6 +642,8 @@
     <image>jerryCan</image>
     <xPosition>18</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey>rise</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>poop20</name>
@@ -540,6 +654,8 @@
     <image>x</image>
     <xPosition>19</xPosition>
     <yPosition>-4</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe1</name>
@@ -549,6 +665,8 @@
     <image>pipe</image>
     <xPosition>5</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe2</name>
@@ -559,6 +677,8 @@
     <image>x</image>
     <xPosition>6</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>white</landAnimOption>
   </tile>
   <tile>
     <name>pipe3</name>
@@ -568,6 +688,8 @@
     <image>inPipe</image>
     <xPosition>7</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe4</name>
@@ -577,6 +699,8 @@
     <image>inPipe</image>
     <xPosition>8</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe5</name>
@@ -586,6 +710,8 @@
     <image>inPipe</image>
     <xPosition>9</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe6</name>
@@ -594,6 +720,8 @@
     <nextTile>pipe7</nextTile>
     <xPosition>10</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe7</name>
@@ -603,6 +731,8 @@
     <jumpToTile>jerry1</jumpToTile>
     <xPosition>11</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>rise</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe8</name>
@@ -612,6 +742,8 @@
     <jumpToTile>jerry1</jumpToTile>
     <xPosition>12</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>rise</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe9</name>
@@ -621,6 +753,8 @@
     <jumpToTile>jerry1</jumpToTile>
     <xPosition>13</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>rise</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe10</name>
@@ -630,6 +764,8 @@
     <jumpToTile>jerry1</jumpToTile>
     <xPosition>14</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>rise</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>pipe11</name>
@@ -640,6 +776,8 @@
     <image>x</image>
     <xPosition>15</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>jerry1</name>
@@ -649,6 +787,8 @@
     <image>jerryCan</image>
     <xPosition>16</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>rise</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>jerry2</name>
@@ -659,6 +799,8 @@
     <image>x</image>
     <xPosition>17</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>smoke</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>jerry3</name>
@@ -669,6 +811,8 @@
     <image>x</image>
     <xPosition>18</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>white</landAnimOption>
   </tile>
   <tile>
     <name>jerry4</name>
@@ -679,6 +823,8 @@
     <image>x</image>
     <xPosition>19</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>fall</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>jerry5</name>
@@ -690,6 +836,8 @@
     <image>x</image>
     <xPosition>20</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey>smoke</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>jerry6</name>
@@ -700,6 +848,8 @@
     <image>ingested</image>
     <xPosition>21</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>jerry7</name>
@@ -710,6 +860,8 @@
     <image>ingested</image>
     <xPosition>22</xPosition>
     <yPosition>-6</yPosition>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>finish</name>
@@ -717,6 +869,8 @@
     <text>New gut</text>
     <image>newGut</image>
     <xPosition>21</xPosition>
-    <yPosition>-3</yPosition>
+    <yPosition>-3</yPosition>	
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
 </tiles>
