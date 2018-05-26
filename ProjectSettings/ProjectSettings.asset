@@ -568,7 +568,7 @@ PlayerSettings:
   webGLCompressionFormat: 1
   scriptingDefineSymbols: {}
   platformArchitecture:
-    iOS: 2
+    iOS: 0
   scriptingBackend:
     Metro: 2
     WP8: 2

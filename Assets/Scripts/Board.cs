@@ -119,7 +119,6 @@ public class Board : MonoBehaviour
             float xPosition = float.Parse(item.Element("xPosition").Value.Trim());
             float yPosition = float.Parse(item.Element("yPosition").Value.Trim());
             string landAnimKey = item.Element("landAnimKey").Value.Trim();
-            //Debug.Log("landAnimKey is, " + landAnimKey);
             string landAnimOption = item.Element("landAnimOption").Value.Trim();
 
             
@@ -148,29 +147,13 @@ public class Board : MonoBehaviour
 
             // add the tile to dictionary
             tiles.Add(name, tile);
-
-            //tEST
-            Debug.Log(name + " " + tiles[name].GetLandAnimKey());
         }
 
-        //TEST
-        
-        foreach (string key in tiles.Keys)
-        {
-            //Debug.Log(key + " " + tiles[key].GetLandAnimKey());
-            //Debug.Log("type of landAnimKey is: " + (string)tiles[key].GetLandAnimKey());
-            Debug.Log(key + " " + tiles[key].test());
-        }
-        
         // link tiles
         foreach (var item in items)
         {
             // get the tile
             Tile tile = tiles[item.Element("name").Value.Trim()];
-
-            //Test
-            //Debug.Log(tile.test());
-            
 
             // set the next tiles if they exist
             IEnumerable<XElement> nextTileElements = item.Elements("nextTile");
@@ -192,15 +175,6 @@ public class Board : MonoBehaviour
         // set the start tile
         Player.SetStartTile(tiles[GameData.GetStartTileName()]);
         createBourdBackGround();
-
-        //TEST
-        foreach (string key in tiles.Keys)
-        {
-            //Debug.Log(key + " " + tiles[key].GetLandAnimKey());
-            //Debug.Log("type of landAnimKey is: " + (string)tiles[key].GetLandAnimKey());
-            Debug.Log(key + " " + tiles[key].test());
-        }
-        Debug.Log("hand3 key is " + (string)tiles["hand3"].GetLandAnimKey());
     }
 
     public void createBourdBackGround()
