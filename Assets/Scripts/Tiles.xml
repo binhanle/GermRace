@@ -281,7 +281,7 @@
     <jumpToTile>fly1</jumpToTile>
     <xPosition>7</xPosition>
     <yPosition>-2</yPosition>
-	<landAnimKey>fall</landAnimKey>
+	<landAnimKey>slide</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -338,7 +338,7 @@
     <image>screen</image>
     <xPosition>12</xPosition>
     <yPosition>-2</yPosition>
-	<landAnimKey></landAnimKey>
+	<landAnimKey>slide</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -360,7 +360,7 @@
     <image>x</image>
     <xPosition>14</xPosition>
     <yPosition>-2</yPosition>
-	<landAnimKey>fall</landAnimKey>
+	<landAnimKey>slide</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -594,7 +594,7 @@
     <image>x</image>
     <xPosition>14</xPosition>
     <yPosition>-4</yPosition>
-	<landAnimKey>fall</landAnimKey>
+	<landAnimKey>slide</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>

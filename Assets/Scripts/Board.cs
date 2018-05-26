@@ -58,6 +58,8 @@ public class Board : MonoBehaviour
         tileEffects.Add("fall", fallingObject);
         RisingObject risingObject = GameObject.Find("RisingObject").GetComponent<RisingObject>();
         tileEffects.Add("rise", risingObject);
+        LeftMovingObject slideObject = GameObject.Find("LeftMovingObject").GetComponent<LeftMovingObject>();
+        tileEffects.Add("slide", slideObject);
         SmokeEffect smokeEffect = GameObject.Find("SmokeEffect").GetComponent<SmokeEffect>();
         tileEffects.Add("smoke", smokeEffect);
 
