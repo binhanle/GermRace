@@ -21,6 +21,7 @@ public class Character : MonoBehaviour
     private const float moveDuration = 2;
     private const float jumpHeight = 0.5f;
     private const float delayAfterJump = 4;
+    private int size = 1;
     
 
 
@@ -29,6 +30,16 @@ public class Character : MonoBehaviour
         // sets position to x-y coordinates passed in
         position = new Vector2(x, y);
     }*/
+
+    public int getSize()
+    {
+        return size;
+    }
+
+    public void adjustSize(int additionalSize)
+    {
+        size = size + additionalSize;
+    }
 
     public bool IsLegalMove(int numSpaces, int pathIndex, ref Tile destTile)
     {
@@ -163,6 +174,7 @@ public class Character : MonoBehaviour
         Vector3 newPos3d = new Vector3(nextTile.GetPosition().x, 0, nextTile.GetPosition().y);
         DoJump(currPos3d, newPos3d);
         currTile = nextTile;
+        GameGUI.ShowMessageScreen(currTile);
     }
 
     public void JumpToTile(Tile tile)

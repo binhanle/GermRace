@@ -32,22 +32,22 @@ public class GameGUI : MonoBehaviour
     private static Canvas mainScreen;
     private static Canvas optionsScreen;
 
-    public static void ShowExplanationScreen(string textFilePath, UnityEngine.Events.UnityAction func)
+    public static void ShowExplanationScreen(TextAsset textFile, UnityEngine.Events.UnityAction func)
     {
         UnityEngine.UI.Text explanationText = GameObject.Find("Explanation Text").GetComponent<Text>();
         UnityEngine.RectTransform rt = GameObject.Find("Explanation Text").GetComponent<RectTransform>();
 
-        string[] lines = File.ReadAllLines(textFilePath);
+        string[] lines = textFile.ToString().Split('\n');
 
         // The first line is the title
-        explanationText.text = "<b>" + lines[0] + "</b>\n\n";
+        explanationText.text = "\n<b>" + lines[0] + "</b>\n\n";
 
         //Filling the rest of the info
         for (int i = 1; i < lines.Length; i++)
         {
             explanationText.text += lines[i] + "\n";
         }
-            
+
         //Change size of text box to hold the text
         Debug.Log(rt.rect.width);
 
@@ -86,6 +86,13 @@ public class GameGUI : MonoBehaviour
         GameGUI.ShowCurrentPieceColor();
     }
 
+    public static void HideExplanationScreenShowMain()
+    {
+        explanationScreen.enabled = false;
+        explanationScreen.GetComponentInChildren<Button>().onClick.RemoveListener(HideExplanationScreenShowMain);
+        mainScreen.enabled = true;
+    }
+
     public static void ShowCurrentPieceColor()
     {
         // shows demo piece of color specified by dropdown
@@ -110,6 +117,19 @@ public class GameGUI : MonoBehaviour
     {
         // Hides the roll screen
         rollScreen.enabled = false;
+    }
+
+    public void ShowRules()
+    {
+        // shows the rules
+        HideMainScreen();
+        ShowExplanationScreen(GameData.GetTextAssetHolder().GetRulesText(), HideExplanationScreenShowMain);
+    }
+
+    public void ShowCredits()
+    {
+        HideMainScreen();
+        ShowExplanationScreen(GameData.GetTextAssetHolder().GetCreditsText(), HideExplanationScreenShowMain);
     }
 
     public static void ShowMessageScreen(Tile currTile)
@@ -147,6 +167,57 @@ public class GameGUI : MonoBehaviour
 
         //highlight destination tile
 
+    }
+
+    public static void ShowCollisionScreen(Character smallerPiece, Player otherPlayer)
+    {
+        // Displays the message screen
+        messageScreen.enabled = true;
+
+        //create collision text
+        string collisionText = "There was a collision with " + otherPlayer.GetName() + "\'s germ. \n\n";
+        
+        if (smallerPiece.Equals(GameData.GetActivePiece()))
+        {
+            collisionText = collisionText + "Your germ is smaller so it returns to start.";
+        }
+        else
+        {
+            collisionText = collisionText + "Your germ is larger so  " + otherPlayer.GetName() + "\'s germ returns to start.";
+        }
+
+        // Show the text on the tile
+        messageText.text = collisionText;
+        
+        //show the proper ok button
+        defaultOKButton.gameObject.SetActive(true);
+        specialOKButton.gameObject.SetActive(false);
+
+        //resolve the collision HEREHERE need to change to implement size logic
+        Board board = GameData.GetBoard();
+        Tile startTile = board.GetStartTile();
+        smallerPiece.JumpToTile(startTile);
+    }
+
+    public static void ShowMergeScreen(Tile currTile)
+    {
+        // Displays the message screen
+        messageScreen.enabled = true;
+
+        // Show the text on the tile
+        messageText.text = "Your germs came together and merged into a larger germ!";
+
+        // If tile is special, use special button
+        if (currTile.GetTileType() == "special")
+        {
+            defaultOKButton.gameObject.SetActive(false);
+            specialOKButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            defaultOKButton.gameObject.SetActive(true);
+            specialOKButton.gameObject.SetActive(false);
+        }
     }
 
     public static void HideMessageScreen()
@@ -256,11 +327,11 @@ public class GameGUI : MonoBehaviour
         playerCountScreen.enabled = false;
     }
 
-    public static void ShowInfoScreen(string textFilePath)
+    public static void ShowInfoScreen(TextAsset textFileAsset)
     {
         // Shows the info screen
         // Open the text file
-        string[] lines = File.ReadAllLines(textFilePath);
+        string[] lines = textFileAsset.ToString().Split('\n');
 
         // The first line is the title
         infoTitleText.text = lines[0];

@@ -51,8 +51,8 @@ public class GameController : MonoBehaviour
         // focus on finish tile if someone wins
         if (GameData.GetGameMode() == GameData.Mode.Winner)
         {
-            Tile currTile = GameData.GetActivePiece().GetCurrTile();
-            Vector3 tilePos = new Vector3(currTile.GetPosition().x, 0, currTile.GetPosition().y);
+            Tile finishTile = GameData.GetBoard().GetFinishTile();
+            Vector3 tilePos = new Vector3(finishTile.GetPosition().x, 0, finishTile.GetPosition().y);
             Camera.main.transform.eulerAngles = GameData.GetWinCameraRotation();
             Camera.main.transform.position = tilePos + GameData.GetWinCameraOffset();
         }

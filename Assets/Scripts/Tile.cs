@@ -194,6 +194,11 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public void hideTileVisual()
+    {
+        this.GetComponent<MeshRenderer>().enabled = false;
+    }
+
     private void Awake()
     {
         //next = new List<Tile>();

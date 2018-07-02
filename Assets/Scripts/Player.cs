@@ -26,6 +26,26 @@ public class Player : MonoBehaviour, IComparable<Player>
         return playerName;
     }
 
+    public Character[] getPieces()
+    {
+        return playerPieces;
+    }
+
+    public void removePiece(Character piece)
+    {
+        //var isRemoved = Array.remove(playerPieces, piece);
+        List<Character> temp = new List<Character>();
+        foreach (Character character in playerPieces)
+        {
+            if (!character.Equals(piece))
+            {
+                temp.Add(character);
+            }
+        }
+
+        playerPieces = temp.ToArray();
+    }
+
     public void SetName(string name)
     {
         // sets the name of the player
@@ -38,7 +58,7 @@ public class Player : MonoBehaviour, IComparable<Player>
         for (int i = 0; i < GameData.GetNumPiecesPerPlayer(); i++)
         {
             // create the piece
-            GameObject pieceObject = Instantiate((GameObject)Resources.Load(GameData.GetCharDir() + charName, typeof(GameObject)));
+            GameObject pieceObject = Instantiate(GameData.GetCharDir()[charName]);
             pieceObject.AddComponent<Character>();
             Character piece = pieceObject.GetComponent<Character>();
 
@@ -165,7 +185,7 @@ public class Player : MonoBehaviour, IComparable<Player>
         foreach (Move move in moves)
         {
             // draw line from start to end tile
-            GameObject lineObject = Instantiate((GameObject)Resources.Load(GameData.GetLinePath(), typeof(GameObject)));
+            GameObject lineObject = Instantiate(GameData.GetPrefabAssetHolder().GetLine());
             Line line = lineObject.GetComponent<Line>();
             line.SetStartAndEnd(move.GetPiece().GetCurrTile().GetPosition(), move.GetDestTile().GetPosition(), colors[colorMap[move.GetPiece()]]);
             lines.Push(line);
@@ -227,8 +247,9 @@ public class Player : MonoBehaviour, IComparable<Player>
         {
             pieceOnStart.JumpToTile(destTile);
 
-            // Check for winner (wait 2 seconds to jump, 2 seconds to settle down)
-            StartCoroutine(GameData.GetBoard().CheckWinner(4));
+            // Check for winner (wait 2 seconds to jump, 2 seconds to settle down) HEREHERE
+            //StartCoroutine(GameData.GetBoard().CheckWinner(4));
+            bool merge = GameData.GetBoard().CheckMerge();
         }
         else
         {

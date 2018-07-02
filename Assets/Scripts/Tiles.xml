@@ -17,8 +17,8 @@
     <nextTile>fly1</nextTile>
     <nextTile>poop1</nextTile>
     <image>startingGut</image>
-    <xPosition>1</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>-4</xPosition>
+    <yPosition>-5.5</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -28,7 +28,7 @@
     <text>Yay! You are on a hand!</text>
     <nextTile>hand2</nextTile>
     <image>hand</image>
-    <xPosition>1</xPosition>
+    <xPosition>-1</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -38,7 +38,7 @@
     <type>normal</type>
     <text>The kid forgets to wash hands.</text>
     <nextTile>hand3</nextTile>
-    <xPosition>2</xPosition>
+    <xPosition>.5</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -48,7 +48,7 @@
     <type>normal</type>
     <text>Silly kid rinses with water and doesn't use soap. Poop is sticky!</text>
     <nextTile>hand4</nextTile>
-    <xPosition>3</xPosition>
+    <xPosition>1.9</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey>rain</landAnimKey>
 	<landAnimOption>blue</landAnimOption>
@@ -58,7 +58,7 @@
     <type>normal</type>
     <text>That tricky kid pretends to wash to fool his teacher, but doesn't!</text>
     <nextTile>hand5</nextTile>
-    <xPosition>4</xPosition>
+    <xPosition>3.3</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -69,7 +69,7 @@
     <text>The kid is too busy to wash hands. Move forward 4.</text>
     <nextTile>hand6</nextTile>
     <jumpToTile>hand9</jumpToTile>
-    <xPosition>5</xPosition>
+    <xPosition>4.7</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -83,7 +83,7 @@
     <image>x</image>
     <xPosition>6</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey>fall</landAnimKey>
+	<landAnimKey>soap</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -93,27 +93,27 @@
     <nextTile>hand8</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>7</xPosition>
+    <xPosition>7.4</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey>rain</landAnimKey>
-	<landAnimOption>blue</landAnimOption>
+	<landAnimKey>soap</landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand8</name>
     <type>normal</type>
     <text>That silly kid rinses with water, forgetting poop is sticky!</text>
     <nextTile>hand9</nextTile>
-    <xPosition>8</xPosition>
+    <xPosition>8.9</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey></landAnimKey>
-	<landAnimOption></landAnimOption>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>blue</landAnimOption>
   </tile>
   <tile>
     <name>hand9</name>
     <type>normal</type>
     <text>If they forget soap, their hands sometimes smell slightly of poop. Don't ya love that odor?!</text>
     <nextTile>hand10</nextTile>
-    <xPosition>9</xPosition>
+    <xPosition>10.3</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -124,27 +124,27 @@
     <text>Germs divide! If you have any germs in Start, bring one here.</text>
     <nextTile>hand11</nextTile>
     <special>BringPiece</special>
-    <xPosition>10</xPosition>
+    <xPosition>11.6</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey>rain</landAnimKey>
-	<landAnimOption>black</landAnimOption>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand11</name>
     <type>normal</type>
     <text>The kid is playing in the dirt. You stick on his hand.</text>
     <nextTile>hand12</nextTile>
-    <xPosition>11</xPosition>
+    <xPosition>13.1</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey></landAnimKey>
-	<landAnimOption></landAnimOption>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>black</landAnimOption>
   </tile>
   <tile>
     <name>hand12</name>
     <type>normal</type>
     <text>Kid tries to swat a fly. You are glad he missed. If that fly has poop on its legs, it might also have friends of yours!</text>
     <nextTile>hand13</nextTile>
-    <xPosition>12</xPosition>
+    <xPosition>14.5</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -155,7 +155,7 @@
     <text>Kid wipes hands on his shirt. He still forgets poop is sticky! Move forward 3.</text>
     <nextTile>hand14</nextTile>
     <jumpToTile>hand16</jumpToTile>
-    <xPosition>13</xPosition>
+    <xPosition>15.9</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -166,27 +166,28 @@
     <text>Dinner smells way too good for the kid to stop &amp; wash hands with soap. Move forward two.</text>
     <nextTile>hand15</nextTile>
     <jumpToTile>hand16</jumpToTile>
-    <xPosition>14</xPosition>
+    <xPosition>17.3</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey>rain</landAnimKey>
-	<landAnimOption>black</landAnimOption>
+	<landAnimKey></landAnimKey>
+	<landAnimOption></landAnimOption>
   </tile>
   <tile>
     <name>hand15</name>
     <type>jumpAhead</type>
     <text>Kid pretends to use soap, but just rinses his hands. You are still stuck on! Go forward one.</text>
+	<nextTile>hand16</nextTile>
     <jumpToTile>hand16</jumpToTile>
-    <xPosition>15</xPosition>
+    <xPosition>18.8</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey></landAnimKey>
-	<landAnimOption></landAnimOption>
+	<landAnimKey>rain</landAnimKey>
+	<landAnimOption>blue</landAnimOption>
   </tile>
   <tile>
     <name>hand16</name>
     <type>normal</type>
     <text>Your tummy is rumbling. (Oh, you have no tummy. It must be the kid's tummy.)</text>
     <nextTile>hand17</nextTile>
-    <xPosition>16</xPosition>
+    <xPosition>20.2</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -198,9 +199,9 @@
     <nextTile>hand18</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>17</xPosition>
+    <xPosition>21.6</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey>fall</landAnimKey>
+	<landAnimKey>soap</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -210,7 +211,7 @@
     <nextTile>hand19</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
-    <xPosition>18</xPosition>
+    <xPosition>23</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -222,9 +223,9 @@
     <nextTile>hand20</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>19</xPosition>
+    <xPosition>24.4</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey>fall</landAnimKey>
+	<landAnimKey>soap</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -234,9 +235,9 @@
     <nextTile>hand21</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>20</xPosition>
+    <xPosition>25.8</xPosition>
     <yPosition>0</yPosition>
-	<landAnimKey>fall</landAnimKey>
+	<landAnimKey>soap</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -246,7 +247,7 @@
     <nextTile>hand22</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
-    <xPosition>21</xPosition>
+    <xPosition>27.2</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -257,7 +258,7 @@
     <text>Mommy reminds the kid to wash hands. Will he? Go back 6 and find out.</text>
     <nextTile>finish</nextTile>
     <jumpToTile>hand16</jumpToTile>
-    <xPosition>22</xPosition>
+    <xPosition>28.6</xPosition>
     <yPosition>0</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
@@ -269,7 +270,7 @@
     <nextTile>fly2</nextTile>
     <image>fly</image>
     <xPosition>6</xPosition>
-    <yPosition>-2</yPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -279,9 +280,9 @@
     <text>CRASH! Oh, no, a window screen! Go back one.</text>
     <nextTile>fly3</nextTile>
     <jumpToTile>fly1</jumpToTile>
-    <xPosition>7</xPosition>
-    <yPosition>-2</yPosition>
-	<landAnimKey>slide</landAnimKey>
+    <xPosition>7.4</xPosition>
+    <yPosition>-2.8</yPosition>
+	<landAnimKey>screen</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -290,8 +291,8 @@
     <text>Fly sees food! Roll again.</text>
     <nextTile>fly4</nextTile>
     <special>RollAgain</special>
-    <xPosition>8</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>8.9</xPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -301,8 +302,8 @@
     <text>Rotten food near a kitchen smells yummy to your fly! Go forward 4.</text>
     <nextTile>fly5</nextTile>
     <jumpToTile>fly8</jumpToTile>
-    <xPosition>9</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>10.3</xPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -312,8 +313,8 @@
     <text>Land on a cow's nose. It twitches the fly off. Go forward 3.</text>
     <nextTile>fly6</nextTile>
     <jumpToTile>fly8</jumpToTile>
-    <xPosition>10</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>11.7</xPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -324,8 +325,8 @@
     <nextTile>fly7</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>11</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>13.1</xPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey>fall</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -336,9 +337,9 @@
     <nextTile>fly8</nextTile>
     <jumpToTile>fly1</jumpToTile>
     <image>screen</image>
-    <xPosition>12</xPosition>
-    <yPosition>-2</yPosition>
-	<landAnimKey>slide</landAnimKey>
+    <xPosition>14.5</xPosition>
+    <yPosition>-2.8</yPosition>
+	<landAnimKey>screen</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -346,8 +347,8 @@
     <type>normal</type>
     <text>In the kitchen now. That food smells delicious!</text>
     <nextTile>fly9</nextTile>
-    <xPosition>13</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>15.9</xPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -358,9 +359,9 @@
     <nextTile>fly10</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>14</xPosition>
-    <yPosition>-2</yPosition>
-	<landAnimKey>slide</landAnimKey>
+    <xPosition>17.3</xPosition>
+    <yPosition>-2.8</yPosition>
+	<landAnimKey>screen</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -370,8 +371,8 @@
     <nextTile>fly11</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
-    <xPosition>15</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>18.7</xPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -382,8 +383,8 @@
     <nextTile>fly12</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>16</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>20.2</xPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -394,8 +395,8 @@
     <nextTile>fly13</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
-    <xPosition>17</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>21.55</xPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -406,8 +407,8 @@
     <nextTile>fly14</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
-    <xPosition>18</xPosition>
-    <yPosition>-2</yPosition>
+    <xPosition>23</xPosition>
+    <yPosition>-2.8</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -418,9 +419,9 @@
     <nextTile>finish</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>19</xPosition>
-    <yPosition>-2</yPosition>
-	<landAnimKey>fall</landAnimKey>
+    <xPosition>24.4</xPosition>
+    <yPosition>-2.8</yPosition>
+	<landAnimKey>screen</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -430,8 +431,8 @@
     <nextTile>poop2</nextTile>
     <jumpToTile>hand1</jumpToTile>
     <image>hand</image>
-    <xPosition>0</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>-2.4</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -441,8 +442,8 @@
     <text>The kid poops outside. Move forward 5.</text>
     <nextTile>poop3</nextTile>
     <jumpToTile>poop7</jumpToTile>
-    <xPosition>1</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>-1</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -452,8 +453,8 @@
     <text>Poop outdoors! It is fun to be poop in the grass. Move forward 4.</text>
     <nextTile>poop4</nextTile>
     <jumpToTile>poop7</jumpToTile>
-    <xPosition>2</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>.5</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -463,8 +464,8 @@
     <text>The kid poops outside! What a nice breeze! (Well, maybe not to those downwind of you…). Move forward 3.</text>
     <nextTile>poop5</nextTile>
     <jumpToTile>poop7</jumpToTile>
-    <xPosition>3</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>1.9</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -475,8 +476,8 @@
     <nextTile>poop6</nextTile>
     <jumpToTile>hand1</jumpToTile>
     <image>hand</image>
-    <xPosition>4</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>3.2</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -487,8 +488,8 @@
     <nextTile>poop7</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>5</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>4.7</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey>rain</landAnimKey>
 	<landAnimOption>blue</landAnimOption>
   </tile>
@@ -497,8 +498,8 @@
     <type>normal</type>
     <text>The fresh air is great!</text>
     <nextTile>poop8</nextTile>
-    <xPosition>6</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>6.1</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -509,8 +510,8 @@
     <nextTile>poop9</nextTile>
     <jumpToTile>fly1</jumpToTile>
     <image>flyRide</image>
-    <xPosition>7</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>7.5</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -521,8 +522,8 @@
     <nextTile>poop10</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>8</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>8.9</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey>smoke</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -533,8 +534,8 @@
     <nextTile>poop11</nextTile>
     <jumpToTile>pipe1</jumpToTile>
     <image>pipe</image>
-    <xPosition>9</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>10.2</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey>rain</landAnimKey>
 	<landAnimOption>blue</landAnimOption>
   </tile>
@@ -545,8 +546,8 @@
     <nextTile>poop12</nextTile>
     <jumpToTile>poop14</jumpToTile>
     <image>river</image>
-    <xPosition>10</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>11.7</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey>rain</landAnimKey>
 	<landAnimOption>blue</landAnimOption>
   </tile>
@@ -557,8 +558,8 @@
     <nextTile>poop13</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>11</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>13.1</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey>smoke</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -568,10 +569,8 @@
     <text>Washed to river! Move forward one.</text>
     <nextTile>poop14</nextTile>
     <jumpToTile>poop14</jumpToTile>
-    <xPosition>12</xPosition>
-    <yPosition>-4</yPosition>
-	<landAnimKey>rain</landAnimKey>
-	<landAnimOption>blue</landAnimOption>
+    <xPosition>14.5</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey>rain</landAnimKey>
 	<landAnimOption>blue</landAnimOption>
   </tile>
@@ -580,8 +579,8 @@
     <type>normal</type>
     <text>You are in the river. Lucky poop floats!</text>
     <nextTile>poop15</nextTile>
-    <xPosition>13</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>16</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -592,9 +591,9 @@
     <nextTile>poop16</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>14</xPosition>
-    <yPosition>-4</yPosition>
-	<landAnimKey>slide</landAnimKey>
+    <xPosition>17.4</xPosition>
+    <yPosition>-6.3</yPosition>
+	<landAnimKey>fish</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -604,9 +603,9 @@
     <nextTile>poop17</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <image>jerryCan</image>
-    <xPosition>15</xPosition>
-    <yPosition>-4</yPosition>
-	<landAnimKey>rise</landAnimKey>
+    <xPosition>18.8</xPosition>
+    <yPosition>-6.3</yPosition>
+	<landAnimKey>jerry</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -616,9 +615,9 @@
     <nextTile>poop18</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <image>jerryCan</image>
-    <xPosition>16</xPosition>
-    <yPosition>-4</yPosition>
-	<landAnimKey>rise</landAnimKey>
+    <xPosition>20.2</xPosition>
+    <yPosition>-6.3</yPosition>
+	<landAnimKey>jerry</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -628,8 +627,8 @@
     <nextTile>poop19</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>17</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>21.6</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey>smoke</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -640,9 +639,9 @@
     <nextTile>poop20</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <image>jerryCan</image>
-    <xPosition>18</xPosition>
-    <yPosition>-4</yPosition>
-	<landAnimKey>rise</landAnimKey>
+    <xPosition>23</xPosition>
+    <yPosition>-6.3</yPosition>
+	<landAnimKey>jerry</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -652,8 +651,8 @@
     <nextTile>finish</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>19</xPosition>
-    <yPosition>-4</yPosition>
+    <xPosition>24.3</xPosition>
+    <yPosition>-6.3</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -663,8 +662,8 @@
     <text>Whee! Sliding down a pipe!</text>
     <nextTile>pipe2</nextTile>
     <image>pipe</image>
-    <xPosition>5</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>4.7</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -676,7 +675,7 @@
     <jumpToTile>start</jumpToTile>
     <image>x</image>
     <xPosition>6</xPosition>
-    <yPosition>-6</yPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey>rain</landAnimKey>
 	<landAnimOption>white</landAnimOption>
   </tile>
@@ -686,8 +685,8 @@
     <text>Look, there is another germ! Hi, buddy!</text>
     <nextTile>pipe4</nextTile>
     <image>inPipe</image>
-    <xPosition>7</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>7.5</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -697,8 +696,8 @@
     <text>The water looks clean. It is good they cannot see you!</text>
     <nextTile>pipe5</nextTile>
     <image>inPipe</image>
-    <xPosition>8</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>8.8</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -708,8 +707,8 @@
     <text>It's dark in here.</text>
     <nextTile>pipe6</nextTile>
     <image>inPipe</image>
-    <xPosition>9</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>10.2</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -718,8 +717,8 @@
     <type>normal</type>
     <text>It's fun to ride with so many friends in the water pipe!</text>
     <nextTile>pipe7</nextTile>
-    <xPosition>10</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>11.7</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -729,9 +728,9 @@
     <text>YAY! Someone poured you out of the pipe and into their Jerry can! Move forward 5.</text>
     <nextTile>pipe8</nextTile>
     <jumpToTile>jerry1</jumpToTile>
-    <xPosition>11</xPosition>
-    <yPosition>-6</yPosition>
-	<landAnimKey>rise</landAnimKey>
+    <xPosition>13.1</xPosition>
+    <yPosition>-9.2</yPosition>
+	<landAnimKey>jerry</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -740,9 +739,9 @@
     <text>Some hard-working kid just carried their Jerry can a long way just to pick you up (with some water)! Go forward 4.</text>
     <nextTile>pipe9</nextTile>
     <jumpToTile>jerry1</jumpToTile>
-    <xPosition>12</xPosition>
-    <yPosition>-6</yPosition>
-	<landAnimKey>rise</landAnimKey>
+    <xPosition>14.5</xPosition>
+    <yPosition>-9.2</yPosition>
+	<landAnimKey>jerry</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -751,9 +750,9 @@
     <text>You've just been pumped from pipe to Jerry can. Getting closer! Go forward 3.</text>
     <nextTile>pipe10</nextTile>
     <jumpToTile>jerry1</jumpToTile>
-    <xPosition>13</xPosition>
-    <yPosition>-6</yPosition>
-	<landAnimKey>rise</landAnimKey>
+    <xPosition>15.9</xPosition>
+    <yPosition>-9.2</yPosition>
+	<landAnimKey>jerry</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -762,9 +761,9 @@
     <text>Whoosh! Through the tap and into a Jerry can! Go forward two.</text>
     <nextTile>pipe11</nextTile>
     <jumpToTile>jerry1</jumpToTile>
-    <xPosition>14</xPosition>
-    <yPosition>-6</yPosition>
-	<landAnimKey>rise</landAnimKey>
+    <xPosition>17.4</xPosition>
+    <yPosition>-9.2</yPosition>
+	<landAnimKey>jerry</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -774,8 +773,8 @@
     <nextTile>jerry1</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>15</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>18.7</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -785,9 +784,9 @@
     <text>You made it to the big Jerry can they take home!</text>
     <nextTile>jerry2</nextTile>
     <image>jerryCan</image>
-    <xPosition>16</xPosition>
-    <yPosition>-6</yPosition>
-	<landAnimKey>rise</landAnimKey>
+    <xPosition>20.2</xPosition>
+    <yPosition>-9.2</yPosition>
+	<landAnimKey>jerry</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -797,8 +796,8 @@
     <nextTile>jerry3</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>17</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>21.6</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey>smoke</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -809,8 +808,8 @@
     <nextTile>jerry4</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>18</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>23</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey>rain</landAnimKey>
 	<landAnimOption>white</landAnimOption>
   </tile>
@@ -821,9 +820,9 @@
     <nextTile>jerry5</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
-    <xPosition>19</xPosition>
-    <yPosition>-6</yPosition>
-	<landAnimKey>fall</landAnimKey>
+    <xPosition>24.4</xPosition>
+    <yPosition>-9.2</yPosition>
+	<landAnimKey>screen</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
@@ -834,8 +833,8 @@
     <jumpToTile>start</jumpToTile>
     <special>RollSixOrDie</special>
     <image>x</image>
-    <xPosition>20</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>25.8</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey>smoke</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -846,8 +845,8 @@
     <nextTile>jerry7</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
-    <xPosition>21</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>27.2</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -858,8 +857,8 @@
     <nextTile>finish</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
-    <xPosition>22</xPosition>
-    <yPosition>-6</yPosition>
+    <xPosition>28.7</xPosition>
+    <yPosition>-9.2</yPosition>
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
@@ -868,8 +867,8 @@
     <type>finish</type>
     <text>New gut</text>
     <image>newGut</image>
-    <xPosition>21</xPosition>
-    <yPosition>-3</yPosition>	
+    <xPosition>26.7</xPosition>
+    <yPosition>-5.5</yPosition>	
 	<landAnimKey></landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>

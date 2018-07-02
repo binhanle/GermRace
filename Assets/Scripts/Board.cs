@@ -19,6 +19,7 @@ public class Board : MonoBehaviour
     private int currPlayerIndex;
     private Queue<Player> nextToRollQueue;
     private static readonly string[] ordinals = { "first", "second", "third", "fourth" };
+    //public TextAsset TilesXML;
     
 
     /*public Player[] currentPlayer()
@@ -56,12 +57,20 @@ public class Board : MonoBehaviour
         tileEffects.Add("rain", rainEffect);
         FallingObject fallingObject = GameObject.Find("FallingObject").GetComponent<FallingObject>();
         tileEffects.Add("fall", fallingObject);
-        RisingObject risingObject = GameObject.Find("RisingObject").GetComponent<RisingObject>();
-        tileEffects.Add("rise", risingObject);
+        RisingObject risingObject = GameObject.Find("JerryCan").GetComponent<RisingObject>();
+        tileEffects.Add("jerry", risingObject);
         LeftMovingObject slideObject = GameObject.Find("LeftMovingObject").GetComponent<LeftMovingObject>();
         tileEffects.Add("slide", slideObject);
         SmokeEffect smokeEffect = GameObject.Find("SmokeEffect").GetComponent<SmokeEffect>();
         tileEffects.Add("smoke", smokeEffect);
+        LeftMovingObject fishObject = GameObject.Find("FishEffect").GetComponent<LeftMovingObject>();
+        tileEffects.Add("fish", fishObject);
+        LeftMovingObject screenObject = GameObject.Find("SlidingScreenEffect").GetComponent<LeftMovingObject>();
+        tileEffects.Add("screen", screenObject);
+        FallingObject soapObject = GameObject.Find("FallingSoapEffect").GetComponent<FallingObject>();
+        tileEffects.Add("soap", soapObject);
+        WinEffect winEffect = GameObject.Find("WinEffect").GetComponent<WinEffect>();
+        tileEffects.Add("win", winEffect);
 
         //resizing and hiding the effects
         foreach (string effect in tileEffects.Keys)
@@ -89,12 +98,14 @@ public class Board : MonoBehaviour
     public void LoadTiles()
     {
         // load the tiles xml file
-        XDocument xmlDoc = XDocument.Load(GameData.GetTilesPath());
-        IEnumerable<XElement> items = xmlDoc.Descendants("tiles").Elements();
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(GameData.GetTextAssetHolder().getTiles().ToString());
+        XDocument xDoc = XDocument.Parse(xmlDoc.OuterXml);
+        IEnumerable<XElement> items = xDoc.Descendants("tiles").Elements();
         foreach (var item in items)
         {
             // create the tile
-            GameObject tileObject = Instantiate((GameObject)Resources.Load("Prefabs/Tile", typeof(GameObject)));
+            GameObject tileObject = Instantiate(GameData.GetPrefabAssetHolder().GetTile());
             Tile tile = tileObject.GetComponent<Tile>();
             string name = item.Element("name").Value.Trim();
             //string color = item.Element("color").Value.Trim();
@@ -113,11 +124,13 @@ public class Board : MonoBehaviour
             {
                 string jumpToTile = item.Element("jumpToTile").Value.Trim();
             }*/
+            /*
             if (item.Element("image") != null)
             {
                 string image = item.Element("image").Value.Trim();
                 tile.DisplayImage(image);
             }
+            */
             float xPosition = float.Parse(item.Element("xPosition").Value.Trim());
             float yPosition = float.Parse(item.Element("yPosition").Value.Trim());
             string landAnimKey = item.Element("landAnimKey").Value.Trim();
@@ -146,6 +159,9 @@ public class Board : MonoBehaviour
             // set the color based on its type
             //Debug.Log(type);
             tile.SetColor(GameData.GetColorScheme()[type]);
+
+            //Makes our tiles invisible on the board
+            tile.hideTileVisual();
 
             // add the tile to dictionary
             tiles.Add(name, tile);
@@ -213,8 +229,11 @@ public class Board : MonoBehaviour
         //keeps track of whih player has been set up so far
         currPlayerIndex = 0;
 
+        //resets players array
+
+
         //ADD EXPLANATION HERE
-        GameGUI.ShowExplanationScreen(GameData.GetChooseRollOrderPath(), GameGUI.HideExplanationShowSetup);
+        GameGUI.ShowExplanationScreen(GameData.GetTextAssetHolder().GetChooseRollOrderText(), GameGUI.HideExplanationShowSetup);
 
         // the first player in the list goes firstsetup
         //currPlayerIndex = 0;
@@ -301,12 +320,90 @@ public class Board : MonoBehaviour
 
         //ends tile effect
         hideAllEffects();
+        
+        if (delay == 0)
+        {
+            // since no jump happened 
 
-        // hide message screen
-        GameGUI.HideMessageScreen();
+            //if collision, display the collision screen
+            bool collision = CheckCollision();
+            bool merge = CheckMerge();
 
-        // check for winner
-        StartCoroutine(CheckWinner(delay));
+            //if n collision move on to next turn 
+            if (!collision && !merge)
+            {
+                // hide message screen
+                GameGUI.HideMessageScreen();
+
+                //check for winner
+                StartCoroutine(CheckWinner(delay));
+            }            
+        }
+    }
+
+    public bool CheckCollision()
+    {
+        Vector3 activePosition = GameData.GetActivePiece().transform.position;
+        Vector3 startPosition = new Vector3(-4, 0, -5.5f);
+
+        if (activePosition == startPosition)
+        {
+            return false;
+        }
+
+        foreach (Player player in players)
+        {
+            if (!player.Equals(GameData.GetCurrPlayer()))
+            {
+                foreach (Character piece in player.getPieces())
+                {
+                    if (piece.transform.position == activePosition)
+                    {
+                        //determine smaller piece (active piece wins in case of tie)
+                        Character smallerPiece = null;
+                        if (piece.getSize() > GameData.GetActivePiece().getSize())
+                        {
+                            smallerPiece = GameData.GetActivePiece();
+                        }
+                        else
+                        {
+                            smallerPiece = piece;
+                        }
+                        
+                        GameGUI.ShowCollisionScreen(smallerPiece, player);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool CheckMerge()
+    {
+        Character[] pieces = GameData.GetCurrPlayer().getPieces();
+        Vector3 activePosition = GameData.GetActivePiece().transform.position;
+        Character activePiece = GameData.GetActivePiece();
+        Vector3 startPosition = new Vector3(-4, 0, -5.5f);
+
+        foreach (Character piece in pieces)
+        {
+            if (activePiece.transform.position != startPosition && !piece.Equals(activePiece) 
+                && piece.transform.position == activePosition )
+            {
+                int prevSize = activePiece.getSize();
+                activePiece.adjustSize(piece.getSize());
+                piece.gameObject.SetActive(false);
+                GameData.GetCurrPlayer().removePiece(piece);
+                activePiece.transform.localScale = activePiece.getSize()/prevSize * activePiece.transform.localScale;
+                GameGUI.ShowMergeScreen(activePiece.GetCurrTile());
+                return true;
+            }
+        }
+
+        return false; 
+
+        //HEREHERE display merge screen
     }
 
     public IEnumerator CheckWinner(float delay)
@@ -318,6 +415,7 @@ public class Board : MonoBehaviour
             yield return new WaitForSeconds(delay);
             GameData.SetGameMode(GameData.Mode.Winner);
             GameGUI.ShowWinScreen();
+            tileEffects["win"].activateEffect(new Vector2(0,0));
 
             // celebrate
             GameData.GetCurrPlayer().Celebrate();
@@ -363,8 +461,10 @@ public class Board : MonoBehaviour
         //hides the tile effect
         hideAllEffects();
 
-        // executes the special command
+        // executes the special command 
         GameGUI.HideMessageScreen();
+        CheckCollision();
+        CheckMerge();
         Invoke(GameData.GetActivePiece().GetCurrTile().GetSpecialCommand(), 0);
     }
 
@@ -382,6 +482,7 @@ public class Board : MonoBehaviour
 
     public void BringPiece()
     {
+        //HEREHERE ADD COLLISION LOGIC
         // brings another piece to current tile
         GameData.GetCurrPlayer().BringPiece(GameData.GetActivePiece().GetCurrTile());
     }
@@ -516,19 +617,19 @@ public class Board : MonoBehaviour
         SetupPlayers(4);
     }
 
-    public void ShowRules()
-    {
+    //public void ShowRules()
+    //{
         // shows the rules
-        GameGUI.HideMainScreen();
-        GameGUI.ShowInfoScreen(GameData.GetRulesPath());
-    }
+    //    GameGUI.HideMainScreen();
+    //    GameGUI.ShowInfoScreen(GameData.GetTextAssetHolder().GetRulesText());
+    //}
 
-    public void ShowCredits()
-    {
+    //public void ShowCredits()
+    //{
         // shows the credits
-        GameGUI.HideMainScreen();
-        GameGUI.ShowInfoScreen(GameData.GetCreditsPath());
-    }
+    //    GameGUI.HideMainScreen();
+    //    GameGUI.ShowInfoScreen(GameData.GetTextAssetHolder().GetCreditsText());
+    //}
 
     public void ShowMainMenu()
     {
@@ -536,6 +637,7 @@ public class Board : MonoBehaviour
         GameData.SetGameMode(GameData.Mode.Home);
         GameGUI.HideEveryScreen();
         GameGUI.ShowMainScreen();
+        tileEffects["win"].hideEffect();
     }
 
     public void AskHowManyPlayers()
@@ -550,6 +652,24 @@ public class Board : MonoBehaviour
         // shows the options screen
         GameGUI.HideMainScreen();
         GameGUI.ShowOptionsScreen();
+    }
+
+    public void newGame()
+    {
+        //remove all pieces on board 
+        foreach (Player player in players)
+        {
+            foreach (Character piece in player.getPieces())
+            {
+                Destroy(piece.gameObject);
+            }
+        }
+
+        //reset players in game
+        players = new List<Player>();
+
+        //reset piece color choices
+        GameData.resetAvailableColors();
     }
 
     private void Awake()

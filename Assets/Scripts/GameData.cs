@@ -4,9 +4,24 @@ using UnityEngine;
 
 public static class GameData
 {
+    //TextAssetHolder
+    private static TextAssetHolder textAssets = GameObject.Find("TextAssets").GetComponent<TextAssetHolder>();
+
+    //PreFabAssetHolder
+    private static PrefabAssetHolder prefabAssets = GameObject.Find("PrefabAssets").GetComponent<PrefabAssetHolder>();
+
+    //Tile XML Data
     private static string startTileName = "start";
     private static string tilesPath = "Assets/Scripts/Tiles.xml";
-    private static string charDir = "Characters/Mushroomboypack1.2/3D/";
+
+    //Character data
+    private static Dictionary<string, GameObject> charDir = new Dictionary<string, GameObject>()
+    {
+        { "red",  prefabAssets.GetRedCharacter()},
+        { "green",  prefabAssets.GetGreenCharacter()},
+        { "blue",  prefabAssets.GetBlueCharacter()},
+        { "yellow",  prefabAssets.GetYellowCharacter()}
+    };
 
     //Tile Animation Parameters 
     private static float boardHeight = 0f;
@@ -15,7 +30,6 @@ public static class GameData
     private static float animHeight = 5f;
 
     //private static string menuDir = "Prefabs/Menus/";
-    private static string linePath = "VolumetricLines/Prefabs/Line";
     private static Vector3 cameraOffset = new Vector3(2, 1, -5);
     private static Vector3 mainCameraRotation = new Vector3(10, -20, 0);
     private static Vector3 dieCameraPosition = new Vector3(-10, 10, 0);
@@ -48,14 +62,16 @@ public static class GameData
     private static Vector3 homeCameraPosition = new Vector3(0.35f, 0.35f, -19);
     private static Vector3 homeCameraRotation = new Vector3(5, 180, 0);
     private static Dictionary<string, GameObject> demoPieces;
-    private static string rulesPath = "Assets/Scripts/Rules.txt";
-    private static string chooseRollOrderPath = "Assets/Scripts/ChooseRollOrder.txt";
-    private static string creditsPath = "Assets/Scripts/Credits.txt";
     private static string materialsDir = "Images/Materials/";
 
     static GameData()
     {
         // initialize list of available piece colors
+        availableColors = new List<string>(pieceColors);
+    }
+
+    public static void resetAvailableColors()
+    {
         availableColors = new List<string>(pieceColors);
     }
 
@@ -71,7 +87,7 @@ public static class GameData
         return tilesPath;
     }
 
-    public static string GetCharDir()
+    public static Dictionary<string, GameObject> GetCharDir()
     {
         // Get the character directory
         return charDir;
@@ -82,12 +98,6 @@ public static class GameData
         // Get the menu directory
         return menuDir;
     }*/
-
-    public static string GetLinePath()
-    {
-        // Get the path of the line prefab
-        return linePath;
-    }
 
     public static Vector3 GetCameraOffset()
     {
@@ -281,24 +291,6 @@ public static class GameData
         return pieceColors;
     }
 
-    public static string GetRulesPath()
-    {
-        // Get the path of the rules text file
-        return rulesPath;
-    }
-
-    public static string GetCreditsPath()
-    {
-        // Get the path of the credits text file
-        return creditsPath;
-    }
-
-    public static string GetChooseRollOrderPath()
-    {
-        // Get the path of the credits text file
-        return chooseRollOrderPath;
-    }
-
     public static string GetMaterialsDir()
     {
         // Get the directory of the materials
@@ -308,5 +300,15 @@ public static class GameData
     public static float[] GetAnimationParams()
     {
         return new float[] { boardHeight, tileSize, animTime, animHeight }; 
+    }
+
+    public static TextAssetHolder GetTextAssetHolder()
+    {
+        return textAssets;
+    }
+
+    public static PrefabAssetHolder GetPrefabAssetHolder()
+    {
+        return prefabAssets;
     }
 }
