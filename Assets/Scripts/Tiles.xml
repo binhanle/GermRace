@@ -2,17 +2,26 @@
 <!-- DIRECTIONS -->
 <!-- name (REQUIRED): name of the tile (used to refer to other tiles) -->
 <!-- type (REQUIRED): type of tile (start, normal, jumpAhead, jumpBack, jumpOther, special, finish) -->
-<!-- text (REQUIRED): text associated with the tile -->
+<!-- text (REQUIRED): text associated with the tile in english-->
+<!-- language1 (REQUIRED): text associated with the tile in language1-->
+<!-- language2 (REQUIRED): text associated with the tile in language2-->
+<!-- language3 (REQUIRED): text associated with the tile in language3-->
 <!-- nextTile (REQUIRED): the tile immediately succeeding this one -->
 <!-- jumpToTile (OPTIONAL): the tile to jump to when landed upon -->
 <!-- image (OPTIONAL): the image displayed on the tile -->
 <!-- xPosition (REQUIRED): the x coordinate of the tile -->
 <!-- yPosition (REQUIRED): the y coordinate of the tile -->
+<!-- special (OPTIONAL): special command for certain tiles -->
+<!-- landAnimKey (REQUIRED): key for land animation (can be empty if no related animation): rain, fall, jerry, slide, smoke, fish, screen, soap, win -->
+<!-- landAnimOption (REQUIRED): option for land animation (can be empty if no related animation): only used for rain with blue and black options -->
 <tiles>
   <tile>
     <name>start</name>
     <type>start</type>
-    <text>Starting gut</text>
+    <text>Starting Gut</text>
+	<language1>(language1)Starting Gut</language1>
+	<language2>(language2)Starting Gut</language2>
+	<language3>(language3)Starting Gut</language3>
     <nextTile>hand1</nextTile>
     <nextTile>fly1</nextTile>
     <nextTile>poop1</nextTile>
@@ -25,7 +34,10 @@
   <tile>
     <name>hand1</name>
     <type>normal</type>
-    <text>Yay! You are on a hand!</text>
+	<text>Yay! You are on a hand!</text>
+	<language1>(language1)Yay! You are on a hand!</language1>
+	<language2>(language2)Yay! You are on a hand!</language2>
+	<language3>(language3)Yay! You are on a hand!</language3>
     <nextTile>hand2</nextTile>
     <image>hand</image>
     <xPosition>-1</xPosition>
@@ -36,7 +48,10 @@
   <tile>
     <name>hand2</name>
     <type>normal</type>
-    <text>The kid forgets to wash hands.</text>
+    <text>The kid forgets to wash hands.</text>	
+	<language1>(language1)The kid forgets to wash hands.</language1>
+	<language2>(language2)The kid forgets to wash hands.</language2>
+	<language3>(language3)The kid forgets to wash hands.</language3>
     <nextTile>hand3</nextTile>
     <xPosition>.5</xPosition>
     <yPosition>0</yPosition>
@@ -47,6 +62,9 @@
     <name>hand3</name>
     <type>normal</type>
     <text>Silly kid rinses with water and doesn't use soap. Poop is sticky!</text>
+	<language1>(language1)Silly kid rinses with water and doesn't use soap. Poop is sticky!</language1>
+	<language2>(language2)Silly kid rinses with water and doesn't use soap. Poop is sticky!</language2>
+	<language3>(language3)Silly kid rinses with water and doesn't use soap. Poop is sticky!</language3>
     <nextTile>hand4</nextTile>
     <xPosition>1.9</xPosition>
     <yPosition>0</yPosition>
@@ -57,6 +75,9 @@
     <name>hand4</name>
     <type>normal</type>
     <text>That tricky kid pretends to wash to fool his teacher, but doesn't!</text>
+	<language1>(language1)That tricky kid pretends to wash to fool his teacher, but doesn't!</language1>
+	<language2>(language2)That tricky kid pretends to wash to fool his teacher, but doesn't!</language2>
+	<language3>(language3)That tricky kid pretends to wash to fool his teacher, but doesn't!</language3>
     <nextTile>hand5</nextTile>
     <xPosition>3.3</xPosition>
     <yPosition>0</yPosition>
@@ -67,6 +88,9 @@
     <name>hand5</name>
     <type>jumpAhead</type>
     <text>The kid is too busy to wash hands. Move forward 4.</text>
+	<language1>(language1)The kid is too busy to wash hands. Move forward 4.</language1>
+	<language2>(language2)The kid is too busy to wash hands. Move forward 4.</language2>
+	<language3>(language3)The kid is too busy to wash hands. Move forward 4.</language3>
     <nextTile>hand6</nextTile>
     <jumpToTile>hand9</jumpToTile>
     <xPosition>4.7</xPosition>
@@ -78,6 +102,9 @@
     <name>hand6</name>
     <type>jumpBack</type>
     <text>That mean kid washes with soap. Back to Start!</text>
+	<language1>(language1)That mean kid washes with soap. Back to Start!</language1>
+	<language2>(language2)That mean kid washes with soap. Back to Start!</language2>
+	<language3>(language3)That mean kid washes with soap. Back to Start!</language3>
     <nextTile>hand7</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -90,6 +117,9 @@
     <name>hand7</name>
     <type>jumpBack</type>
     <text>A friend makes fun of this kid for wearing poop because he did not use soap, so the kid washes with soap! Back to Start!</text>
+	<language1>(language1)A friend makes fun of this kid for wearing poop because he did not use soap, so the kid washes with soap! Back to Start!</language1>
+	<language2>(language2)A friend makes fun of this kid for wearing poop because he did not use soap, so the kid washes with soap! Back to Start!</language2>
+	<language3>(language3)A friend makes fun of this kid for wearing poop because he did not use soap, so the kid washes with soap! Back to Start!</language3>
     <nextTile>hand8</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -102,6 +132,9 @@
     <name>hand8</name>
     <type>normal</type>
     <text>That silly kid rinses with water, forgetting poop is sticky!</text>
+	<language1>(language1)That silly kid rinses with water, forgetting poop is sticky!</language1>
+	<language2>(language2)That silly kid rinses with water, forgetting poop is sticky!</language2>
+	<language3>(language3)That silly kid rinses with water, forgetting poop is sticky!</language3>
     <nextTile>hand9</nextTile>
     <xPosition>8.9</xPosition>
     <yPosition>0</yPosition>
@@ -112,6 +145,9 @@
     <name>hand9</name>
     <type>normal</type>
     <text>If they forget soap, their hands sometimes smell slightly of poop. Don't ya love that odor?!</text>
+	<language1>(language1)If they forget soap, their hands sometimes smell slightly of poop. Don't ya love that odor?!</language1>
+	<language2>(language2)If they forget soap, their hands sometimes smell slightly of poop. Don't ya love that odor?!</language2>
+	<language3>(language3)If they forget soap, their hands sometimes smell slightly of poop. Don't ya love that odor?!</language3>
     <nextTile>hand10</nextTile>
     <xPosition>10.3</xPosition>
     <yPosition>0</yPosition>
@@ -122,6 +158,9 @@
     <name>hand10</name>
     <type>special</type>
     <text>Germs divide! If you have any germs in Start, bring one here.</text>
+	<language1>(language1)Germs divide! If you have any germs in Start, bring one here.</language1>
+	<language2>(language2)Germs divide! If you have any germs in Start, bring one here.</language2>
+	<language3>(language3)Germs divide! If you have any germs in Start, bring one here.</language3>
     <nextTile>hand11</nextTile>
     <special>BringPiece</special>
     <xPosition>11.6</xPosition>
@@ -133,6 +172,9 @@
     <name>hand11</name>
     <type>normal</type>
     <text>The kid is playing in the dirt. You stick on his hand.</text>
+	<language1>(language1)The kid is playing in the dirt. You stick on his hand.</language1>
+	<language2>(language2)The kid is playing in the dirt. You stick on his hand.</language2>
+	<language3>(language3)The kid is playing in the dirt. You stick on his hand.</language3>
     <nextTile>hand12</nextTile>
     <xPosition>13.1</xPosition>
     <yPosition>0</yPosition>
@@ -143,6 +185,9 @@
     <name>hand12</name>
     <type>normal</type>
     <text>Kid tries to swat a fly. You are glad he missed. If that fly has poop on its legs, it might also have friends of yours!</text>
+	<language1>(language1)Kid tries to swat a fly. You are glad he missed. If that fly has poop on its legs, it might also have friends of yours!</language1>
+	<language2>(language2)Kid tries to swat a fly. You are glad he missed. If that fly has poop on its legs, it might also have friends of yours!</language2>
+	<language3>(language3)Kid tries to swat a fly. You are glad he missed. If that fly has poop on its legs, it might also have friends of yours!</language3>
     <nextTile>hand13</nextTile>
     <xPosition>14.5</xPosition>
     <yPosition>0</yPosition>
@@ -153,6 +198,9 @@
     <name>hand13</name>
     <type>jumpAhead</type>
     <text>Kid wipes hands on his shirt. He still forgets poop is sticky! Move forward 3.</text>
+	<language1>(language1)Kid wipes hands on his shirt. He still forgets poop is sticky! Move forward 3.</language1>
+	<language2>(language2)Kid wipes hands on his shirt. He still forgets poop is sticky! Move forward 3.</language2>
+	<language3>(language3)Kid wipes hands on his shirt. He still forgets poop is sticky! Move forward 3.</language3>
     <nextTile>hand14</nextTile>
     <jumpToTile>hand16</jumpToTile>
     <xPosition>15.9</xPosition>
@@ -164,6 +212,9 @@
     <name>hand14</name>
     <type>jumpAhead</type>
     <text>Dinner smells way too good for the kid to stop &amp; wash hands with soap. Move forward two.</text>
+	<language1>(language1)Dinner smells way too good for the kid to stop &amp; wash hands with soap. Move forward two.</language1>
+	<language2>(language2)Dinner smells way too good for the kid to stop &amp; wash hands with soap. Move forward two.</language2>
+	<language3>(language3)Dinner smells way too good for the kid to stop &amp; wash hands with soap. Move forward two.</language3>
     <nextTile>hand15</nextTile>
     <jumpToTile>hand16</jumpToTile>
     <xPosition>17.3</xPosition>
@@ -175,6 +226,9 @@
     <name>hand15</name>
     <type>jumpAhead</type>
     <text>Kid pretends to use soap, but just rinses his hands. You are still stuck on! Go forward one.</text>
+	<language1>(language1)Kid pretends to use soap, but just rinses his hands. You are still stuck on! Go forward one.</language1>
+	<language2>(language2)Kid pretends to use soap, but just rinses his hands. You are still stuck on! Go forward one.</language2>
+	<language3>(language3)Kid pretends to use soap, but just rinses his hands. You are still stuck on! Go forward one.</language3>
 	<nextTile>hand16</nextTile>
     <jumpToTile>hand16</jumpToTile>
     <xPosition>18.8</xPosition>
@@ -186,6 +240,9 @@
     <name>hand16</name>
     <type>normal</type>
     <text>Your tummy is rumbling. (Oh, you have no tummy. It must be the kid's tummy.)</text>
+	<language1>(language1)Your tummy is rumbling. (Oh, you have no tummy. It must be the kid's tummy.)</language1>
+	<language2>(language2)Your tummy is rumbling. (Oh, you have no tummy. It must be the kid's tummy.)</language2>
+	<language3>(language3)Your tummy is rumbling. (Oh, you have no tummy. It must be the kid's tummy.)</language3>
     <nextTile>hand17</nextTile>
     <xPosition>20.2</xPosition>
     <yPosition>0</yPosition>
@@ -196,6 +253,9 @@
     <name>hand17</name>
     <type>jumpBack</type>
     <text>That mean kid remembers to wash with soap. Back to Start!</text>
+	<language1>(language1)That mean kid remembers to wash with soap. Back to Start!</language1>
+	<language2>(language2)That mean kid remembers to wash with soap. Back to Start!</language2>
+	<language3>(language3)That mean kid remembers to wash with soap. Back to Start!</language3>
     <nextTile>hand18</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -208,6 +268,9 @@
     <name>hand18</name>
     <type>jumpAhead</type>
     <text>The kid eats with you (&amp; poop) on his hands! You are in a gut!</text>
+	<language1>(language1)The kid eats with you (&amp; poop) on his hands! You are in a gut!</language1>
+	<language2>(language2)The kid eats with you (&amp; poop) on his hands! You are in a gut!</language2>
+	<language3>(language3)The kid eats with you (&amp; poop) on his hands! You are in a gut!</language3>
     <nextTile>hand19</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
@@ -220,6 +283,9 @@
     <name>hand19</name>
     <type>jumpBack</type>
     <text>Sister reminds kid to wash hands. Bask to Start!</text>
+	<language1>(language1)Sister reminds kid to wash hands. Bask to Start!</language1>
+	<language2>(language2)Sister reminds kid to wash hands. Bask to Start!</language2>
+	<language3>(language3)Sister reminds kid to wash hands. Bask to Start!</language3>
     <nextTile>hand20</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -232,6 +298,9 @@
     <name>hand20</name>
     <type>jumpBack</type>
     <text>That nasty mom makes the kid wash with soap. Back to Start!</text>
+	<language1>(language1)That nasty mom makes the kid wash with soap. Back to Start!</language1>
+	<language2>(language2)That nasty mom makes the kid wash with soap. Back to Start!</language2>
+	<language3>(language3)That nasty mom makes the kid wash with soap. Back to Start!</language3>
     <nextTile>hand21</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -244,6 +313,9 @@
     <name>hand21</name>
     <type>jumpAhead</type>
     <text>The kid forgets to wash hands before eating with his poopy hands! You are in a gut!</text>
+	<language1>(language1)The kid forgets to wash hands before eating with his poopy hands! You are in a gut!</language1>
+	<language2>(language2)The kid forgets to wash hands before eating with his poopy hands! You are in a gut!</language2>
+	<language3>(language3)The kid forgets to wash hands before eating with his poopy hands! You are in a gut!</language3>
     <nextTile>hand22</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
@@ -256,6 +328,9 @@
     <name>hand22</name>
     <type>jumpBack</type>
     <text>Mommy reminds the kid to wash hands. Will he? Go back 6 and find out.</text>
+	<language1>(language1)Mommy reminds the kid to wash hands. Will he? Go back 6 and find out.</language1>
+	<language2>(language2)Mommy reminds the kid to wash hands. Will he? Go back 6 and find out.</language2>
+	<language3>(language3)Mommy reminds the kid to wash hands. Will he? Go back 6 and find out.</language3>
     <nextTile>finish</nextTile>
     <jumpToTile>hand16</jumpToTile>
     <xPosition>28.6</xPosition>
@@ -267,6 +342,9 @@
     <name>fly1</name>
     <type>normal</type>
     <text>Flying is scary! You are lucky poop is sticky, so you don't fall off!</text>
+	<language1>(language1)Flying is scary! You are lucky poop is sticky, so you don't fall off!</language1>
+	<language2>(language2)Flying is scary! You are lucky poop is sticky, so you don't fall off!</language2>
+	<language3>(language3)Flying is scary! You are lucky poop is sticky, so you don't fall off!</language3>
     <nextTile>fly2</nextTile>
     <image>fly</image>
     <xPosition>6</xPosition>
@@ -278,6 +356,9 @@
     <name>fly2</name>
     <type>jumpBack</type>
     <text>CRASH! Oh, no, a window screen! Go back one.</text>
+	<language1>(language1)CRASH! Oh, no, a window screen! Go back one.</language1>
+	<language2>(language2)CRASH! Oh, no, a window screen! Go back one.</language2>
+	<language3>(language3)CRASH! Oh, no, a window screen! Go back one.</language3>
     <nextTile>fly3</nextTile>
     <jumpToTile>fly1</jumpToTile>
     <xPosition>7.4</xPosition>
@@ -289,6 +370,9 @@
     <name>fly3</name>
     <type>special</type>
     <text>Fly sees food! Roll again.</text>
+	<language1>(language1)Fly sees food! Roll again.</language1>
+	<language2>(language2)Fly sees food! Roll again.</language2>
+	<language3>(language3)Fly sees food! Roll again.</language3>
     <nextTile>fly4</nextTile>
     <special>RollAgain</special>
     <xPosition>8.9</xPosition>
@@ -300,6 +384,9 @@
     <name>fly4</name>
     <type>jumpAhead</type>
     <text>Rotten food near a kitchen smells yummy to your fly! Go forward 4.</text>
+	<language1>(language1)Rotten food near a kitchen smells yummy to your fly! Go forward 4.</language1>
+	<language2>(language2)Rotten food near a kitchen smells yummy to your fly! Go forward 4.</language2>
+	<language3>(language3)Rotten food near a kitchen smells yummy to your fly! Go forward 4.</language3>
     <nextTile>fly5</nextTile>
     <jumpToTile>fly8</jumpToTile>
     <xPosition>10.3</xPosition>
@@ -311,6 +398,9 @@
     <name>fly5</name>
     <type>jumpAhead</type>
     <text>Land on a cow's nose. It twitches the fly off. Go forward 3.</text>
+	<language1>(language1)Land on a cow's nose. It twitches the fly off. Go forward 3.</language1>
+	<language2>(language2)Land on a cow's nose. It twitches the fly off. Go forward 3.</language2>
+	<language3>(language3)Land on a cow's nose. It twitches the fly off. Go forward 3.</language3>
     <nextTile>fly6</nextTile>
     <jumpToTile>fly8</jumpToTile>
     <xPosition>11.7</xPosition>
@@ -322,6 +412,9 @@
     <name>fly6</name>
     <type>jumpBack</type>
     <text>ZAP!! That frog's tongue was too fast for your fly. Back to Start!</text>
+	<language1>(language1)ZAP!! That frog's tongue was too fast for your fly. Back to Start!</language1>
+	<language2>(language2)ZAP!! That frog's tongue was too fast for your fly. Back to Start!</language2>
+	<language3>(language3)ZAP!! That frog's tongue was too fast for your fly. Back to Start!</language3>
     <nextTile>fly7</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -334,6 +427,9 @@
     <name>fly7</name>
     <type>jumpBack</type>
     <text>Crash: Hit a window screen. Go back 6.</text>
+	<language1>(language1)Crash: Hit a window screen. Go back 6.</language1>
+	<language2>(language2)Crash: Hit a window screen. Go back 6.</language2>
+	<language3>(language3)Crash: Hit a window screen. Go back 6.</language3>
     <nextTile>fly8</nextTile>
     <jumpToTile>fly1</jumpToTile>
     <image>screen</image>
@@ -346,6 +442,9 @@
     <name>fly8</name>
     <type>normal</type>
     <text>In the kitchen now. That food smells delicious!</text>
+	<language1>(language1)In the kitchen now. That food smells delicious!</language1>
+	<language2>(language2)In the kitchen now. That food smells delicious!</language2>
+	<language3>(language3)In the kitchen now. That food smells delicious!</language3>
     <nextTile>fly9</nextTile>
     <xPosition>15.9</xPosition>
     <yPosition>-2.8</yPosition>
@@ -356,6 +455,9 @@
     <name>fly9</name>
     <type>jumpBack</type>
     <text>They keep food covered up. Back to Start!</text>
+	<language1>(language1)They keep food covered up. Back to Start!</language1>
+	<language2>(language2)They keep food covered up. Back to Start!</language2>
+	<language3>(language3)They keep food covered up. Back to Start!</language3>
     <nextTile>fly10</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -368,6 +470,9 @@
     <name>fly10</name>
     <type>jumpAhead</type>
     <text>Land on food that gets eaten. You are in someone's gut!</text>
+	<language1>(language1)Land on food that gets eaten. You are in someone's gut!</language1>
+	<language2>(language2)Land on food that gets eaten. You are in someone's gut!</language2>
+	<language3>(language3)Land on food that gets eaten. You are in someone's gut!</language3>
     <nextTile>fly11</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
@@ -380,6 +485,9 @@
     <name>fly11</name>
     <type>jumpBack</type>
     <text>Land on food, but Mommy sees you and tosses out that bite. Back to Start!</text>
+	<language1>(language1)Land on food, but Mommy sees you and tosses out that bite. Back to Start!</language1>
+	<language2>(language2)Land on food, but Mommy sees you and tosses out that bite. Back to Start!</language2>
+	<language3>(language3)Land on food, but Mommy sees you and tosses out that bite. Back to Start!</language3>
     <nextTile>fly12</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -392,6 +500,9 @@
     <name>fly12</name>
     <type>jumpAhead</type>
     <text>Land on food that gets eaten. You are in someone's gut!</text>
+	<language1>(language1)Land on food that gets eaten. You are in someone's gut!</language1>
+	<language2>(language2)Land on food that gets eaten. You are in someone's gut!</language2>
+	<language3>(language3)Land on food that gets eaten. You are in someone's gut!</language3>
     <nextTile>fly13</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
@@ -404,6 +515,9 @@
     <name>fly13</name>
     <type>jumpAhead</type>
     <text>Land on food that gets eaten. You are in someone's gut!</text>
+	<language1>(language1)Land on food that gets eaten. You are in someone's gut!</language1>
+	<language2>(language2)Land on food that gets eaten. You are in someone's gut!</language2>
+	<language3>(language3)Land on food that gets eaten. You are in someone's gut!</language3>
     <nextTile>fly14</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
@@ -416,6 +530,9 @@
     <name>fly14</name>
     <type>jumpBack</type>
     <text>Your ride got swatted! Back to Start!</text>
+	<language1>(language1)Your ride got swatted! Back to Start!</language1>
+	<language2>(language2)Your ride got swatted! Back to Start!</language2>
+	<language3>(language3)Your ride got swatted! Back to Start!</language3>
     <nextTile>finish</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -428,6 +545,9 @@
     <name>poop1</name>
     <type>jumpOther</type>
     <text>Poop goes into a latrine, but you stick to a hand!</text>
+	<language1>(language1)Poop goes into a latrine, but you stick to a hand!</language1>
+	<language2>(language2)Poop goes into a latrine, but you stick to a hand!</language2>
+	<language3>(language3)Poop goes into a latrine, but you stick to a hand!</language3>
     <nextTile>poop2</nextTile>
     <jumpToTile>hand1</jumpToTile>
     <image>hand</image>
@@ -440,6 +560,9 @@
     <name>poop2</name>
     <type>jumpAhead</type>
     <text>The kid poops outside. Move forward 5.</text>
+	<language1>(language1)The kid poops outside. Move forward 5.</language1>
+	<language2>(language2)The kid poops outside. Move forward 5.</language2>
+	<language3>(language3)The kid poops outside. Move forward 5.</language3>
     <nextTile>poop3</nextTile>
     <jumpToTile>poop7</jumpToTile>
     <xPosition>-1</xPosition>
@@ -451,6 +574,9 @@
     <name>poop3</name>
     <type>jumpAhead</type>
     <text>Poop outdoors! It is fun to be poop in the grass. Move forward 4.</text>
+	<language1>(language1)Poop outdoors! It is fun to be poop in the grass. Move forward 4.</language1>
+	<language2>(language2)Poop outdoors! It is fun to be poop in the grass. Move forward 4.</language2>
+	<language3>(language3)Poop outdoors! It is fun to be poop in the grass. Move forward 4.</language3>
     <nextTile>poop4</nextTile>
     <jumpToTile>poop7</jumpToTile>
     <xPosition>.5</xPosition>
@@ -462,6 +588,9 @@
     <name>poop4</name>
     <type>jumpAhead</type>
     <text>The kid poops outside! What a nice breeze! (Well, maybe not to those downwind of you…). Move forward 3.</text>
+	<language1>(language1)The kid poops outside! What a nice breeze! (Well, maybe not to those downwind of you…). Move forward 3.</language1>
+	<language2>(language2)The kid poops outside! What a nice breeze! (Well, maybe not to those downwind of you…). Move forward 3.</language2>
+	<language3>(language3)The kid poops outside! What a nice breeze! (Well, maybe not to those downwind of you…). Move forward 3.</language3>
     <nextTile>poop5</nextTile>
     <jumpToTile>poop7</jumpToTile>
     <xPosition>1.9</xPosition>
@@ -473,6 +602,9 @@
     <name>poop5</name>
     <type>jumpOther</type>
     <text>Poop goes into a latrine, but you stick to a hand!</text>
+	<language1>(language1)Poop goes into a latrine, but you stick to a hand!</language1>
+	<language2>(language2)Poop goes into a latrine, but you stick to a hand!</language2>
+	<language3>(language3)Poop goes into a latrine, but you stick to a hand!</language3>
     <nextTile>poop6</nextTile>
     <jumpToTile>hand1</jumpToTile>
     <image>hand</image>
@@ -485,6 +617,9 @@
     <name>poop6</name>
     <type>jumpBack</type>
     <text>Poop goes into a toilet, so I am trapped. Back to Start!</text>
+	<language1>(language1)Poop goes into a toilet, so I am trapped. Back to Start!</language1>
+	<language2>(language2)Poop goes into a toilet, so I am trapped. Back to Start!</language2>
+	<language3>(language3)Poop goes into a toilet, so I am trapped. Back to Start!</language3>
     <nextTile>poop7</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -497,6 +632,9 @@
     <name>poop7</name>
     <type>normal</type>
     <text>The fresh air is great!</text>
+	<language1>(language1)The fresh air is great!</language1>
+	<language2>(language2)The fresh air is great!</language2>
+	<language3>(language3)The fresh air is great!</language3>
     <nextTile>poop8</nextTile>
     <xPosition>6.1</xPosition>
     <yPosition>-6.3</yPosition>
@@ -507,6 +645,9 @@
     <name>poop8</name>
     <type>jumpOther</type>
     <text>A fly lands on the poop and you stick to a leg. You are flying now!</text>
+	<language1>(language1)A fly lands on the poop and you stick to a leg. You are flying now!</language1>
+	<language2>(language2)A fly lands on the poop and you stick to a leg. You are flying now!</language2>
+	<language3>(language3)A fly lands on the poop and you stick to a leg. You are flying now!</language3>
     <nextTile>poop9</nextTile>
     <jumpToTile>fly1</jumpToTile>
     <image>flyRide</image>
@@ -519,6 +660,9 @@
     <name>poop9</name>
     <type>jumpBack</type>
     <text>Sunny day and the poop dries out. Back to Start!</text>
+	<language1>(language1)Sunny day and the poop dries out. Back to Start!</language1>
+	<language2>(language2)Sunny day and the poop dries out. Back to Start!</language2>
+	<language3>(language3)Sunny day and the poop dries out. Back to Start!</language3>
     <nextTile>poop10</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -531,6 +675,9 @@
     <name>poop10</name>
     <type>jumpOther</type>
     <text>Rain comes and washes poop into a leak in a pipe.</text>
+	<language1>(language1)Rain comes and washes poop into a leak in a pipe.</language1>
+	<language2>(language2)Rain comes and washes poop into a leak in a pipe.</language2>
+	<language3>(language3)Rain comes and washes poop into a leak in a pipe.</language3>
     <nextTile>poop11</nextTile>
     <jumpToTile>pipe1</jumpToTile>
     <image>pipe</image>
@@ -543,6 +690,9 @@
     <name>poop11</name>
     <type>jumpAhead</type>
     <text>Rain comes and washes poop into the river. You are cruising now! Move forward 3.</text>
+	<language1>(language1)Rain comes and washes poop into the river. You are cruising now! Move forward 3.</language1>
+	<language2>(language2)Rain comes and washes poop into the river. You are cruising now! Move forward 3.</language2>
+	<language3>(language3)Rain comes and washes poop into the river. You are cruising now! Move forward 3.</language3>
     <nextTile>poop12</nextTile>
     <jumpToTile>poop14</jumpToTile>
     <image>river</image>
@@ -555,6 +705,9 @@
     <name>poop12</name>
     <type>jumpBack</type>
     <text>Sunny day and the poop dries. You are not getting to another gut this way! Back to Start!</text>
+	<language1>(language1)Sunny day and the poop dries. You are not getting to another gut this way! Back to Start!</language1>
+	<language2>(language2)Sunny day and the poop dries. You are not getting to another gut this way! Back to Start!</language2>
+	<language3>(language3)Sunny day and the poop dries. You are not getting to another gut this way! Back to Start!</language3>
     <nextTile>poop13</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -567,6 +720,9 @@
     <name>poop13</name>
     <type>jumpAhead</type>
     <text>Washed to river! Move forward one.</text>
+	<language1>(language1)Washed to river! Move forward one.</language1>
+	<language2>(language2)Washed to river! Move forward one.</language2>
+	<language3>(language3)Washed to river! Move forward one.</language3>
     <nextTile>poop14</nextTile>
     <jumpToTile>poop14</jumpToTile>
     <xPosition>14.5</xPosition>
@@ -578,6 +734,9 @@
     <name>poop14</name>
     <type>normal</type>
     <text>You are in the river. Lucky poop floats!</text>
+	<language1>(language1)You are in the river. Lucky poop floats!</language1>
+	<language2>(language2)You are in the river. Lucky poop floats!</language2>
+	<language3>(language3)You are in the river. Lucky poop floats!</language3>
     <nextTile>poop15</nextTile>
     <xPosition>16</xPosition>
     <yPosition>-6.3</yPosition>
@@ -588,6 +747,9 @@
     <name>poop15</name>
     <type>jumpBack</type>
     <text>Eaten by fish. Back to Start!</text>
+	<language1>(language1)Eaten by fish. Back to Start!</language1>
+	<language2>(language2)Eaten by fish. Back to Start!</language2>
+	<language3>(language3)Eaten by fish. Back to Start!</language3>
     <nextTile>poop16</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -600,6 +762,9 @@
     <name>poop16</name>
     <type>jumpOther</type>
     <text>Someone is gathering water. Go to jerry can!</text>
+	<language1>(language1)Someone is gathering water. Go to jerry can!</language1>
+	<language2>(language2)Someone is gathering water. Go to jerry can!</language2>
+	<language3>(language3)Someone is gathering water. Go to jerry can!</language3>
     <nextTile>poop17</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <image>jerryCan</image>
@@ -612,6 +777,9 @@
     <name>poop17</name>
     <type>jumpOther</type>
     <text>Someone is gathering water. Go to jerry can!</text>
+	<language1>(language1)Someone is gathering water. Go to jerry can!</language1>
+	<language2>(language2)Someone is gathering water. Go to jerry can!</language2>
+	<language3>(language3)Someone is gathering water. Go to jerry can!</language3>
     <nextTile>poop18</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <image>jerryCan</image>
@@ -624,6 +792,9 @@
     <name>poop18</name>
     <type>jumpBack</type>
     <text>Too much sun is bad for germs. Back to Start!</text>
+	<language1>(language1)Too much sun is bad for germs. Back to Start!</language1>
+	<language2>(language2)Too much sun is bad for germs. Back to Start!</language2>
+	<language3>(language3)Too much sun is bad for germs. Back to Start!</language3>
     <nextTile>poop19</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -636,6 +807,9 @@
     <name>poop19</name>
     <type>jumpOther</type>
     <text>Someone is gathering water. Go to jerry can!</text>
+	<language1>(language1)Someone is gathering water. Go to jerry can!</language1>
+	<language2>(language2)Someone is gathering water. Go to jerry can!</language2>
+	<language3>(language3)Someone is gathering water. Go to jerry can!</language3>
     <nextTile>poop20</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <image>jerryCan</image>
@@ -648,6 +822,9 @@
     <name>poop20</name>
     <type>jumpBack</type>
     <text>Floated right past the village. Back to Start!</text>
+	<language1>(language1)Floated right past the village. Back to Start!</language1>
+	<language2>(language2)Floated right past the village. Back to Start!</language2>
+	<language3>(language3)Floated right past the village. Back to Start!</language3>
     <nextTile>finish</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -660,6 +837,9 @@
     <name>pipe1</name>
     <type>normal</type>
     <text>Whee! Sliding down a pipe!</text>
+	<language1>(language1)Whee! Sliding down a pipe!</language1>
+	<language2>(language2)Whee! Sliding down a pipe!</language2>
+	<language3>(language3)Whee! Sliding down a pipe!</language3>
     <nextTile>pipe2</nextTile>
     <image>pipe</image>
     <xPosition>4.7</xPosition>
@@ -671,6 +851,9 @@
     <name>pipe2</name>
     <type>jumpBack</type>
     <text>UH OH. The town put chlorine in the piped water! Back to Start!</text>
+	<language1>(language1)UH OH. The town put chlorine in the piped water! Back to Start!</language1>
+	<language2>(language2)UH OH. The town put chlorine in the piped water! Back to Start!</language2>
+	<language3>(language3)UH OH. The town put chlorine in the piped water! Back to Start!</language3>
     <nextTile>pipe3</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -683,6 +866,9 @@
     <name>pipe3</name>
     <type>normal</type>
     <text>Look, there is another germ! Hi, buddy!</text>
+	<language1>(language1)Look, there is another germ! Hi, buddy!</language1>
+	<language2>(language2)Look, there is another germ! Hi, buddy!</language2>
+	<language3>(language3)Look, there is another germ! Hi, buddy!</language3>
     <nextTile>pipe4</nextTile>
     <image>inPipe</image>
     <xPosition>7.5</xPosition>
@@ -694,6 +880,9 @@
     <name>pipe4</name>
     <type>normal</type>
     <text>The water looks clean. It is good they cannot see you!</text>
+	<language1>(language1)The water looks clean. It is good they cannot see you!</language1>
+	<language2>(language2)The water looks clean. It is good they cannot see you!</language2>
+	<language3>(language3)The water looks clean. It is good they cannot see you!</language3>
     <nextTile>pipe5</nextTile>
     <image>inPipe</image>
     <xPosition>8.8</xPosition>
@@ -705,6 +894,9 @@
     <name>pipe5</name>
     <type>normal</type>
     <text>It's dark in here.</text>
+	<language1>(language1)It's dark in here.</language1>
+	<language2>(language2)It's dark in here.</language2>
+	<language3>(language3)It's dark in here.</language3>
     <nextTile>pipe6</nextTile>
     <image>inPipe</image>
     <xPosition>10.2</xPosition>
@@ -716,6 +908,9 @@
     <name>pipe6</name>
     <type>normal</type>
     <text>It's fun to ride with so many friends in the water pipe!</text>
+	<language1>(language1)It's fun to ride with so many friends in the water pipe!</language1>
+	<language2>(language2)It's fun to ride with so many friends in the water pipe!</language2>
+	<language3>(language3)It's fun to ride with so many friends in the water pipe!</language3>
     <nextTile>pipe7</nextTile>
     <xPosition>11.7</xPosition>
     <yPosition>-9.2</yPosition>
@@ -726,6 +921,9 @@
     <name>pipe7</name>
     <type>jumpAhead</type>
     <text>YAY! Someone poured you out of the pipe and into their Jerry can! Move forward 5.</text>
+	<language1>(language1)YAY! Someone poured you out of the pipe and into their Jerry can! Move forward 5.</language1>
+	<language2>(language2)YAY! Someone poured you out of the pipe and into their Jerry can! Move forward 5.</language2>
+	<language3>(language3)YAY! Someone poured you out of the pipe and into their Jerry can! Move forward 5.</language3>
     <nextTile>pipe8</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <xPosition>13.1</xPosition>
@@ -737,6 +935,9 @@
     <name>pipe8</name>
     <type>jumpAhead</type>
     <text>Some hard-working kid just carried their Jerry can a long way just to pick you up (with some water)! Go forward 4.</text>
+	<language1>(language1)Some hard-working kid just carried their Jerry can a long way just to pick you up (with some water)! Go forward 4.</language1>
+	<language2>(language2)Some hard-working kid just carried their Jerry can a long way just to pick you up (with some water)! Go forward 4.</language2>
+	<language3>(language3)Some hard-working kid just carried their Jerry can a long way just to pick you up (with some water)! Go forward 4.</language3>
     <nextTile>pipe9</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <xPosition>14.5</xPosition>
@@ -748,6 +949,9 @@
     <name>pipe9</name>
     <type>jumpAhead</type>
     <text>You've just been pumped from pipe to Jerry can. Getting closer! Go forward 3.</text>
+	<language1>(language1)You've just been pumped from pipe to Jerry can. Getting closer! Go forward 3.</language1>
+	<language2>(language2)You've just been pumped from pipe to Jerry can. Getting closer! Go forward 3.</language2>
+	<language3>(language3)You've just been pumped from pipe to Jerry can. Getting closer! Go forward 3.</language3>
     <nextTile>pipe10</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <xPosition>15.9</xPosition>
@@ -759,6 +963,9 @@
     <name>pipe10</name>
     <type>jumpAhead</type>
     <text>Whoosh! Through the tap and into a Jerry can! Go forward two.</text>
+	<language1>(language1)Whoosh! Through the tap and into a Jerry can! Go forward two.</language1>
+	<language2>(language2)Whoosh! Through the tap and into a Jerry can! Go forward two.</language2>
+	<language3>(language3)Whoosh! Through the tap and into a Jerry can! Go forward two.</language3>
     <nextTile>pipe11</nextTile>
     <jumpToTile>jerry1</jumpToTile>
     <xPosition>17.4</xPosition>
@@ -770,6 +977,9 @@
     <name>pipe11</name>
     <type>jumpBack</type>
     <text>You get out of the pipe and spilled on the ground. Back to Start!</text>
+	<language1>(language1)You get out of the pipe and spilled on the ground. Back to Start!</language1>
+	<language2>(language2)You get out of the pipe and spilled on the ground. Back to Start!</language2>
+	<language3>(language3)You get out of the pipe and spilled on the ground. Back to Start!</language3>
     <nextTile>jerry1</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -782,6 +992,9 @@
     <name>jerry1</name>
     <type>normal</type>
     <text>You made it to the big Jerry can they take home!</text>
+	<language1>(language1)You made it to the big Jerry can they take home!</language1>
+	<language2>(language2)You made it to the big Jerry can they take home!</language2>
+	<language3>(language3)You made it to the big Jerry can they take home!</language3>
     <nextTile>jerry2</nextTile>
     <image>jerryCan</image>
     <xPosition>20.2</xPosition>
@@ -793,6 +1006,9 @@
     <name>jerry2</name>
     <type>jumpBack</type>
     <text>Those mean people used the water for cooking, but boiled food thoroughly. Back to Start!</text>
+	<language1>(language1)Those mean people used the water for cooking, but boiled food thoroughly. Back to Start!</language1>
+	<language2>(language2)Those mean people used the water for cooking, but boiled food thoroughly. Back to Start!</language2>
+	<language3>(language3)Those mean people used the water for cooking, but boiled food thoroughly. Back to Start!</language3>
     <nextTile>jerry3</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -805,6 +1021,9 @@
     <name>jerry3</name>
     <type>jumpBack</type>
     <text>Those nasty people put chlorine in the water. Back to Start!</text>
+	<language1>(language1)Those nasty people put chlorine in the water. Back to Start!</language1>
+	<language2>(language2)Those nasty people put chlorine in the water. Back to Start!</language2>
+	<language3>(language3)Those nasty people put chlorine in the water. Back to Start!</language3>
     <nextTile>jerry4</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -817,6 +1036,9 @@
     <name>jerry4</name>
     <type>jumpBack</type>
     <text>Those people use a water filter just to keep you (&amp; poop) out of their water. How rude! Back to start!</text>
+	<language1>(language1)Those people use a water filter just to keep you (&amp; poop) out of their water. How rude! Back to start!</language1>
+	<language2>(language2)Those people use a water filter just to keep you (&amp; poop) out of their water. How rude! Back to start!</language2>
+	<language3>(language3)Those people use a water filter just to keep you (&amp; poop) out of their water. How rude! Back to start!</language3>
     <nextTile>jerry5</nextTile>
     <jumpToTile>start</jumpToTile>
     <image>x</image>
@@ -829,6 +1051,9 @@
     <name>jerry5</name>
     <type>special</type>
     <text>They boil the water. Roll a die: If 6, they boil too quickly and you got a hot bath and into a gut. Otherwise they boil 2 minutes. Back to start!</text>
+	<language1>(language1)They boil the water. Roll a die: If 6, they boil too quickly and you got a hot bath and into a gut. Otherwise they boil 2 minutes. Back to start!</language1>
+	<language2>(language2)They boil the water. Roll a die: If 6, they boil too quickly and you got a hot bath and into a gut. Otherwise they boil 2 minutes. Back to start!</language2>
+	<language3>(language3)They boil the water. Roll a die: If 6, they boil too quickly and you got a hot bath and into a gut. Otherwise they boil 2 minutes. Back to start!</language3>
     <nextTile>jerry6</nextTile>
     <jumpToTile>start</jumpToTile>
     <special>RollSixOrDie</special>
@@ -842,6 +1067,9 @@
     <name>jerry6</name>
     <type>jumpAhead</type>
     <text>They drink the untreated water. You are in a new gut!</text>
+	<language1>(language1)They drink the untreated water. You are in a new gut!</language1>
+	<language2>(language2)They drink the untreated water. You are in a new gut!</language2>
+	<language3>(language3)They drink the untreated water. You are in a new gut!</language3>
     <nextTile>jerry7</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
@@ -854,6 +1082,9 @@
     <name>jerry7</name>
     <type>jumpAhead</type>
     <text>They drink the untreated water. You are in a new gut!</text>
+	<language1>(language1)They drink the untreated water. You are in a new gut!</language1>
+	<language2>(language2)They drink the untreated water. You are in a new gut!</language2>
+	<language3>(language3)They drink the untreated water. You are in a new gut!</language3>
     <nextTile>finish</nextTile>
     <jumpToTile>finish</jumpToTile>
     <image>ingested</image>
@@ -866,6 +1097,9 @@
     <name>finish</name>
     <type>finish</type>
     <text>New gut</text>
+	<language1>(language1)New gut</language1>
+	<language2>(language2)New gut</language2>
+	<language3>(language3)New gut</language3>
     <image>newGut</image>
     <xPosition>26.7</xPosition>
     <yPosition>-5.5</yPosition>	

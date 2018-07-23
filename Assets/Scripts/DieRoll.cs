@@ -33,11 +33,16 @@ public class DieRoll : MonoBehaviour
 
     public void ResetDie()
     {
+        //starting position of the die
         transform.position = startPosition;
         transform.rotation = Random.rotationUniform;
+
+        //setting rigid body settings of the die 
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.angularVelocity = Random.insideUnitSphere * rollSpeed;
+
+        //Prepares game state 
         StopAllCoroutines();
         RollCheckIsOccuring = false;
     }
@@ -47,6 +52,8 @@ public class DieRoll : MonoBehaviour
         //prevent roll button from being pressed multiple times
         UnityEngine.UI.Button rollButton = GameObject.Find("Roll Button").GetComponent<UnityEngine.UI.Button>();
         rollButton.interactable = false;
+
+        //sets the rolling game state 
         roll = true;
         rb.useGravity = true;
         rb.velocity = (Vector3.left + 3 * Vector3.up) * speed;

@@ -1,11 +1,11 @@
 Credits
-<b>Commissioned by</b>											<b>Font</b>
-Professor David I. Levine									Jakob Fischer
-Haas School of Business									www.pizzadude.dk
+<b>Commissioned by</b>											
+Professor David I. Levine									
+Haas School of Business									
 UC Berkeley
 
-<b>Game Design</b>												<b>Music</b>
-Professor David I. Levine									https://www.bensound.com
+<b>Game Design</b>												
+Professor David I. Levine									
 
 <b>Class Design</b>
 Akcan Balkir
@@ -14,6 +14,13 @@ Akcan Balkir
 An Le (lead)
 Akcan Balkir
 Lucas Liu
+
+<b>Font</b>
+Jakob Fischer
+www.pizzadude.dk
+
+<b>Music</b>
+https://www.bensound.com
 
 <b>Special thanks to</b>
 Jeffrey & Zachary Spitz

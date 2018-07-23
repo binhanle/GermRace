@@ -19,6 +19,7 @@ public class Player : MonoBehaviour, IComparable<Player>
     private int initialRoll = 0;
     private List<UnityEngine.Color> colors = new List<UnityEngine.Color> { UnityEngine.Color.green
         , UnityEngine.Color.gray, UnityEngine.Color.yellow, UnityEngine.Color.blue};
+    private string charType;
 
     public string GetName()
     {
@@ -26,12 +27,12 @@ public class Player : MonoBehaviour, IComparable<Player>
         return playerName;
     }
 
-    public Character[] getPieces()
+    public Character[] GetPieces()
     {
         return playerPieces;
     }
 
-    public void removePiece(Character piece)
+    public void RemovePiece(Character piece)
     {
         //var isRemoved = Array.remove(playerPieces, piece);
         List<Character> temp = new List<Character>();
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour, IComparable<Player>
             //piece.DoFinish();
             //piece.MoveSpaces(6, 0);
         }
+        charType = charName + "Character";
     }
     
     /*public Character getCharacter()
@@ -187,6 +189,10 @@ public class Player : MonoBehaviour, IComparable<Player>
             // draw line from start to end tile
             GameObject lineObject = Instantiate(GameData.GetPrefabAssetHolder().GetLine());
             Line line = lineObject.GetComponent<Line>();
+            Debug.Log(line);
+            Debug.Log(move.GetPiece().GetCurrTile().GetPosition());
+            Debug.Log(move.GetDestTile().GetPosition());
+            Debug.Log(colors[colorMap[move.GetPiece()]]);
             line.SetStartAndEnd(move.GetPiece().GetCurrTile().GetPosition(), move.GetDestTile().GetPosition(), colors[colorMap[move.GetPiece()]]);
             lines.Push(line);
 
@@ -203,7 +209,7 @@ public class Player : MonoBehaviour, IComparable<Player>
 
         foreach(Line line in allLines)
         {
-            line.setOtherLines();
+            line.SetOtherLines();
         }
 
         // show the select move GUI
@@ -268,6 +274,12 @@ public class Player : MonoBehaviour, IComparable<Player>
     {
         // returns a positive value if this player has higher dice roll, 0 if tied, negative otherwise
         return initialRoll - otherPlayer.initialRoll;
+    }
+
+    //document
+    public string GetCharType()
+    {
+        return charType;
     }
 
     public void Awake()

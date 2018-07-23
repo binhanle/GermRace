@@ -31,12 +31,13 @@ public class Character : MonoBehaviour
         position = new Vector2(x, y);
     }*/
 
-    public int getSize()
+    public int GetSize()
     {
+        //access method to get size of character
         return size;
     }
 
-    public void adjustSize(int additionalSize)
+    public void AdjustSize(int additionalSize)
     {
         size = size + additionalSize;
     }
@@ -118,7 +119,7 @@ public class Character : MonoBehaviour
         // displays tile text and reacts according to tile type
         yield return new WaitForSeconds(moveDuration);
         // play corresponding tile animation
-        currTile.playEffect();
+        currTile.PlayEffect();
 
         GameGUI.ShowMessageScreen(currTile);
         

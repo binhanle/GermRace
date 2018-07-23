@@ -9,19 +9,22 @@ using System;
 
 public class Board : MonoBehaviour
 {
-    //private Player[] players;
+    // A list which contains all Players in the game
     private List<Player> players;
-    //private List<Tile> tiles;
-    private Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
-    private static Dictionary<string, TileEffectInterface> tileEffects = new Dictionary<string, TileEffectInterface>();
-    //private int turn;
-    //private const string startTileName = "start";
-    private int currPlayerIndex;
-    private Queue<Player> nextToRollQueue;
-    private static readonly string[] ordinals = { "first", "second", "third", "fourth" };
-    //public TextAsset TilesXML;
-    
 
+    //A map of Tile's used for the game board
+    private Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
+
+    //A Map from keys to TileEffectInterfaces so that Tile's can access different visual effects with a specified key
+    private static Dictionary<string, TileEffectInterface> tileEffects = new Dictionary<string, TileEffectInterface>();
+
+    //An integer to keep track of which Player is playing the current turn
+    private int currPlayerIndex;
+
+    //A Queue to keep track of which Player rolls next
+    private Queue<Player> nextToRollQueue;
+
+    
     /*public Player[] currentPlayer()
     {
         // returns player whose turn it is
@@ -42,16 +45,19 @@ public class Board : MonoBehaviour
 
     public Tile GetStartTile()
     {
+        //access method to return the start tile
         return tiles["start"];
     }
 
     public Tile GetFinishTile()
     {
+        //access method to return the finish tile
         return tiles["finish"];
     }
 
     public void LoadTileAnimations()
     {
+        //This function loads all tile animations into the tileEffects map and then hides the visual effects
         //loading all the effects
         HeavyRainEffect rainEffect = GameObject.Find("HeavyRainEffect").GetComponent<HeavyRainEffect>();
         tileEffects.Add("rain", rainEffect);
@@ -87,30 +93,40 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void hideAllEffects()
+    private void HideAllEffects()
     {
+        //this function hides all tileEffects
         foreach (string effect in tileEffects.Keys)
         {
             tileEffects[effect].hideEffect();
         }
-        }
+    }
 
     public void LoadTiles()
     {
-        // load the tiles xml file
+        // Load the Tiles XML file into Tile classes and puts them in the tile map
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(GameData.GetTextAssetHolder().getTiles().ToString());
+        xmlDoc.LoadXml(GameData.GetTextAssetHolder().GetTiles().ToString());
         XDocument xDoc = XDocument.Parse(xmlDoc.OuterXml);
         IEnumerable<XElement> items = xDoc.Descendants("tiles").Elements();
         foreach (var item in items)
         {
             // create the tile
             GameObject tileObject = Instantiate(GameData.GetPrefabAssetHolder().GetTile());
+
+            //Get the next tile component from the XML file
             Tile tile = tileObject.GetComponent<Tile>();
+
+            //Store tile elements into temporary varaiables
             string name = item.Element("name").Value.Trim();
             //string color = item.Element("color").Value.Trim();
             string type = item.Element("type").Value.Trim();
             string text = item.Element("text").Value.Trim();
+            string language1Text = item.Element("language1").Value.Trim();
+            string language2Text = item.Element("language2").Value.Trim();
+            string language3Text = item.Element("language3").Value.Trim();
+
+            //Special case for some tiles which have a "special" element 
             if (item.Element("special") != null)
             {
                 string command = item.Element("special").Value.Trim();
@@ -131,6 +147,8 @@ public class Board : MonoBehaviour
                 tile.DisplayImage(image);
             }
             */
+            //
+            //Store tile elements into temporary varaiables
             float xPosition = float.Parse(item.Element("xPosition").Value.Trim());
             float yPosition = float.Parse(item.Element("yPosition").Value.Trim());
             string landAnimKey = item.Element("landAnimKey").Value.Trim();
@@ -138,7 +156,7 @@ public class Board : MonoBehaviour
 
             
 
-            // apply its attributes
+            // apply its attributes, create the tile from the temporary variables
             //tile.SetColor(color);
             tile.SetTileType(type);
             tile.SetPosition(xPosition, yPosition);
@@ -157,11 +175,10 @@ public class Board : MonoBehaviour
             }*/
 
             // set the color based on its type
-            //Debug.Log(type);
             tile.SetColor(GameData.GetColorScheme()[type]);
 
             //Makes our tiles invisible on the board
-            tile.hideTileVisual();
+            tile.HideTileVisual();
 
             // add the tile to dictionary
             tiles.Add(name, tile);
@@ -184,7 +201,6 @@ public class Board : MonoBehaviour
             // set jump to tile if it exists
             if (item.Element("jumpToTile") != null)
             {
-                //Debug.Log("attempting to add " + item.Element("jumpToTile"));
                 tile.SetLandNext(tiles[item.Element("jumpToTile").Value.Trim()]);
             }
 
@@ -192,12 +208,11 @@ public class Board : MonoBehaviour
 
         // set the start tile
         Player.SetStartTile(tiles[GameData.GetStartTileName()]);
-        createBourdBackGround();
     }
 
-    public void createBourdBackGround()
+    public void PrintTilePositions()
     {
-        //Finds the center position for the board
+        //prints the position of all tiles
         foreach (string key in tiles.Keys)
         {
             Debug.Log(tiles[key].GetPosition());
@@ -212,7 +227,7 @@ public class Board : MonoBehaviour
 
     public void SetupPlayers(int numPlayers)
     {
-        // sets up the players
+        //Prepares the game to assign Players their Characeter and turn order
         /*players = new Player[GameData.GetNumPlayers()];
         for (int i = 0; i < GameData.GetNumPlayers(); i++)
         {
@@ -220,20 +235,21 @@ public class Board : MonoBehaviour
             Player player = playerObject.GetComponent<Player>();
             players[i] = player;
         }*/
+
         //hides player choice buttons
         GameGUI.HidePlayerCountScreen();
 
         //sets the amount of players
         GameData.SetNumPlayers(numPlayers);
 
-        //keeps track of whih player has been set up so far
+        //keeps track of which player has been set up so far
         currPlayerIndex = 0;
 
         //resets players array
 
 
-        //ADD EXPLANATION HERE
-        GameGUI.ShowExplanationScreen(GameData.GetTextAssetHolder().GetChooseRollOrderText(), GameGUI.HideExplanationShowSetup);
+        //Transition to an explanation screen of how players will roll to decide turn order
+        GameGUI.ShowExplanationScreen("ChooseRollOrderText", GameGUI.HideExplanationShowSetup);
 
         // the first player in the list goes firstsetup
         //currPlayerIndex = 0;
@@ -242,11 +258,12 @@ public class Board : MonoBehaviour
 
     public void AddPlayer(string name, string color)
     {
-        // adds a player
+        // Adds a Player to the Board's list of players from the setup screen initalizing the Player's name and color. It then makes that Player's color unavailable to other Players.
+        // Adds a player from the setup screen initalizing the Player's name and color.
         GameObject playerObject = Instantiate((GameObject)Resources.Load("Prefabs/Player", typeof(GameObject)));
         Player player = playerObject.GetComponent<Player>();
         player.SetName(name);
-        player.SetupPieces(color);
+        player.SetupPieces(GameData.GetColorMap()[color]);
         players.Add(player);
 
         // remove player's color from available colors
@@ -255,7 +272,7 @@ public class Board : MonoBehaviour
 
     public void SetupNextPlayer()
     {
-        // sets up the next player
+        // Prepares the game to setup the next character or determine move order if all Player's are set up.
         currPlayerIndex++;
         if (currPlayerIndex < GameData.GetNumPlayers())
         {
@@ -277,6 +294,7 @@ public class Board : MonoBehaviour
         // adds the current player and sets up the next player
         AddPlayer(GameGUI.GetInputFieldName(), GameGUI.GetDropDownColor());
 
+        
         // set up the next player
         SetupNextPlayer();
     }
@@ -295,8 +313,9 @@ public class Board : MonoBehaviour
 
     public void RollDie(GameData.Mode mode)
     {
-        // rolls the die
-        // switch view
+        // Switches to the roll screen
+        
+        // switch view (main camera position)
         GameData.SetGameMode(mode);
         Camera.main.transform.position = GameData.GetDieCameraPosition();
         Camera.main.transform.eulerAngles = GameData.GetDieCameraRotation();
@@ -315,11 +334,13 @@ public class Board : MonoBehaviour
 
     public void PostTurn()
     {
+        // this function is used to process the endin of a turn after a normal tile
+
         // jumps if needed and proceeds to next turn
         float delay = GameData.GetActivePiece().JumpIfNeeded();
 
         //ends tile effect
-        hideAllEffects();
+        HideAllEffects();
         
         if (delay == 0)
         {
@@ -329,7 +350,7 @@ public class Board : MonoBehaviour
             bool collision = CheckCollision();
             bool merge = CheckMerge();
 
-            //if n collision move on to next turn 
+            //if no collision move on to next turn 
             if (!collision && !merge)
             {
                 // hide message screen
@@ -343,25 +364,33 @@ public class Board : MonoBehaviour
 
     public bool CheckCollision()
     {
-        Vector3 activePosition = GameData.GetActivePiece().transform.position;
-        Vector3 startPosition = new Vector3(-4, 0, -5.5f);
+        //Checks if there is a collision and enacts the collision process if there is one 
 
+        //gets position of active piece
+        Vector3 activePosition = GameData.GetActivePiece().transform.position;
+
+        //Position of the starting tile 
+        Vector3 startPosition = GetStartTile().transform.position;
+
+        //collisions should not happen at the starting position 
         if (activePosition == startPosition)
         {
             return false;
         }
 
+
+        //check each piece for a collision
         foreach (Player player in players)
         {
             if (!player.Equals(GameData.GetCurrPlayer()))
             {
-                foreach (Character piece in player.getPieces())
+                foreach (Character piece in player.GetPieces())
                 {
-                    if (piece.transform.position == activePosition)
+                    if (piece.GetCurrTile() == GameData.GetActivePiece().GetCurrTile() && piece.GetCurrTile() != GetStartTile())
                     {
                         //determine smaller piece (active piece wins in case of tie)
                         Character smallerPiece = null;
-                        if (piece.getSize() > GameData.GetActivePiece().getSize())
+                        if (piece.GetSize() > GameData.GetActivePiece().GetSize())
                         {
                             smallerPiece = GameData.GetActivePiece();
                         }
@@ -370,6 +399,7 @@ public class Board : MonoBehaviour
                             smallerPiece = piece;
                         }
                         
+                        //do the collision 
                         GameGUI.ShowCollisionScreen(smallerPiece, player);
                         return true;
                     }
@@ -381,29 +411,43 @@ public class Board : MonoBehaviour
 
     public bool CheckMerge()
     {
-        Character[] pieces = GameData.GetCurrPlayer().getPieces();
-        Vector3 activePosition = GameData.GetActivePiece().transform.position;
-        Character activePiece = GameData.GetActivePiece();
-        Vector3 startPosition = new Vector3(-4, 0, -5.5f);
+        //Checks if a merge should happen and enacts it 
 
+        //gets all pieces of the current player
+        Character[] pieces = GameData.GetCurrPlayer().GetPieces();
+        //gets position of the active piece
+        Vector3 activePosition = GameData.GetActivePiece().transform.position;
+        //gets the active piece
+        Character activePiece = GameData.GetActivePiece();
+        //the position of the starting tile
+        Vector3 startPosition = GetStartTile().transform.position;
+
+
+        //checks every piece of the current player for a merge
         foreach (Character piece in pieces)
         {
-            if (activePiece.transform.position != startPosition && !piece.Equals(activePiece) 
-                && piece.transform.position == activePosition )
+            //merges cannot occure at start or with a piece and itself
+            if (activePiece.GetCurrTile() != GetStartTile() && !piece.Equals(activePiece) 
+                && piece.GetCurrTile() == activePiece.GetCurrTile())
             {
-                int prevSize = activePiece.getSize();
-                activePiece.adjustSize(piece.getSize());
+                //adjusting the size of the character after the merge
+                int prevSize = activePiece.GetSize();
+                activePiece.AdjustSize(piece.GetSize());
+
+                //remove one of the pieces after the merge
                 piece.gameObject.SetActive(false);
-                GameData.GetCurrPlayer().removePiece(piece);
-                activePiece.transform.localScale = activePiece.getSize()/prevSize * activePiece.transform.localScale;
+                GameData.GetCurrPlayer().RemovePiece(piece);
+
+                //adjusting the visual size of the piece
+                activePiece.transform.localScale = activePiece.GetSize()/prevSize * activePiece.transform.localScale;
+
+                //show merge screen for explanation 
                 GameGUI.ShowMergeScreen(activePiece.GetCurrTile());
                 return true;
             }
         }
 
         return false; 
-
-        //HEREHERE display merge screen
     }
 
     public IEnumerator CheckWinner(float delay)
@@ -414,11 +458,17 @@ public class Board : MonoBehaviour
             // we have a winner, set the mode to win
             yield return new WaitForSeconds(delay);
             GameData.SetGameMode(GameData.Mode.Winner);
+
+            //show the winning screen
             GameGUI.ShowWinScreen();
+
+            //activate the winning visual effect
             tileEffects["win"].activateEffect(new Vector2(0,0));
 
             // celebrate
             GameData.GetCurrPlayer().Celebrate();
+
+            //play winning sound
             Audio.PlayVictory();
         }
         else
@@ -459,7 +509,7 @@ public class Board : MonoBehaviour
     public void DoSpecialCommand()
     {
         //hides the tile effect
-        hideAllEffects();
+        HideAllEffects();
 
         // executes the special command 
         GameGUI.HideMessageScreen();
@@ -482,7 +532,6 @@ public class Board : MonoBehaviour
 
     public void BringPiece()
     {
-        //HEREHERE ADD COLLISION LOGIC
         // brings another piece to current tile
         GameData.GetCurrPlayer().BringPiece(GameData.GetActivePiece().GetCurrTile());
     }
@@ -582,6 +631,7 @@ public class Board : MonoBehaviour
 
     public static Dictionary<string, TileEffectInterface> GetTileEffects()
     {
+        //access method for tileEffects map 
         return tileEffects;
     }
 
@@ -591,12 +641,12 @@ public class Board : MonoBehaviour
         string text = "";
         for (int i = 0; i < players.Count; i++)
         {
-            text += players[i].GetName() + " moves " + ordinals[i] + "!\n";
+            text += players[i].GetName() + " " + GameData.GetCurrentLanguage().GetMoveText() + " " + GameData.GetOrdinals()[i] + "!\n";
         }
         return text;
     }
 
-    public void Setup2Players()
+    /*public void Setup2Players()
     {
         // sets up 2 players
         GameGUI.HidePlayerCountScreen();
@@ -615,7 +665,7 @@ public class Board : MonoBehaviour
         // sets up 4 players
         GameGUI.HidePlayerCountScreen();
         SetupPlayers(4);
-    }
+    }*/
 
     //public void ShowRules()
     //{
@@ -638,28 +688,14 @@ public class Board : MonoBehaviour
         GameGUI.HideEveryScreen();
         GameGUI.ShowMainScreen();
         tileEffects["win"].hideEffect();
-    }
+    }    
 
-    public void AskHowManyPlayers()
-    {
-        // shows the player count screen
-        GameGUI.HideMainScreen();
-        GameGUI.ShowPlayerCountScreen();
-    }
-
-    public void ShowOptions()
-    {
-        // shows the options screen
-        GameGUI.HideMainScreen();
-        GameGUI.ShowOptionsScreen();
-    }
-
-    public void newGame()
+    public void NewGame()
     {
         //remove all pieces on board 
         foreach (Player player in players)
         {
-            foreach (Character piece in player.getPieces())
+            foreach (Character piece in player.GetPieces())
             {
                 Destroy(piece.gameObject);
             }
@@ -669,7 +705,7 @@ public class Board : MonoBehaviour
         players = new List<Player>();
 
         //reset piece color choices
-        GameData.resetAvailableColors();
+        GameData.ResetAvailableColors();
     }
 
     private void Awake()
@@ -686,7 +722,9 @@ public class Board : MonoBehaviour
         //tiles = new List<Tile>();
         //tiles = new Dictionary<string, Tile>();
         //SetupCameras();
+        //Initializes visual effects map
         LoadTileAnimations();
+        //reads and loads Tiles XML
         LoadTiles();
         //SetupDie();
         //RollDie();

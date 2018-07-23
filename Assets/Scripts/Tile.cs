@@ -12,6 +12,9 @@ public class Tile : MonoBehaviour
     //private TileType type;
     private string type;
     private string text;
+    private string language1;
+    private string language2;
+    private string language3;
     private string specialCommand;
     private const float TileWidth = 0.05f;
     //public static readonly string[] colors = { "orange", "blue", "green", "red", "purple", "yellow" };
@@ -20,7 +23,7 @@ public class Tile : MonoBehaviour
     public void SetPosition(float x, float y)
     {
         // sets the position
-        transform.position = new Vector3(x, -TileWidth, y);
+        transform.position = new Vector3(x, 0, y);
     }
 
     public Vector2 GetPosition()
@@ -83,7 +86,7 @@ public class Tile : MonoBehaviour
         // returns true if jump to tile exists, false otherwise
         return landNext != null;
     }
-
+    
     public Tile GetLandNext()
     {
         // (for special tiles only) returns next tile if landed upon
@@ -96,16 +99,85 @@ public class Tile : MonoBehaviour
         landNext = jumpToTile;
     }
 
-    public string GetText()
+    //document
+    public string GetText(string languageKey)
     {
-        // returns the text on the tile
+        if (languageKey == "English")
+        {
+            return GetEnglish();
+        }
+        else if (languageKey == "Language1")
+        {
+            return GetLanguage1();
+        }
+        else if (languageKey == "Language2")
+        {
+            return GetLanguage2();
+        }
+        else if (languageKey == "Language3")
+        {
+            return GetLanguage3();
+        }
+        else
+        {
+            return "";
+            Debug.Log("Error: Invalid language");
+        }
+    }
+
+    //document
+    public string GetEnglish()
+    {
+        // returns the text on the tile for english
         return text;
+    }
+
+    //document
+    public string GetLanguage1()
+    {
+        // returns the text on the tile for language 1
+        return language1;
+    }
+
+    //document
+    public string GetLanguage2()
+    {
+        // returns the text on the tile for language 2
+        return language2;
+    }
+
+    //document
+    public string GetLanguage3()
+    {
+        // returns the text on the tile for language 3
+        return language3;
     }
 
     public void SetText(string tileText)
     {
-        // sets the text on the tile
+        // sets the text on the tile for English
         text = tileText;
+    }
+
+    //document
+    public void SetLanguage1(string tileText)
+    {
+        // sets the text on the tile for language1
+        language1 = tileText;
+    }
+
+    //document
+    public void SetLanguage2(string tileText)
+    {
+        // sets the text on the tile for language2
+        language2 = tileText;
+    }
+
+    //document
+    public void SetLanguage3(string tileText)
+    {
+        // sets the text on the tile for language 3
+        language3 = tileText;
     }
 
     public string GetSpecialCommand()
@@ -147,7 +219,7 @@ public class Tile : MonoBehaviour
         return landAnimOption;
     }
 
-    public void playEffect()
+    public void PlayEffect()
     {
         Dictionary<string, TileEffectInterface> effects = Board.GetTileEffects();
         if (effects.ContainsKey((string)landAnimKey))
@@ -194,7 +266,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void hideTileVisual()
+    public void HideTileVisual()
     {
         this.GetComponent<MeshRenderer>().enabled = false;
     }

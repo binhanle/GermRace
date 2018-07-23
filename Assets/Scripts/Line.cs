@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Line : VolumetricLines.VolumetricLineBehavior
 {
@@ -14,7 +15,7 @@ public class Line : VolumetricLines.VolumetricLineBehavior
         move = lineMove;
     }
 
-    public void setOtherLines()
+    public void SetOtherLines()
     {
         hiddenLines = new List<Line>();
 
@@ -54,20 +55,49 @@ public class Line : VolumetricLines.VolumetricLineBehavior
 
     void OnMouseOver()
     {
-        // make line shine when mouse is over it
+        
+    }
+
+    void OnMouseExit()
+    {
+       
+    }
+
+    void OnMouseDown()
+    {
+        // make line shine when mouse is clicked
         LightSaberFactor = 0.5f;
 
         //preview next tile
         GameGUI.PreviewMessageScreen(move.GetDestTile());
 
         //hide other lines
-        foreach(Line line in hiddenLines)
+        foreach (Line line in hiddenLines)
         {
             line.gameObject.SetActive(false);
         }
+
+        Button MoveButton = GameGUI.GetMoveButton();
+        Button NoMoveButton = GameGUI.GetNoMoveButton();
+
+        MoveButton.onClick.AddListener(delegate { ExecuteMove(); });
+        NoMoveButton.onClick.AddListener(delegate { ShowOtherLines(); });
     }
 
-    void OnMouseExit()
+    void ExecuteMove()
+    {
+        // destroy the lines and outlines
+        GameData.GetCurrPlayer().DestroyLegalMoves();
+
+        // start walking
+        move.GetPiece().WalkToTile(move.GetDestTile());
+
+        //hide move buttons
+        GameGUI.GetMoveButton().gameObject.SetActive(false);
+        GameGUI.GetNoMoveButton().gameObject.SetActive(false);
+    }
+
+    void ShowOtherLines()
     {
         // make line normal when mouse is not over it
         LightSaberFactor = 1;
@@ -83,13 +113,9 @@ public class Line : VolumetricLines.VolumetricLineBehavior
         }
     }
 
-    void OnMouseDown()
+    void RemoveLineDelegates(Button button)
     {
-        // make move when line is clicked
-        // destroy the lines and outlines
-        GameData.GetCurrPlayer().DestroyLegalMoves();
-
-        // start walking
-        move.GetPiece().WalkToTile(move.GetDestTile());
+        button.onClick.RemoveListener(ExecuteMove);
+        button.onClick.RemoveListener(ShowOtherLines);
     }
 }

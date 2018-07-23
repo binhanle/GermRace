@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Xml;
+using System.Xml.Serialization;
+using System.Xml.Linq;
+
 
 public static class GameData
 {
@@ -30,24 +34,46 @@ public static class GameData
     private static float animHeight = 5f;
 
     //private static string menuDir = "Prefabs/Menus/";
+
+    //camera settings
     private static Vector3 cameraOffset = new Vector3(2, 1, -5);
     private static Vector3 mainCameraRotation = new Vector3(10, -20, 0);
     private static Vector3 dieCameraPosition = new Vector3(-10, 10, 0);
     private static Vector3 dieCameraRotation = new Vector3(30, -90, 0);
+    private static Vector3 winCameraOffset = new Vector3(2, 0.5f, -1.25f);
+    private static Vector3 winCameraRotation = new Vector3(10, -60, 0);
+    private static Vector3 homeCameraPosition = new Vector3(0.35f, 0.35f, -19);
+    private static Vector3 homeCameraRotation = new Vector3(5, 180, 0);
+    private static Vector3 topViewOffset = new Vector3(11, 15, -3);
+    private static Vector3 topViewRotation = new Vector3(90, 0, 0);
+
+    //active user input
     private static Player currPlayer;
     private static Character activePiece;
     //private static Camera mainCamera;
     //private static Camera dieCamera;
-    private static Vector3 winCameraOffset = new Vector3(2, 0.5f, -1.25f);
-    private static Vector3 winCameraRotation = new Vector3(10, -60, 0);
+
+    //game mode settings
     private static Mode gameMode;
     public enum Mode { Home, InitialRoll, NormalRoll, RollSixOrDie, SelectMove, MovingPiece, Winner };
+
+    //setup data
     private static int numPlayers;
     private static int numPiecesPerPlayer = 2;
     private static string[] pieceColors = { "red", "yellow", "green", "blue" };
+    private static Dictionary<string, string> pieceColorMap = new Dictionary<string, string>(){ { "red", "red" }, { "yellow", "yellow" }, { "green", "green" }, { "blue", "blue" } };
+    private static string[] ordinals = { "first", "second", "third", "fourth" };
     private static List<string> availableColors;
-    private static Vector3 topViewOffset = new Vector3(11, 15, -3);
-    private static Vector3 topViewRotation = new Vector3(90, 0, 0);
+
+    //language data
+    private static Dictionary<string, Language> languages = new Dictionary<string, Language>();
+    private static string currentLanguage = "English";
+    private static XmlDocument LangXMLDoc;
+    private static XDocument LangXDoc;
+    private static IEnumerable<XElement> LangItems;
+
+
+    //tile colors
     private static Dictionary<string, string> colorScheme = new Dictionary<string, string>()
     {
         { "start", "orange" },
@@ -58,10 +84,12 @@ public static class GameData
         { "special", "grey" },
         { "finish", "yellow" }
     };
+
+    //game piece and board
     private static Board board;
-    private static Vector3 homeCameraPosition = new Vector3(0.35f, 0.35f, -19);
-    private static Vector3 homeCameraRotation = new Vector3(5, 180, 0);
     private static Dictionary<string, GameObject> demoPieces;
+
+    //visual references
     private static string materialsDir = "Images/Materials/";
 
     static GameData()
@@ -70,9 +98,10 @@ public static class GameData
         availableColors = new List<string>(pieceColors);
     }
 
-    public static void resetAvailableColors()
+    public static void ResetAvailableColors()
     {
-        availableColors = new List<string>(pieceColors);
+        //resets available colors
+        availableColors = new List<string>(languages[currentLanguage].GetColors());
     }
 
     public static string GetStartTileName()
@@ -291,6 +320,14 @@ public static class GameData
         return pieceColors;
     }
 
+    public static void ChangePieceColors(string[] newColors)
+    {
+        for(int i = 0; i < newColors.Length; i++)
+        {
+            pieceColors[i] = newColors[i];
+        }
+    }
+
     public static string GetMaterialsDir()
     {
         // Get the directory of the materials
@@ -299,16 +336,204 @@ public static class GameData
 
     public static float[] GetAnimationParams()
     {
+        //returns default parameters for visual animations
         return new float[] { boardHeight, tileSize, animTime, animHeight }; 
+    }
+
+    //DOCUMENT
+    public static string[] GetOrdinals()
+    {
+        //access method for ordinals
+        return ordinals;
+    }
+
+    //DOCUMENT
+    public static void ChangeOrdinals(string[] newOrdinals)
+    {
+        ordinals = newOrdinals;
+    }
+    //DOCUMENT
+    public static void ChangeColorMap(string[] newColorLabels)
+    {
+        pieceColorMap = new Dictionary<string, string>() { { newColorLabels[0], "red" }, { newColorLabels[1], "yellow" }, { newColorLabels[2], "green" }, { newColorLabels[3], "blue" } };
+    }
+
+    //DOCUMENT
+    public static Dictionary<string, string> GetColorMap()
+    {
+        return pieceColorMap;
+    }
+
+    //Document
+    public static string GetLanguageText(string key)
+    {
+        // Find the matching language and key in the saved language xml data 
+        
+        foreach(var item in LangItems)
+        {
+            if (item.Element("Name").Value.Trim() == currentLanguage)
+            {
+                return item.Element(key).Value.Trim();
+            }
+        }
+        return "KEY ERROR: NO VALID STRING";
+        /**
+        Language currLang = languages[currentLanguage];
+        if (currLang.GetLanguageTextMap().ContainsKey(key))
+        {
+            return currLang.GetLanguageTextMap()[key];
+        }
+        
+        **/
+    }
+
+
+
+    //DOCUMENT
+    public static void LoadLanguageGameObjectText()
+    {
+        // Load the Language XML file into Tile classes and puts them in the tile map
+        XmlDocument xmlDoc = new XmlDocument();
+        Debug.Log(GetTextAssetHolder().GetMenuText().ToString());
+        xmlDoc.LoadXml(GetTextAssetHolder().GetMenuText().ToString());
+        XDocument xDoc = XDocument.Parse(xmlDoc.OuterXml);
+        IEnumerable<XElement> items = xDoc.Descendants("languages").Elements();
+        //Debug.Log("languages descendents" + items);
+        foreach (var item in items)
+        {
+            Language language = new Language();
+
+            //set the name
+            string languageLabel = item.Element("Name").Value.Trim();
+            language.SetName(languageLabel);
+            language.SetText("Name", languageLabel);
+            string rollButton = item.Element("RollButton").Value.Trim();
+            language.SetRollButton(rollButton);
+            language.SetText("RollButton", rollButton);
+            string rollTitle = item.Element("RollTitle").Value.Trim();
+            language.SetRollTitle(rollTitle);
+            language.SetText("RollTitle", rollTitle);
+            string okButton = item.Element("OKButton").Value.Trim();
+            language.SetOkButton(okButton);
+            language.SetText("OKButton", okButton);
+            string winMenu = item.Element("WinMenu").Value.Trim();
+            language.SetWinMenu(winMenu);
+            language.SetText("WinMenu", winMenu);
+            string winTitle = item.Element("WinTitle").Value.Trim();
+            language.SetWinTitle(winTitle);
+            language.SetText("WinTitle", winTitle);
+            string selectMoveTitle = item.Element("SelectMoveTitle").Value.Trim();
+            language.SetSelectMoveTitle(selectMoveTitle);
+            language.SetText("SelectMoveTitle", selectMoveTitle);
+            string moveOrderTitle = item.Element("MoveOrderTitle").Value.Trim();
+            language.SetMoveOrderTitle(moveOrderTitle);
+            language.SetText("MoveOrderTitle", moveOrderTitle);
+            string moveText = item.Element("MoveText").Value.Trim();
+            language.SetMoveText(moveText);
+            language.SetText("MoveText", moveText);
+            string setupTitle = item.Element("SetupTitle").Value.Trim();
+            language.SetSetupTitle(setupTitle);
+            language.SetText("setupTitle", setupTitle);
+            string setupName = item.Element("SetupName").Value.Trim();
+            language.SetSetupName(setupName);
+            language.SetText("SetupName", setupName);
+            string setupColor = item.Element("SetupColor").Value.Trim();
+            language.SetSetupColor(setupColor);
+            language.SetText("SetupColor", setupColor);
+            string orderWords = item.Element("OrderWords").Value.Trim();
+            language.SetOrderWords(orderWords);
+            language.SetText("OrderWords", orderWords);
+            string colors = item.Element("Colors").Value.Trim();
+            language.SetColors(colors);
+            language.SetText("Colors", colors);
+            string playerCountTitle = item.Element("PlayerCountTitle").Value.Trim();
+            language.SetPlayerCountTitle(playerCountTitle);
+            language.SetText("PlayerCountTitle", playerCountTitle);
+            string mainTitle = item.Element("MainTitle").Value.Trim();
+            language.SetMainTitle(mainTitle);
+            language.SetText("MainTitle", mainTitle);
+            string mainPlayButton = item.Element("MainPlayButton").Value.Trim();
+            language.SetMainPlayButton(mainPlayButton);
+            language.SetText("MainPlayButton", mainPlayButton);
+            string mainRulesButton = item.Element("MainRulesButton").Value.Trim();
+            language.SetMainRulesButton(mainRulesButton);
+            language.SetText("MainRulesButton", mainRulesButton);
+            string mainOptionsButton = item.Element("MainOptionsButton").Value.Trim();
+            language.SetMainOptionsButton(mainOptionsButton);
+            language.SetText("MainOptionsButton", mainOptionsButton);
+            string mainCreditsButton= item.Element("MainCreditsButton").Value.Trim();
+            language.SetMainCreditsButton(mainCreditsButton);
+            language.SetText("MainCreditsButton", mainCreditsButton);
+            string optionsMusicLabel = item.Element("OptionsMusicLabel").Value.Trim();
+            language.SetOptionsMusicLabel(optionsMusicLabel);
+            //language.SetText()
+            string optionsLanguageLabel = item.Element("OptionsLanguageLabel").Value.Trim();
+            language.SetOptionsLanguageLabel(optionsLanguageLabel);
+
+            if (language != null)
+            {
+                languages.Add(languageLabel, language);
+            }
+            else
+            {
+                Debug.Log("Error " + languages.Keys.ToString());
+            }
+        }
+
+    }
+
+    //Document 
+    public static Language GetCurrentLanguage()
+    {
+        return languages[currentLanguage];
+    }
+
+    //Document 
+    public static string GetCurrentLanguageKey()
+    {
+        return currentLanguage;
+    }
+
+    //Document
+    public static void SetCurrentLanguage(string input)
+    {
+        currentLanguage = input;
+    }
+
+    //Document
+    public static List<string> GetLanguages()
+    {
+        List<string> availableLanguages = new List<string>();
+
+        foreach (string languageLabel in languages.Keys)
+        {
+            availableLanguages.Add(languageLabel);
+        }
+
+        return availableLanguages;
     }
 
     public static TextAssetHolder GetTextAssetHolder()
     {
+        //returns the textAssetHolder 
         return textAssets;
     }
 
     public static PrefabAssetHolder GetPrefabAssetHolder()
     {
+        //access method for the prefabAssets
         return prefabAssets;
+    }
+
+    //Document
+    public static void InitilializeLanguages()
+    {
+        //Load Language Data
+        LangXMLDoc = new XmlDocument();
+        LangXMLDoc.LoadXml(GetTextAssetHolder().GetMenuText().ToString());
+        LangXDoc = XDocument.Parse(LangXMLDoc.OuterXml);
+        LangItems = LangXDoc.Descendants("languages").Elements();
+        Debug.Log("instantiated");
+
     }
 }

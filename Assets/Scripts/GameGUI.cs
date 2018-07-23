@@ -9,13 +9,11 @@ public class GameGUI : MonoBehaviour
     public delegate void TestDelegate(); // This defines what type of method you're going to call.
     private static Canvas explanationScreen;
     private static Canvas rollScreen;
-    private static Text titleText;
     private static Canvas messageScreen;
     private static Text messageText;
     private static Canvas winScreen;
-    private static Text winText;
+    private static Text winTitleText;
     private static Canvas selectMoveScreen;
-    private static Text selectMoveText;
     private static Button nextTurnButton;
     private static Button defaultOKButton;
     private static Button specialOKButton;
@@ -25,17 +23,68 @@ public class GameGUI : MonoBehaviour
     private static Text setupTitleText;
     private static InputField nameInputField;
     private static Dropdown colorDropdown;
+    private static Dropdown languageDropdown;
     private static Canvas playerCountScreen;
     private static Canvas infoScreen;
     private static Text infoTitleText;
     private static Text infoText;
     private static Canvas mainScreen;
     private static Canvas optionsScreen;
+    private static Button doMoveButton;
+    private static Button noMoveButton;
+    private static Image messageCharacterSprite;
+    private static SpriteHolder spriteSource;
 
-    public static void ShowExplanationScreen(TextAsset textFile, UnityEngine.Events.UnityAction func)
+    //GameObjects' Text
+    private static Text rollButtonText;
+    private static Text rollTitleText;
+    private static Text winMenuText;
+    private static Text selectMoveTitleText;
+    private static Text moveOrderTitleText;
+    private static Text playerCountTitleText;
+    private static Text mainTitleText;
+    private static Text mainPlayButtonText;
+    private static Text mainRuleButtonText;
+    private static Text mainOptionsButtonText;
+    private static Text mainCreditsButtonText;
+    private static Text nextTurnOKButtonText;
+    private static Text moveOrderOKButtonText;
+    private static Text optionsTitleText;
+    private static Text optionsOKButtonText;
+    private static Text optionsMusicLabel;
+    private static Text optionsLanguageLabel;
+    private static Text explanationOKButtonText;
+    private static Text setupNameText;
+    private static Text setupColorText;
+    private static Text explanationText;
+
+    //Characer Sprites
+    private static Dictionary<string, Sprite> characterSprites;
+   
+    public static void ShowExplanationScreen(string key, UnityEngine.Events.UnityAction func)
     {
-        UnityEngine.UI.Text explanationText = GameObject.Find("Explanation Text").GetComponent<Text>();
-        UnityEngine.RectTransform rt = GameObject.Find("Explanation Text").GetComponent<RectTransform>();
+        //set text
+        string text = GameData.GetLanguageText(key);
+        text = text.Replace("\\n", "\n");
+        explanationText.text = text;
+
+        //resize rectangle 
+        RectTransform rt = explanationText.GetComponent<RectTransform>();
+
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, explanationText.preferredHeight);
+
+        //show screen
+        explanationScreen.enabled = true;
+
+        //set button transition function 
+        explanationScreen.GetComponentInChildren<Button>().onClick.AddListener(func);
+
+
+    }
+
+    public static void ShowExplanationScreenV2(TextAsset textFile, UnityEngine.Events.UnityAction func)
+    {
+        RectTransform rt = explanationText.GetComponent<RectTransform>();
 
         string[] lines = textFile.ToString().Split('\n');
 
@@ -49,7 +98,7 @@ public class GameGUI : MonoBehaviour
         }
 
         //Change size of text box to hold the text
-        Debug.Log(rt.rect.width);
+        //Debug.Log(rt.rect.width);
 
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, explanationText.preferredHeight);
 
@@ -96,7 +145,7 @@ public class GameGUI : MonoBehaviour
     public static void ShowCurrentPieceColor()
     {
         // shows demo piece of color specified by dropdown
-        ShowPieceColor(GameGUI.GetDropDownColor());
+        ShowPieceColor(GameData.GetColorMap()[GameGUI.GetDropDownColor()]);
     }
 
     public static void ShowRollScreen()
@@ -110,7 +159,7 @@ public class GameGUI : MonoBehaviour
 
         // Show who's rolling
         Player currPlayer = GameData.GetCurrPlayer();
-        titleText.text = currPlayer.GetName() + " roll";
+        rollTitleText.text = currPlayer.GetName() + " " +GameData.GetCurrentLanguage().GetRollTitle();
     }
 
     public static void HideRollScreen()
@@ -123,13 +172,13 @@ public class GameGUI : MonoBehaviour
     {
         // shows the rules
         HideMainScreen();
-        ShowExplanationScreen(GameData.GetTextAssetHolder().GetRulesText(), HideExplanationScreenShowMain);
+        ShowExplanationScreen("RulesText", HideExplanationScreenShowMain);
     }
 
     public void ShowCredits()
     {
         HideMainScreen();
-        ShowExplanationScreen(GameData.GetTextAssetHolder().GetCreditsText(), HideExplanationScreenShowMain);
+        ShowExplanationScreen("CreditsText", HideExplanationScreenShowMain);
     }
 
     public static void ShowMessageScreen(Tile currTile)
@@ -138,7 +187,11 @@ public class GameGUI : MonoBehaviour
         messageScreen.enabled = true;
 
         // Show the text on the tile
-        messageText.text = currTile.GetText();
+        messageText.text = currTile.GetText(GameData.GetCurrentLanguageKey());
+
+        //hide move buttons
+        doMoveButton.gameObject.SetActive(false);
+        noMoveButton.gameObject.SetActive(false);
 
         // If tile is special, use special button
         if (currTile.GetTileType() == "special")
@@ -151,6 +204,10 @@ public class GameGUI : MonoBehaviour
             defaultOKButton.gameObject.SetActive(true);
             specialOKButton.gameObject.SetActive(false);
         }
+
+        //change character sprite to match player's pieces 
+        //characterSprites = new Dictionary<string, Sprite>() { { "redCharacter", spriteSource.redImage }, { "blueCharacter", spriteSource.blueImage }, { "yellowCharacter", spriteSource.yellowImage }, { "greenCharacter", spriteSource.greenImage } };
+        //messageCharacterSprite.sprite = characterSprites[GameData.GetCurrPlayer().GetCharType()];
     }
 
     public static void PreviewMessageScreen(Tile possTile)
@@ -159,14 +216,22 @@ public class GameGUI : MonoBehaviour
         messageScreen.enabled = true;
 
         // Show the text on the tile
-        messageText.text = possTile.GetText();
+        messageText.text = possTile.GetText(GameData.GetCurrentLanguageKey());
 
         //hide buttons
         defaultOKButton.gameObject.SetActive(false);
         specialOKButton.gameObject.SetActive(false);
 
-        //highlight destination tile
+        //show move buttons
+        doMoveButton.gameObject.SetActive(true);
+        noMoveButton.gameObject.SetActive(true);
 
+        //show character sprite
+        messageCharacterSprite.gameObject.SetActive(true);
+
+        //change character sprite to match player's pieces 
+        characterSprites = new Dictionary<string, Sprite>() { { "redCharacter", spriteSource.redImage }, { "blueCharacter", spriteSource.blueImage }, { "yellowCharacter", spriteSource.yellowImage }, { "greenCharacter", spriteSource.greenImage } };
+        messageCharacterSprite.sprite = characterSprites[GameData.GetCurrPlayer().GetCharType()];
     }
 
     public static void ShowCollisionScreen(Character smallerPiece, Player otherPlayer)
@@ -193,7 +258,6 @@ public class GameGUI : MonoBehaviour
         defaultOKButton.gameObject.SetActive(true);
         specialOKButton.gameObject.SetActive(false);
 
-        //resolve the collision HEREHERE need to change to implement size logic
         Board board = GameData.GetBoard();
         Tile startTile = board.GetStartTile();
         smallerPiece.JumpToTile(startTile);
@@ -232,7 +296,7 @@ public class GameGUI : MonoBehaviour
         winScreen.enabled = true;
 
         // Show who won
-        winText.text = GameData.GetCurrPlayer().GetName() + " wins!";
+        winTitleText.text = GameData.GetCurrPlayer().GetName() + " " + GameData.GetCurrentLanguage().GetWinTitle();
     }
 
     public static void HideWinScreen()
@@ -247,12 +311,13 @@ public class GameGUI : MonoBehaviour
         // Check if there are legal moves
         if (hasLegalMoves)
         {
-            selectMoveText.text = "Please select a move";
+            Debug.Log("Please select moves");
+            selectMoveTitleText.GetComponent<LocalizedText>().updateLanguage();
             nextTurnButton.gameObject.SetActive(false);
         }
         else
         {
-            selectMoveText.text = "You are stuck!";
+            selectMoveTitleText.text = "You are stuck!";
             nextTurnButton.gameObject.SetActive(true);
         }
 
@@ -287,13 +352,14 @@ public class GameGUI : MonoBehaviour
         setupScreen.enabled = true;
 
         // display the default name
-        setupTitleText.text = defaultName + " setup";
+        setupTitleText.text = defaultName + " " + GameData.GetCurrentLanguage().GetSetupTitle();
         nameInputField.text = defaultName;
         nameInputField.Select();
 
         // populate the dropdown menu
         colorDropdown.ClearOptions();
         colorDropdown.AddOptions(GameData.GetAvailableColors());
+        //Debug.Log("available colors " + GameData.GetAvailableColors()[0]);
         colorDropdown.value = 0;
     }
 
@@ -382,6 +448,11 @@ public class GameGUI : MonoBehaviour
     {
         // Shows the options screen
         optionsScreen.enabled = true;
+
+        //populate the language dropdown
+        languageDropdown.ClearOptions();
+        languageDropdown.AddOptions(GameData.GetLanguages());
+        languageDropdown.value = 0;
     }
 
     public static void HideOptionsScreen()
@@ -390,33 +461,131 @@ public class GameGUI : MonoBehaviour
         optionsScreen.enabled = false;
     }
 
+    public void AskHowManyPlayers()
+    {
+        // shows the player count screen
+        GameGUI.HideMainScreen();
+        GameGUI.ShowPlayerCountScreen();
+    }
+
+
+    public void ShowOptions()
+    {
+        // shows the options screen
+        GameGUI.HideMainScreen();
+        GameGUI.ShowOptionsScreen();
+    }
+
+    //document
+    public static string GetDropDownLanguage()
+    {
+        // Returns the color selected by the dropdown
+        return languageDropdown.options[languageDropdown.value].text;
+    }
+
+    //document
+    public static Button GetMoveButton()
+    {
+        return doMoveButton;
+    }
+
+    //document 
+    public static Button GetNoMoveButton()
+    {
+        return noMoveButton;
+    }
+
+    //DOCUMENT
+    public static void UpdateLanguageOptions()
+    {
+        //update the language for gameObject
+        GameData.SetCurrentLanguage(GetDropDownLanguage());
+        Language currentLanguage = GameData.GetCurrentLanguage();
+
+        //update the GameObject's Text's
+        rollButtonText.text = currentLanguage.GetRollButton();
+        rollTitleText.text = currentLanguage.GetRollTitle();
+        winMenuText.text = currentLanguage.GetWinMenu();
+        winTitleText.text = currentLanguage.GetWinTitle();
+        selectMoveTitleText.text = currentLanguage.GetSelectMoveTitle();
+        nextTurnOKButtonText.text = currentLanguage.GetOkButton();
+        moveOrderTitleText.text = currentLanguage.GetMoveOrderTitle();
+        moveOrderText.text = currentLanguage.GetMoveText();
+        moveOrderOKButtonText.text = currentLanguage.GetOkButton();
+        setupTitleText.text = currentLanguage.GetSetupTitle();
+        playerCountTitleText.text = currentLanguage.GetPlayerCountTitle();
+        mainTitleText.text = currentLanguage.GetMainTitle();
+        mainPlayButtonText.text = currentLanguage.GetMainPlayButton();
+        mainRuleButtonText.text = currentLanguage.GetMainRulesButton();
+        mainOptionsButtonText.text = currentLanguage.GetMainOptionsButton();
+        mainCreditsButtonText.text = currentLanguage.GetMainCreditsButton();
+        optionsTitleText.text = currentLanguage.GetMainOptionsButton();
+        optionsMusicLabel.text = currentLanguage.GetOptionsMusicLabel();
+        optionsOKButtonText.text = currentLanguage.GetOkButton();
+        optionsLanguageLabel.text = currentLanguage.GetOptionsLanguageLabel();
+        explanationOKButtonText.text = currentLanguage.GetOkButton();
+        setupNameText.text = currentLanguage.GetSetupName();
+        setupColorText.text = currentLanguage.GetSetupColor();
+
+        GameData.ChangeOrdinals(currentLanguage.GetOrderWords());
+        GameData.ChangeColorMap(currentLanguage.GetColors());
+        GameData.ChangePieceColors(currentLanguage.GetColors());
+        GameData.ResetAvailableColors();
+    }
+
     // Use this for initialization
     void Awake()
     {
         explanationScreen = GameObject.Find("Explanation Screen").GetComponent<Canvas>();
         rollScreen = GameObject.Find("Roll Screen").GetComponent<Canvas>();
-        titleText = GameObject.Find("Title Text").GetComponent<Text>();
         messageScreen = GameObject.Find("Message Screen").GetComponent<Canvas>();
-        messageText = GameObject.Find("Message Text").GetComponent<Text>();
         winScreen = GameObject.Find("Win Screen").GetComponent<Canvas>();
-        winText = GameObject.Find("Win Text").GetComponent<Text>();
         selectMoveScreen = GameObject.Find("Select Move Screen").GetComponent<Canvas>();
-        selectMoveText = GameObject.Find("Select Move Text").GetComponent<Text>();
         nextTurnButton = GameObject.Find("Next Turn Button").GetComponent<Button>();
         defaultOKButton = GameObject.Find("Default OK Button").GetComponent<Button>();
         specialOKButton = GameObject.Find("Special OK Button").GetComponent<Button>();
         moveOrderScreen = GameObject.Find("Move Order Screen").GetComponent<Canvas>();
-        moveOrderText = GameObject.Find("Move Order Text").GetComponent<Text>();
         setupScreen = GameObject.Find("Setup Screen").GetComponent<Canvas>();
-        setupTitleText = GameObject.Find("Setup Title Text").GetComponent<Text>();
         nameInputField = GameObject.Find("Name Input Field").GetComponent<InputField>();
         colorDropdown = GameObject.Find("Color Dropdown").GetComponent<Dropdown>();
+        languageDropdown = GameObject.Find("Language Dropdown").GetComponent<Dropdown>();
         playerCountScreen = GameObject.Find("Player Count Screen").GetComponent<Canvas>();
         infoScreen = GameObject.Find("Info Screen").GetComponent<Canvas>();
-        infoTitleText = GameObject.Find("Info Title Text").GetComponent<Text>();
-        infoText = GameObject.Find("Info Text").GetComponent<Text>();
+        doMoveButton = GameObject.Find("Move Button").GetComponent<Button>();
+        noMoveButton = GameObject.Find("No Move Button").GetComponent<Button>();
+        //infoTitleText = GameObject.Find("Info Title Text").GetComponent<Text>();
+        //infoText = GameObject.Find("Info Text").GetComponent<Text>();
         mainScreen = GameObject.Find("Main Screen").GetComponent<Canvas>();
         optionsScreen = GameObject.Find("Options Screen").GetComponent<Canvas>();
+        GameData.LoadLanguageGameObjectText();
+        GameData.InitilializeLanguages();
+        messageText = GameObject.Find("Message Text").GetComponent<Text>();
+        rollButtonText = GameObject.Find("Roll Button Text").GetComponent<Text>();
+        rollTitleText = GameObject.Find("Roll Title Text").GetComponent<Text>();
+        winMenuText = GameObject.Find("Win to Menu Text").GetComponent<Text>();
+        winTitleText = GameObject.Find("Win Text").GetComponent<Text>();
+        selectMoveTitleText = GameObject.Find("Select Move Title Text").GetComponent<Text>(); ;
+        nextTurnOKButtonText = GameObject.Find("Next Turn Button Text").GetComponent<Text>(); ;
+        moveOrderTitleText = GameObject.Find("Move Order Title Text").GetComponent<Text>(); ;
+        moveOrderText = GameObject.Find("Move Order Text").GetComponent<Text>();
+        moveOrderOKButtonText = GameObject.Find("Move Order OK Text").GetComponent<Text>();
+        setupTitleText = GameObject.Find("Setup Title Text").GetComponent<Text>();
+        playerCountTitleText = GameObject.Find("Setup Title Text").GetComponent<Text>();
+        mainTitleText = GameObject.Find("Main Title Text").GetComponent<Text>();
+        mainPlayButtonText = GameObject.Find("Main Play Text").GetComponent<Text>();
+        mainRuleButtonText = GameObject.Find("Main Rules Text").GetComponent<Text>();
+        mainOptionsButtonText = GameObject.Find("Main Options Text").GetComponent<Text>();
+        mainCreditsButtonText = GameObject.Find("Main Options Text").GetComponent<Text>();
+        optionsTitleText = GameObject.Find("Options Title Text").GetComponent<Text>();
+        optionsOKButtonText = GameObject.Find("Options OK Button Text").GetComponent<Text>();
+        optionsMusicLabel = GameObject.Find("Option Music Label").GetComponent<Text>();
+        optionsLanguageLabel = GameObject.Find("Option Language Label").GetComponent<Text>();
+        explanationOKButtonText = GameObject.Find("Explanation OK Button Text").GetComponent<Text>();
+        setupNameText = GameObject.Find("Setup Name Text").GetComponent<Text>();
+        setupColorText = GameObject.Find("Setup Color Text").GetComponent<Text>();
+        explanationText = GameObject.Find("Explanation Text").GetComponent<Text>();
+        messageCharacterSprite = GameObject.Find("Message Character Image").GetComponent<Image>();
+        spriteSource = GameObject.Find("Sprite Holder").GetComponent<SpriteHolder>();
     }
 
     // Update is called once per frame

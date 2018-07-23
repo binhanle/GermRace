@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class Audio : MonoBehaviour
 {
+    //Variable to store an AudioSource from the Background Music Game Object    
     private AudioSource audioSource;
 
+    //Variable to track if sound has been muted
     private static bool muted = false;
+
+    //Variables to store character sounds
     private static AudioSource happySound;
     private static AudioSource sadSound;
     private static AudioSource movingSound;
