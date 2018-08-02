@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     GameObject boardObject;
+    static float messageScreenTitleAdjustment;
 
     //DOCUMENT
     //adjust camera so that the frustum only includes 
@@ -35,12 +36,14 @@ public class GameController : MonoBehaviour
         }
 
         //transform camera position 
-        Camera.main.transform.position = new Vector3(gamePart.transform.position.x, gamePart.transform.position.y + distance, gamePart.transform.position.z);
+        Camera.main.transform.position = new Vector3(gamePart.transform.position.x, gamePart.transform.position.y + distance + messageScreenTitleAdjustment, gamePart.transform.position.z);
     }
 
     // Use this for initialization
     void Start()
     {
+        //set adjustment for title 
+        messageScreenTitleAdjustment = 2.0f;
 
         // set up the board
         boardObject = GameObject.Find("Board");

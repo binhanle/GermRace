@@ -255,7 +255,11 @@ public class Player : MonoBehaviour, IComparable<Player>
 
             // Check for winner (wait 2 seconds to jump, 2 seconds to settle down) HEREHERE
             //StartCoroutine(GameData.GetBoard().CheckWinner(4));
-            bool merge = GameData.GetBoard().CheckMerge();
+            bool merge;
+            if (GameData.GetMergeCollide())
+            {
+                merge = GameData.GetBoard().CheckMerge();
+            }            
         }
         else
         {

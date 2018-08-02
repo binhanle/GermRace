@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
 
 public class GameGUI : MonoBehaviour
 {
@@ -57,9 +58,21 @@ public class GameGUI : MonoBehaviour
     private static Text setupNameText;
     private static Text setupColorText;
     private static Text explanationText;
+    private static Text setupOKButton;
+    private static Text messageDefaultOKButton;
+    private static Text messageSpecialOKButton;
+    private static Text optionsMergeCollideLabel;
+    private static List<Text> GUITextComponents;
+
+    //analytics
+    public static GameStarted analyticsGameStarted;
+    public static ApplicationExited analyticsApplicationExited;
+    public static GameCompleted analyticsGameCompleted;
+    public static InitialPathChosen analyticsInitialPathChosen;
 
     //Characer Sprites
-    private static Dictionary<string, Sprite> characterSprites;
+    public static Dictionary<string, Sprite> characterSprites = new Dictionary<string, Sprite>();
+    
    
     public static void ShowExplanationScreen(string key, UnityEngine.Events.UnityAction func)
     {
@@ -230,7 +243,6 @@ public class GameGUI : MonoBehaviour
         messageCharacterSprite.gameObject.SetActive(true);
 
         //change character sprite to match player's pieces 
-        characterSprites = new Dictionary<string, Sprite>() { { "redCharacter", spriteSource.redImage }, { "blueCharacter", spriteSource.blueImage }, { "yellowCharacter", spriteSource.yellowImage }, { "greenCharacter", spriteSource.greenImage } };
         messageCharacterSprite.sprite = characterSprites[GameData.GetCurrPlayer().GetCharType()];
     }
 
@@ -240,15 +252,15 @@ public class GameGUI : MonoBehaviour
         messageScreen.enabled = true;
 
         //create collision text
-        string collisionText = "There was a collision with " + otherPlayer.GetName() + "\'s germ. \n\n";
+        string collisionText = GameData.GetLanguageText("CollistionText");
         
         if (smallerPiece.Equals(GameData.GetActivePiece()))
         {
-            collisionText = collisionText + "Your germ is smaller so it returns to start.";
+            collisionText = collisionText + GameData.GetLanguageText("CollisionReturnText");
         }
         else
         {
-            collisionText = collisionText + "Your germ is larger so  " + otherPlayer.GetName() + "\'s germ returns to start.";
+            collisionText = collisionText + GameData.GetLanguageText("CollisionStayText");
         }
 
         // Show the text on the tile
@@ -495,6 +507,14 @@ public class GameGUI : MonoBehaviour
         return noMoveButton;
     }
 
+    //Document
+    public void SetMergeCollide(Toggle toggle)
+    {
+        // enables or disables the merges and collisions
+        GameData.SetMergeCollide(toggle.isOn);
+        Debug.Log(GameData.GetMergeCollide());
+    }
+
     //DOCUMENT
     public static void UpdateLanguageOptions()
     {
@@ -503,6 +523,7 @@ public class GameGUI : MonoBehaviour
         Language currentLanguage = GameData.GetCurrentLanguage();
 
         //update the GameObject's Text's
+        /**
         rollButtonText.text = currentLanguage.GetRollButton();
         rollTitleText.text = currentLanguage.GetRollTitle();
         winMenuText.text = currentLanguage.GetWinMenu();
@@ -526,15 +547,34 @@ public class GameGUI : MonoBehaviour
         explanationOKButtonText.text = currentLanguage.GetOkButton();
         setupNameText.text = currentLanguage.GetSetupName();
         setupColorText.text = currentLanguage.GetSetupColor();
+        **/
+        foreach (Text text in GUITextComponents)
+        {
+            try
+            {
+                //Debug.Log(text + " worked");
+                text.GetComponent<LocalizedText>().updateLanguage();
+            }
+            catch(Exception e)
+            {
+                Debug.Log(text + ", " + text.text);
+            }
+        }
 
+        /**
         GameData.ChangeOrdinals(currentLanguage.GetOrderWords());
         GameData.ChangeColorMap(currentLanguage.GetColors());
         GameData.ChangePieceColors(currentLanguage.GetColors());
+        **/
+        GameData.ChangeOrdinals(GameData.GetLanguageText(GameData.langKeyOrdinal).Split(','));
+        GameData.ChangeColorMap(GameData.GetLanguageText(GameData.langKeyColor).Split(','));
+        GameData.ChangePieceColors(GameData.GetLanguageText(GameData.langKeyColor).Split(','));
         GameData.ResetAvailableColors();
+        
     }
 
-    // Use this for initialization
-    void Awake()
+    //document
+    void Start()
     {
         explanationScreen = GameObject.Find("Explanation Screen").GetComponent<Canvas>();
         rollScreen = GameObject.Find("Roll Screen").GetComponent<Canvas>();
@@ -570,12 +610,12 @@ public class GameGUI : MonoBehaviour
         moveOrderText = GameObject.Find("Move Order Text").GetComponent<Text>();
         moveOrderOKButtonText = GameObject.Find("Move Order OK Text").GetComponent<Text>();
         setupTitleText = GameObject.Find("Setup Title Text").GetComponent<Text>();
-        playerCountTitleText = GameObject.Find("Setup Title Text").GetComponent<Text>();
+        playerCountTitleText = GameObject.Find("Player Count Title Text").GetComponent<Text>();
         mainTitleText = GameObject.Find("Main Title Text").GetComponent<Text>();
         mainPlayButtonText = GameObject.Find("Main Play Text").GetComponent<Text>();
         mainRuleButtonText = GameObject.Find("Main Rules Text").GetComponent<Text>();
-        mainOptionsButtonText = GameObject.Find("Main Options Text").GetComponent<Text>();
-        mainCreditsButtonText = GameObject.Find("Main Options Text").GetComponent<Text>();
+        mainOptionsButtonText = GameObject.Find("Main Options Text").GetComponent<Text>();  
+        mainCreditsButtonText = GameObject.Find("Main Credits Text").GetComponent<Text>();
         optionsTitleText = GameObject.Find("Options Title Text").GetComponent<Text>();
         optionsOKButtonText = GameObject.Find("Options OK Button Text").GetComponent<Text>();
         optionsMusicLabel = GameObject.Find("Option Music Label").GetComponent<Text>();
@@ -584,8 +624,48 @@ public class GameGUI : MonoBehaviour
         setupNameText = GameObject.Find("Setup Name Text").GetComponent<Text>();
         setupColorText = GameObject.Find("Setup Color Text").GetComponent<Text>();
         explanationText = GameObject.Find("Explanation Text").GetComponent<Text>();
+        setupOKButton = GameObject.Find("Setup OK Button").GetComponent<Text>();
+        messageDefaultOKButton = GameObject.Find("Message Default OK Button Text").GetComponent<Text>();
+        messageSpecialOKButton = GameObject.Find("Message Special OK Button Text").GetComponent<Text>();
+        optionsMergeCollideLabel = GameObject.Find("Option Merge Collide Label").GetComponent<Text>();
         messageCharacterSprite = GameObject.Find("Message Character Image").GetComponent<Image>();
-        spriteSource = GameObject.Find("Sprite Holder").GetComponent<SpriteHolder>();
+        spriteSource = GameObject.Find("Sprite Holder").GetComponent<SpriteHolder>();        
+        GUITextComponents = new List<Text>(){
+                rollButtonText,
+                rollTitleText,
+                winMenuText,
+                winTitleText,
+                selectMoveTitleText,
+                nextTurnOKButtonText,
+                moveOrderTitleText,
+                moveOrderText,
+                moveOrderOKButtonText,
+                setupTitleText,
+                playerCountTitleText,
+                mainTitleText,
+                mainPlayButtonText,
+                mainRuleButtonText,
+                mainOptionsButtonText,
+                mainCreditsButtonText,
+                optionsTitleText,
+                optionsMusicLabel,
+                optionsOKButtonText,
+                optionsLanguageLabel,
+                explanationOKButtonText,
+                setupNameText,
+                setupColorText,
+                setupOKButton,
+                messageSpecialOKButton,
+                messageDefaultOKButton,
+                optionsMergeCollideLabel
+        };
+        //analytics
+        analyticsGameStarted = setupScreen.GetComponent<GameStarted>();
+        analyticsApplicationExited = this.gameObject.GetComponent<ApplicationExited>();
+        analyticsGameCompleted = GameObject.Find("Win Screen").GetComponent<GameCompleted>();
+        analyticsInitialPathChosen = GameObject.Find("Message Screen").GetComponent<InitialPathChosen>();
+
+
     }
 
     // Update is called once per frame

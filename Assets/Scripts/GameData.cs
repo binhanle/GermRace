@@ -4,10 +4,13 @@ using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Xml.Linq;
-
+using UnityEngine.UI;
 
 public static class GameData
 {
+    //Merge/Collision settings
+    private static bool mergeCollide = true;
+
     //TextAssetHolder
     private static TextAssetHolder textAssets = GameObject.Find("TextAssets").GetComponent<TextAssetHolder>();
 
@@ -71,6 +74,8 @@ public static class GameData
     private static XmlDocument LangXMLDoc;
     private static XDocument LangXDoc;
     private static IEnumerable<XElement> LangItems;
+    public static string langKeyOrdinal = "OrderWords";
+    public static string langKeyColor = "Colors";
 
 
     //tile colors
@@ -373,6 +378,7 @@ public static class GameData
         {
             if (item.Element("Name").Value.Trim() == currentLanguage)
             {
+                //Debug.Log("reached");
                 return item.Element(key).Value.Trim();
             }
         }
@@ -505,9 +511,14 @@ public static class GameData
     {
         List<string> availableLanguages = new List<string>();
 
+        availableLanguages.Add(currentLanguage);
+
         foreach (string languageLabel in languages.Keys)
         {
-            availableLanguages.Add(languageLabel);
+            if (languageLabel != currentLanguage)
+            {
+                availableLanguages.Add(languageLabel);
+            }
         }
 
         return availableLanguages;
@@ -534,6 +545,19 @@ public static class GameData
         LangXDoc = XDocument.Parse(LangXMLDoc.OuterXml);
         LangItems = LangXDoc.Descendants("languages").Elements();
         Debug.Log("instantiated");
+    }
 
+    //document 
+    public static void SetMergeCollide(bool val)
+    {
+        //sets value of mergecollide boolean to input
+        mergeCollide = val;
+    }
+
+    //document
+    public static bool GetMergeCollide()
+    {
+        //returns value of mergeCollide boolean
+        return mergeCollide;
     }
 }

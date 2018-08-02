@@ -86,6 +86,12 @@ public class Line : VolumetricLines.VolumetricLineBehavior
 
     void ExecuteMove()
     {
+        //analytics
+        if (GameGUI.analyticsGameCompleted.GetRollCount() <= GameData.GetNumPlayers())
+        {
+            GameGUI.analyticsInitialPathChosen.UpdatePathChosen(move.GetDestTile().name);
+        }
+
         // destroy the lines and outlines
         GameData.GetCurrPlayer().DestroyLegalMoves();
 

@@ -77,6 +77,9 @@ public class Board : MonoBehaviour
         tileEffects.Add("soap", soapObject);
         WinEffect winEffect = GameObject.Find("WinEffect").GetComponent<WinEffect>();
         tileEffects.Add("win", winEffect);
+        LeftMovingObject tongueObject = GameObject.Find("TongueEffect").GetComponent<LeftMovingObject>();
+        tileEffects.Add("tongue", tongueObject);
+
 
         //resizing and hiding the effects
         foreach (string effect in tileEffects.Keys)
@@ -161,6 +164,9 @@ public class Board : MonoBehaviour
             tile.SetTileType(type);
             tile.SetPosition(xPosition, yPosition);
             tile.SetText(text);
+            tile.SetLanguage1(language1Text);
+            tile.SetLanguage2(language2Text);
+            tile.SetLanguage3(language3Text);
             tile.SetLandAnimKey(landAnimKey);
             tile.SetLandAnimOption(landAnimOption);
             
@@ -266,6 +272,9 @@ public class Board : MonoBehaviour
         player.SetupPieces(GameData.GetColorMap()[color]);
         players.Add(player);
 
+        //updates analytics player count 
+        GameGUI.analyticsGameStarted.UpdatePlayerCount(players.Count);
+
         // remove player's color from available colors
         GameData.RemoveAvailableColor(color);
     }
@@ -283,6 +292,9 @@ public class Board : MonoBehaviour
         {
             // hide the setup screen
             GameGUI.HideSetupScreen();
+
+            //send analytics event for game start
+            GameGUI.analyticsGameStarted.OnGameStart();
 
             // determine the move order
             DetermineMoveOrder();
@@ -313,6 +325,11 @@ public class Board : MonoBehaviour
 
     public void RollDie(GameData.Mode mode)
     {
+        //analytics
+        if (GameData.GetGameMode() == GameData.Mode.NormalRoll)
+        {
+            GameGUI.analyticsGameCompleted.Rolled();
+        }
         // Switches to the roll screen
         
         // switch view (main camera position)
@@ -346,9 +363,15 @@ public class Board : MonoBehaviour
         {
             // since no jump happened 
 
-            //if collision, display the collision screen
-            bool collision = CheckCollision();
-            bool merge = CheckMerge();
+            
+            bool collision = false;  
+            bool merge = false;
+
+            if (GameData.GetMergeCollide())
+            {
+                collision = CheckCollision();
+                merge = CheckMerge();
+            }
 
             //if no collision move on to next turn 
             if (!collision && !merge)
@@ -386,7 +409,7 @@ public class Board : MonoBehaviour
             {
                 foreach (Character piece in player.GetPieces())
                 {
-                    if (piece.GetCurrTile() == GameData.GetActivePiece().GetCurrTile() && piece.GetCurrTile() != GetStartTile())
+                    if (piece.GetCurrTile() == GameData.GetActivePiece().GetCurrTile() && piece.GetCurrTile() != GetStartTile() && !piece.Equals(GetFinishTile()))
                     {
                         //determine smaller piece (active piece wins in case of tie)
                         Character smallerPiece = null;
@@ -427,7 +450,7 @@ public class Board : MonoBehaviour
         foreach (Character piece in pieces)
         {
             //merges cannot occure at start or with a piece and itself
-            if (activePiece.GetCurrTile() != GetStartTile() && !piece.Equals(activePiece) 
+            if (activePiece.GetCurrTile() != GetStartTile() && !piece.Equals(activePiece) && !piece.Equals(GetFinishTile())
                 && piece.GetCurrTile() == activePiece.GetCurrTile())
             {
                 //adjusting the size of the character after the merge
@@ -461,6 +484,9 @@ public class Board : MonoBehaviour
 
             //show the winning screen
             GameGUI.ShowWinScreen();
+
+            //update applicationExited analytics
+            GameGUI.analyticsApplicationExited.GameCompleted();
 
             //activate the winning visual effect
             tileEffects["win"].activateEffect(new Vector2(0,0));
@@ -513,8 +539,11 @@ public class Board : MonoBehaviour
 
         // executes the special command 
         GameGUI.HideMessageScreen();
-        CheckCollision();
-        CheckMerge();
+        if (GameData.GetMergeCollide())
+        {
+            CheckCollision();
+            CheckMerge();
+        }
         Invoke(GameData.GetActivePiece().GetCurrTile().GetSpecialCommand(), 0);
     }
 

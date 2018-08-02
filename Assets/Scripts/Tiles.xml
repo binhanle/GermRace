@@ -420,7 +420,7 @@
     <image>x</image>
     <xPosition>13.1</xPosition>
     <yPosition>-2.8</yPosition>
-	<landAnimKey>fall</landAnimKey>
+	<landAnimKey>tongue</landAnimKey>
 	<landAnimOption></landAnimOption>
   </tile>
   <tile>
